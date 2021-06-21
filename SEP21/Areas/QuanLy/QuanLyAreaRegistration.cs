@@ -17,7 +17,7 @@ namespace SEP21.Areas.QuanLy
             context.MapRoute(
                 "QuanLy_default",
                 "QuanLy/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { controller = "AdminHome", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
