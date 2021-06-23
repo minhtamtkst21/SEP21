@@ -183,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\QuanLy\Views\AdminHome\Index.cshtml" />
+    <Content Include="Areas\QuanLy\Views\AdminHome\Index2.cshtml" />
     <None Include="Areas\QuanLy\Views\Shared\_AdminLayout.cshtml" />
     <Content Include="assets\css\style.css" />
     <Content Include="assets\img\apple-touch-icon.png" />
