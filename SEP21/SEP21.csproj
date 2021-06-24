@@ -49,6 +49,9 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin.Security.VanLang, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Capstone.Owin.Security.VanLang.2.0.0.1\lib\net452\Microsoft.Owin.Security.VanLang.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -178,6 +181,18 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BaiViet.cs">
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
@@ -188,6 +203,9 @@
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DoanHoiKhoa.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GioiThieu.cs">
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HoatDong.cs">
@@ -201,6 +219,21 @@
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\NCKH.cs">
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
@@ -211,6 +244,9 @@
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SinhVien.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ThanhTich.cs">
@@ -362,6 +398,16 @@
     <Content Include="js\morris.min.js" />
     <Content Include="js\raphael.min.js" />
     <Content Include="js\startmin.js" />
+    <Content Include="Models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\WebKhoaCNTT.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>WebKhoaCNTT.edmx</DependentUpon>
@@ -422,6 +468,13 @@
     </EntityDeploy>
     <Content Include="Models\WebKhoaCNTT.edmx.diagram">
       <DependentUpon>WebKhoaCNTT.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
