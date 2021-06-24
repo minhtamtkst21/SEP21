@@ -52,6 +52,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -176,8 +178,62 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BaiViet.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DangKyHoatDong.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DatThanhTich.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DoanHoiKhoa.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HoatDong.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Khoa.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoaiBaiViet.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\NCKH.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NguoiThucHienNCKH.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NhanVienKhoa.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SinhVien.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ThanhTich.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TuyenDung.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebKhoaCNTT.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebKhoaCNTT.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebKhoaCNTT.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebKhoaCNTT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebKhoaCNTT.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -306,6 +362,16 @@
     <Content Include="js\morris.min.js" />
     <Content Include="js\raphael.min.js" />
     <Content Include="js\startmin.js" />
+    <Content Include="Models\WebKhoaCNTT.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WebKhoaCNTT.edmx</DependentUpon>
+      <LastGenOutput>WebKhoaCNTT.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\WebKhoaCNTT.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WebKhoaCNTT.edmx</DependentUpon>
+      <LastGenOutput>WebKhoaCNTT.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="assets\vendor\bootstrap-icons\bootstrap-icons.json" />
@@ -350,6 +416,13 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <EntityDeploy Include="Models\WebKhoaCNTT.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>WebKhoaCNTT.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\WebKhoaCNTT.edmx.diagram">
+      <DependentUpon>WebKhoaCNTT.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -412,6 +485,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
