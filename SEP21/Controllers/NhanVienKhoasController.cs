@@ -8,114 +8,114 @@ using System.Web;
 using System.Web.Mvc;
 using SEP21.Models;
 
-namespace SEP21.Areas.QuanLy.Controllers
+namespace SEP21.Controllers
 {
-    public class SinhViensController : Controller
+    public class NhanVienKhoasController : Controller
     {
         private SEP24Team5Entities db = new SEP24Team5Entities();
 
-        // GET: QuanLy/SinhViens1
+        // GET: NhanVienKhoas
         public ActionResult Index()
         {
-            var sinhViens = db.SinhViens.Include(s => s.Khoa);
-            return View(sinhViens.ToList());
+            var nhanVienKhoas = db.NhanVienKhoas.Include(n => n.Khoa1);
+            return View(nhanVienKhoas.ToList());
         }
 
-        // GET: QuanLy/SinhViens1/Details/5
+        // GET: NhanVienKhoas/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SinhVien sinhVien = db.SinhViens.Find(id);
-            if (sinhVien == null)
+            NhanVienKhoa nhanVienKhoa = db.NhanVienKhoas.Find(id);
+            if (nhanVienKhoa == null)
             {
                 return HttpNotFound();
             }
-            return View(sinhVien);
+            return View(nhanVienKhoa);
         }
 
-        // GET: QuanLy/SinhViens1/Create
+        // GET: NhanVienKhoas/Create
         public ActionResult Create()
         {
-            ViewBag.TenKhoa = new SelectList(db.Khoas, "ID", "MaKhoa");
+            ViewBag.Khoa = new SelectList(db.Khoas, "ID", "MaKhoa");
             return View();
         }
 
-        // POST: QuanLy/SinhViens1/Create
+        // POST: NhanVienKhoas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,MSSV,HoTen,TenKhoa,NienKhoa,SoDienThoai,mail")] SinhVien sinhVien)
+        public ActionResult Create([Bind(Include = "ID,MaNhanVien,HoTen,ChucVu,Khoa")] NhanVienKhoa nhanVienKhoa)
         {
             if (ModelState.IsValid)
             {
-                db.SinhViens.Add(sinhVien);
+                db.NhanVienKhoas.Add(nhanVienKhoa);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TenKhoa = new SelectList(db.Khoas, "ID", "MaKhoa", sinhVien.TenKhoa);
-            return View(sinhVien);
+            ViewBag.Khoa = new SelectList(db.Khoas, "ID", "MaKhoa", nhanVienKhoa.Khoa);
+            return View(nhanVienKhoa);
         }
 
-        // GET: QuanLy/SinhViens1/Edit/5
+        // GET: NhanVienKhoas/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SinhVien sinhVien = db.SinhViens.Find(id);
-            if (sinhVien == null)
+            NhanVienKhoa nhanVienKhoa = db.NhanVienKhoas.Find(id);
+            if (nhanVienKhoa == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.TenKhoa = new SelectList(db.Khoas, "ID", "MaKhoa", sinhVien.TenKhoa);
-            return View(sinhVien);
+            ViewBag.Khoa = new SelectList(db.Khoas, "ID", "MaKhoa", nhanVienKhoa.Khoa);
+            return View(nhanVienKhoa);
         }
 
-        // POST: QuanLy/SinhViens1/Edit/5
+        // POST: NhanVienKhoas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,MSSV,HoTen,TenKhoa,NienKhoa,SoDienThoai,mail")] SinhVien sinhVien)
+        public ActionResult Edit([Bind(Include = "ID,MaNhanVien,HoTen,ChucVu,Khoa")] NhanVienKhoa nhanVienKhoa)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sinhVien).State = EntityState.Modified;
+                db.Entry(nhanVienKhoa).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.TenKhoa = new SelectList(db.Khoas, "ID", "MaKhoa", sinhVien.TenKhoa);
-            return View(sinhVien);
+            ViewBag.Khoa = new SelectList(db.Khoas, "ID", "MaKhoa", nhanVienKhoa.Khoa);
+            return View(nhanVienKhoa);
         }
 
-        // GET: QuanLy/SinhViens1/Delete/5
+        // GET: NhanVienKhoas/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SinhVien sinhVien = db.SinhViens.Find(id);
-            if (sinhVien == null)
+            NhanVienKhoa nhanVienKhoa = db.NhanVienKhoas.Find(id);
+            if (nhanVienKhoa == null)
             {
                 return HttpNotFound();
             }
-            return View(sinhVien);
+            return View(nhanVienKhoa);
         }
 
-        // POST: QuanLy/SinhViens1/Delete/5
+        // POST: NhanVienKhoas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SinhVien sinhVien = db.SinhViens.Find(id);
-            db.SinhViens.Remove(sinhVien);
+            NhanVienKhoa nhanVienKhoa = db.NhanVienKhoas.Find(id);
+            db.NhanVienKhoas.Remove(nhanVienKhoa);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

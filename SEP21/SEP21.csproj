@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -120,12 +126,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -173,10 +173,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\QuanLy\Controllers\AdminHomeController.cs" />
+    <Compile Include="Areas\QuanLy\Controllers\BaiVietsController.cs" />
+    <Compile Include="Areas\QuanLy\Controllers\GioiThieuxController.cs" />
+    <Compile Include="Areas\QuanLy\Controllers\SinhViensController.cs" />
     <Compile Include="Areas\QuanLy\QuanLyAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaiVietsController.cs" />
+    <Compile Include="Controllers\GioiThieuxController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KhoasController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NhanVienKhoasController.cs" />
+    <Compile Include="Controllers\SinhViensController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -276,6 +284,16 @@
   <ItemGroup>
     <Content Include="Areas\QuanLy\Views\AdminHome\Index.cshtml" />
     <Content Include="Areas\QuanLy\Views\AdminHome\Index2.cshtml" />
+    <Content Include="Areas\QuanLy\Views\BaiViets\Create.cshtml" />
+    <Content Include="Areas\QuanLy\Views\BaiViets\Delete.cshtml" />
+    <Content Include="Areas\QuanLy\Views\BaiViets\Details.cshtml" />
+    <Content Include="Areas\QuanLy\Views\BaiViets\Edit.cshtml" />
+    <Content Include="Areas\QuanLy\Views\BaiViets\Index.cshtml" />
+    <Content Include="Areas\QuanLy\Views\GioiThieux\Create.cshtml" />
+    <Content Include="Areas\QuanLy\Views\GioiThieux\Delete.cshtml" />
+    <Content Include="Areas\QuanLy\Views\GioiThieux\Details.cshtml" />
+    <Content Include="Areas\QuanLy\Views\GioiThieux\Edit.cshtml" />
+    <Content Include="Areas\QuanLy\Views\GioiThieux\Index.cshtml" />
     <None Include="Areas\QuanLy\Views\Shared\_AdminLayout.cshtml" />
     <Content Include="assets\css\style.css" />
     <Content Include="assets\img\apple-touch-icon.png" />
@@ -476,6 +494,12 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\QuanLy\Views\SinhViens\Create.cshtml" />
+    <Content Include="Areas\QuanLy\Views\SinhViens\Delete.cshtml" />
+    <Content Include="Areas\QuanLy\Views\SinhViens\Details.cshtml" />
+    <Content Include="Areas\QuanLy\Views\SinhViens\Edit.cshtml" />
+    <Content Include="Areas\QuanLy\Views\SinhViens\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -521,6 +545,31 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\GioiThieux\Create.cshtml" />
+    <Content Include="Views\GioiThieux\Delete.cshtml" />
+    <Content Include="Views\GioiThieux\Details.cshtml" />
+    <Content Include="Views\GioiThieux\Edit.cshtml" />
+    <Content Include="Views\GioiThieux\Index.cshtml" />
+    <Content Include="Views\BaiViets\Create.cshtml" />
+    <Content Include="Views\BaiViets\Delete.cshtml" />
+    <Content Include="Views\BaiViets\Details.cshtml" />
+    <Content Include="Views\BaiViets\Edit.cshtml" />
+    <Content Include="Views\BaiViets\Index.cshtml" />
+    <Content Include="Views\SinhViens\Create.cshtml" />
+    <Content Include="Views\SinhViens\Delete.cshtml" />
+    <Content Include="Views\SinhViens\Details.cshtml" />
+    <Content Include="Views\SinhViens\Edit.cshtml" />
+    <Content Include="Views\SinhViens\Index.cshtml" />
+    <Content Include="Views\NhanVienKhoas\Create.cshtml" />
+    <Content Include="Views\NhanVienKhoas\Delete.cshtml" />
+    <Content Include="Views\NhanVienKhoas\Details.cshtml" />
+    <Content Include="Views\NhanVienKhoas\Edit.cshtml" />
+    <Content Include="Views\NhanVienKhoas\Index.cshtml" />
+    <Content Include="Views\Khoas\Create.cshtml" />
+    <Content Include="Views\Khoas\Delete.cshtml" />
+    <Content Include="Views\Khoas\Details.cshtml" />
+    <Content Include="Views\Khoas\Edit.cshtml" />
+    <Content Include="Views\Khoas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

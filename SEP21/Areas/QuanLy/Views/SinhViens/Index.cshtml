@@ -4,11 +4,15 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/QuanLy/Views/Shared/_AdminLayout.cshtml";
 }
+
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Quản lí sinh viên</h1>
+                <h1 class="page-header">Thông tin sinh viên</h1>
+                <p>
+                    @Html.ActionLink("Create New", "Create")
+                </p>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -16,6 +20,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                        DataTables Advanced Tables
+                    </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="table-responsive">
@@ -24,22 +31,19 @@
                                     <tr>
                                         <th>MSSV</th>
                                         <th>Họ tên</th>
-                                        <th>Khoa</th>
                                         <th>Số điện thoại</th>
                                         <th>Mail</th>
+                                        <th>Khoa</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model)
-                                    {
-                                        <tr>
-                                            <td>@item.MSSV</td>
-                                            <td>@item.HoTen</td>
-                                            <td>@item.NienKhoa</td>
-                                            <td>@item.SoDienThoai</td>
-                                            <td>@item.mail</td>
-                                        </tr>
-                                    }
+                                    <tr class="odd gradeX">
+                                        <td>Trident</td>
+                                        <td>Internet Explorer 4.0</td>
+                                        <td>Win 95+</td>
+                                        <td class="center">4</td>
+                                        <td class="center">X</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -48,63 +52,64 @@
                 </div>
                 <!-- /.panel -->
             </div>
+            <!-- /.col-lg-12 -->
         </div>
     </div>
     <!-- /.container-fluid -->
 </div>
-@*<h2>Index</h2>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                MSSV
-            </th>
-            <th>
-                Họ tên
-            </th>
-            <th>
-                Khóa
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SoDienThoai)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.mail)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Khoa.MaKhoa)
-            </th>
-            <th></th>
-        </tr>
+<h2>Index</h2>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MSSV)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HoTen)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NienKhoa)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SoDienThoai)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.mail)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Khoa.MaKhoa)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                </td>
-            </tr>
-        }
-    </table>*@
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MSSV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HoTen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NienKhoa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoDienThoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Khoa.MaKhoa)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MSSV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NienKhoa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoDienThoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Khoa.MaKhoa)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -31,7 +31,7 @@
             <!-- Navigation -->
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">Khoa CNTT</a>
+                    <a class="navbar-brand" href="@Url.Action("Index","AdminHome")">Khoa CNTT</a>
                 </div>
 
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -47,13 +47,16 @@
                             <i class="fa fa-user fa-fw"></i>Khoa cntt<b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            <li>
+                                <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="#"><i class="fa fa-home fa-fw"></i>Quay về trang User</a>
+                            <li>
+                                <a href="#"><i class="fa fa-home fa-fw"></i>Quay về trang User</a>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li>
+                                <a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         </ul>
                     </li>
@@ -80,7 +83,7 @@
                                         <a href="#">Cá nhân<span class="fa arrow"></span></a>
                                         <ul class="nav nav-third-level">
                                             <li>
-                                                <a href="#">Sinh viên</a>
+                                                <a href="@Url.Action("Index","SinhViens")">Sinh viên</a>
                                             </li>
                                             <li>
                                                 <a href="#">Cán bộ Khoa</a>
@@ -93,7 +96,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-dashboard fa-fw"></i>Giới thiệu</a>
+                                <a href="@Url.Action("Index","GioiThieux")"><i class="fa fa-dashboard fa-fw"></i>Giới thiệu</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-dashboard fa-fw"></i>Đào tạo</a>
@@ -139,7 +142,6 @@
             </nav>
         </div>
         <!-- /#wrapper -->
-
         <!-- jQuery -->
         <script src="@Url.Content("~/js/jquery.min.js")"></script>
 
@@ -152,5 +154,16 @@
         <!-- Custom Theme JavaScript -->
         <script src="@Url.Content("~/js/startmin.js")"></script>
 
+
+        <script src="@Url.Content("~/js/dataTables/jquery.dataTables.min.js")"></script>
+        <script src="@Url.Content("~/js/dataTables/dataTables.bootstrap.min.js")"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').DataTable({
+                    responsive: true
+                });
+            });
+        </script>
     </body>
 </html>

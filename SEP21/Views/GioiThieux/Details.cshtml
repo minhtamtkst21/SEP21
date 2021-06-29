@@ -1,0 +1,43 @@
+﻿@model SEP21.Models.GioiThieu
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/QuanLy/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>GioiThieu</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SuMang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SuMang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TamNhin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TamNhin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrietLyGiaoDuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrietLyGiaoDuc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

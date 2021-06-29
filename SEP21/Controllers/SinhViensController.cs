@@ -8,20 +8,20 @@ using System.Web;
 using System.Web.Mvc;
 using SEP21.Models;
 
-namespace SEP21.Areas.QuanLy.Controllers
+namespace SEP21.Controllers
 {
     public class SinhViensController : Controller
     {
         private SEP24Team5Entities db = new SEP24Team5Entities();
 
-        // GET: QuanLy/SinhViens1
+        // GET: SinhViens
         public ActionResult Index()
         {
             var sinhViens = db.SinhViens.Include(s => s.Khoa);
             return View(sinhViens.ToList());
         }
 
-        // GET: QuanLy/SinhViens1/Details/5
+        // GET: SinhViens/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,14 +36,14 @@ namespace SEP21.Areas.QuanLy.Controllers
             return View(sinhVien);
         }
 
-        // GET: QuanLy/SinhViens1/Create
+        // GET: SinhViens/Create
         public ActionResult Create()
         {
             ViewBag.TenKhoa = new SelectList(db.Khoas, "ID", "MaKhoa");
             return View();
         }
 
-        // POST: QuanLy/SinhViens1/Create
+        // POST: SinhViens/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -61,7 +61,7 @@ namespace SEP21.Areas.QuanLy.Controllers
             return View(sinhVien);
         }
 
-        // GET: QuanLy/SinhViens1/Edit/5
+        // GET: SinhViens/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -77,7 +77,7 @@ namespace SEP21.Areas.QuanLy.Controllers
             return View(sinhVien);
         }
 
-        // POST: QuanLy/SinhViens1/Edit/5
+        // POST: SinhViens/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -94,7 +94,7 @@ namespace SEP21.Areas.QuanLy.Controllers
             return View(sinhVien);
         }
 
-        // GET: QuanLy/SinhViens1/Delete/5
+        // GET: SinhViens/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -109,7 +109,7 @@ namespace SEP21.Areas.QuanLy.Controllers
             return View(sinhVien);
         }
 
-        // POST: QuanLy/SinhViens1/Delete/5
+        // POST: SinhViens/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -10,112 +10,116 @@ using SEP21.Models;
 
 namespace SEP21.Areas.QuanLy.Controllers
 {
-    public class SinhViensController : Controller
+    public class BaiVietsController : Controller
     {
         private SEP24Team5Entities db = new SEP24Team5Entities();
 
-        // GET: QuanLy/SinhViens1
+        // GET: QuanLy/BaiViets
         public ActionResult Index()
         {
-            var sinhViens = db.SinhViens.Include(s => s.Khoa);
-            return View(sinhViens.ToList());
+            var baiViets = db.BaiViets.Include(b => b.LoaiBaiViet1).Include(b => b.NhanVienKhoa);
+            return View(baiViets.ToList());
         }
 
-        // GET: QuanLy/SinhViens1/Details/5
+        // GET: QuanLy/BaiViets/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SinhVien sinhVien = db.SinhViens.Find(id);
-            if (sinhVien == null)
+            BaiViet baiViet = db.BaiViets.Find(id);
+            if (baiViet == null)
             {
                 return HttpNotFound();
             }
-            return View(sinhVien);
+            return View(baiViet);
         }
 
-        // GET: QuanLy/SinhViens1/Create
+        // GET: QuanLy/BaiViets/Create
         public ActionResult Create()
         {
-            ViewBag.TenKhoa = new SelectList(db.Khoas, "ID", "MaKhoa");
+            ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet");
+            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien");
             return View();
         }
 
-        // POST: QuanLy/SinhViens1/Create
+        // POST: QuanLy/BaiViets/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,MSSV,HoTen,TenKhoa,NienKhoa,SoDienThoai,mail")] SinhVien sinhVien)
+        public ActionResult Create([Bind(Include = "ID,NgayDangBai,TieuDe,NguoiDang,NoiDung,LoaiBaiViet")] BaiViet baiViet)
         {
             if (ModelState.IsValid)
             {
-                db.SinhViens.Add(sinhVien);
+                db.BaiViets.Add(baiViet);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TenKhoa = new SelectList(db.Khoas, "ID", "MaKhoa", sinhVien.TenKhoa);
-            return View(sinhVien);
+            ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", baiViet.LoaiBaiViet);
+            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", baiViet.NguoiDang);
+            return View(baiViet);
         }
 
-        // GET: QuanLy/SinhViens1/Edit/5
+        // GET: QuanLy/BaiViets/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SinhVien sinhVien = db.SinhViens.Find(id);
-            if (sinhVien == null)
+            BaiViet baiViet = db.BaiViets.Find(id);
+            if (baiViet == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.TenKhoa = new SelectList(db.Khoas, "ID", "MaKhoa", sinhVien.TenKhoa);
-            return View(sinhVien);
+            ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", baiViet.LoaiBaiViet);
+            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", baiViet.NguoiDang);
+            return View(baiViet);
         }
 
-        // POST: QuanLy/SinhViens1/Edit/5
+        // POST: QuanLy/BaiViets/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,MSSV,HoTen,TenKhoa,NienKhoa,SoDienThoai,mail")] SinhVien sinhVien)
+        public ActionResult Edit([Bind(Include = "ID,NgayDangBai,TieuDe,NguoiDang,NoiDung,LoaiBaiViet")] BaiViet baiViet)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sinhVien).State = EntityState.Modified;
+                db.Entry(baiViet).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.TenKhoa = new SelectList(db.Khoas, "ID", "MaKhoa", sinhVien.TenKhoa);
-            return View(sinhVien);
+            ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", baiViet.LoaiBaiViet);
+            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", baiViet.NguoiDang);
+            return View(baiViet);
         }
 
-        // GET: QuanLy/SinhViens1/Delete/5
+        // GET: QuanLy/BaiViets/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SinhVien sinhVien = db.SinhViens.Find(id);
-            if (sinhVien == null)
+            BaiViet baiViet = db.BaiViets.Find(id);
+            if (baiViet == null)
             {
                 return HttpNotFound();
             }
-            return View(sinhVien);
+            return View(baiViet);
         }
 
-        // POST: QuanLy/SinhViens1/Delete/5
+        // POST: QuanLy/BaiViets/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SinhVien sinhVien = db.SinhViens.Find(id);
-            db.SinhViens.Remove(sinhVien);
+            BaiViet baiViet = db.BaiViets.Find(id);
+            db.BaiViets.Remove(baiViet);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
