@@ -6,8 +6,8 @@
 }
 
 <h2>Edit</h2>
-
-@using (Html.BeginForm())
+<script src="~/Plugin/ckeditor/ckeditor.js"></script>
+@using (Html.BeginForm("Edit", "BaiViet", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -42,10 +42,11 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NoiDung, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor("Nội dung", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control", @id = "FullDescription" } })
                 @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+                <script>CKEDITOR.replace("FullDescription")</script>
             </div>
         </div>
 
