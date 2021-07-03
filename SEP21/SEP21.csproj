@@ -227,6 +227,15 @@
     <Compile Include="Models\LoaiBaiViet.cs">
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoaiTuyenDung.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Login.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoginAdmin.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>

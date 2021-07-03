@@ -12,15 +12,10 @@ namespace SEP21.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TuyenDung
+    public partial class LoginAdmin
     {
         public int ID { get; set; }
-        public string ViTri { get; set; }
-        public Nullable<int> SoLuong { get; set; }
-        public string YeuCau { get; set; }
-        public string TieuDe { get; set; }
-        public int LoaiTuyenDung { get; set; }
-    
-        public virtual LoaiTuyenDung LoaiTuyenDung1 { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
     }
 }

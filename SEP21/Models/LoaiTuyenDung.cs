@@ -12,15 +12,18 @@ namespace SEP21.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TuyenDung
+    public partial class LoaiTuyenDung
     {
-        public int ID { get; set; }
-        public string ViTri { get; set; }
-        public Nullable<int> SoLuong { get; set; }
-        public string YeuCau { get; set; }
-        public string TieuDe { get; set; }
-        public int LoaiTuyenDung { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public LoaiTuyenDung()
+        {
+            this.TuyenDungs = new HashSet<TuyenDung>();
+        }
     
-        public virtual LoaiTuyenDung LoaiTuyenDung1 { get; set; }
+        public int ID { get; set; }
+        public string LoaiTuyenDung1 { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TuyenDung> TuyenDungs { get; set; }
     }
 }
