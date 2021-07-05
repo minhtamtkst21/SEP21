@@ -17,7 +17,8 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/AspNetUsers
         public ActionResult Index()
         {
-            return View(db.AspNetUsers.ToList());
+            return View();
+            //db.AspNetUsers.ToList()
         }
 
         // GET: QuanLy/AspNetUsers/Details/5
