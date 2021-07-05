@@ -172,17 +172,12 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Areas\QuanLy\Controllers\AdminAccountsController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\AdminHomeController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\DangNhapController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\BaiVietsController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\DoanHoiKhoasController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\GioiThieuxController.cs" />
-<<<<<<< Updated upstream
     <Compile Include="Areas\QuanLy\Controllers\NCKHsController.cs" />
-=======
-    <Compile Include="Areas\QuanLy\Controllers\LoginAdminsController.cs" />
->>>>>>> Stashed changes
     <Compile Include="Areas\QuanLy\Controllers\SinhViensController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\ThanhTichesController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\TuyenDungController.cs" />
@@ -199,7 +194,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AdminAccount.cs" />
     <Compile Include="Models\AspNetRole.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -302,7 +296,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\QuanLy\Views\AdminHome\Index1.cshtml" />
+    <Content Include="Areas\QuanLy\Views\AdminHome\Index.cshtml" />
     <Content Include="Areas\QuanLy\Views\BaiViets\Create.cshtml" />
     <Content Include="Areas\QuanLy\Views\BaiViets\Delete.cshtml" />
     <Content Include="Areas\QuanLy\Views\BaiViets\Details.cshtml" />
@@ -315,7 +309,6 @@
     <Content Include="Areas\QuanLy\Views\DangNhap\Details.cshtml" />
     <Content Include="Areas\QuanLy\Views\DangNhap\Edit.cshtml" />
     <Content Include="Areas\QuanLy\Views\DangNhap\Index.cshtml" />
-<<<<<<< Updated upstream
     <Content Include="Areas\QuanLy\Views\DoanHoiKhoas\Create.cshtml" />
     <Content Include="Areas\QuanLy\Views\DoanHoiKhoas\Delete.cshtml" />
     <Content Include="Areas\QuanLy\Views\DoanHoiKhoas\Details.cshtml" />
@@ -326,20 +319,6 @@
     <Content Include="Areas\QuanLy\Views\NCKHs\Details.cshtml" />
     <Content Include="Areas\QuanLy\Views\NCKHs\Edit.cshtml" />
     <Content Include="Areas\QuanLy\Views\NCKHs\Index.cshtml" />
-=======
-    <Content Include="Areas\QuanLy\Views\AdminHome\Index.cshtml" />
-    <Content Include="Areas\QuanLy\Views\AdminLogin\Login.cshtml" />
-    <Content Include="Areas\QuanLy\Views\Logins\Create.cshtml" />
-    <Content Include="Areas\QuanLy\Views\Logins\Delete.cshtml" />
-    <Content Include="Areas\QuanLy\Views\Logins\Details.cshtml" />
-    <Content Include="Areas\QuanLy\Views\Logins\Edit.cshtml" />
-    <Content Include="Areas\QuanLy\Views\Logins\Index.cshtml" />
-    <Content Include="Areas\QuanLy\Views\LoginAdmins\Create.cshtml" />
-    <Content Include="Areas\QuanLy\Views\LoginAdmins\Delete.cshtml" />
-    <Content Include="Areas\QuanLy\Views\LoginAdmins\Details.cshtml" />
-    <Content Include="Areas\QuanLy\Views\LoginAdmins\Edit.cshtml" />
-    <Content Include="Areas\QuanLy\Views\LoginAdmins\Index.cshtml" />
->>>>>>> Stashed changes
     <None Include="Areas\QuanLy\Views\Shared\_AdminLayout.cshtml" />
     <Content Include="assets\css\style.css" />
     <Content Include="assets\img\apple-touch-icon.png" />
@@ -1154,7 +1133,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\QuanLy\Data\" />
-    <Folder Include="Areas\QuanLy\Views\AdminAccounts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

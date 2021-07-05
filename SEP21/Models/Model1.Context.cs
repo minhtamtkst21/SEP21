@@ -30,12 +30,6 @@ namespace SEP21.Models
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
 
-<<<<<<< Updated upstream
         public System.Data.Entity.DbSet<SEP21.Models.DoanHoiKhoa> DoanHoiKhoas { get; set; }
-=======
-        public System.Data.Entity.DbSet<SEP21.Models.Login> Logins { get; set; }
-
-        public System.Data.Entity.DbSet<SEP21.Models.LoginAdmin> LoginAdmins { get; set; }
->>>>>>> Stashed changes
     }
 }
