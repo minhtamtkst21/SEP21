@@ -180,6 +180,7 @@
     <Compile Include="Areas\QuanLy\Controllers\NCKHsController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\SinhViensController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\ThanhTichesController.cs" />
+    <Compile Include="Areas\QuanLy\Controllers\TuyenDungController.cs" />
     <Compile Include="Areas\QuanLy\QuanLyAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaiVietsController.cs" />
@@ -1056,6 +1057,7 @@
     <Content Include="Areas\QuanLy\Views\ThanhTiches\Details.cshtml" />
     <Content Include="Areas\QuanLy\Views\ThanhTiches\Edit.cshtml" />
     <Content Include="Areas\QuanLy\Views\ThanhTiches\Index.cshtml" />
+    <Content Include="Areas\QuanLy\Views\TuyenDung\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

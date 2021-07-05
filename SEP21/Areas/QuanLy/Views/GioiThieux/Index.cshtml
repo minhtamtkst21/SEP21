@@ -5,11 +5,11 @@
     Layout = "~/Areas/QuanLy/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Giới Thiệu</h1>
 @foreach (var item in Model)
 {
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+        @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = item.ID })
     </p>
     <h3>Sứ mạng</h3>
     <h4>@Html.DisplayFor(modelItem => item.SuMang)</h4>

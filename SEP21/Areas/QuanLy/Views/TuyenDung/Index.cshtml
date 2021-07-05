@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SEP21.Models.TuyenDung>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/QuanLy/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Tuyển Dụng</h2>
+
+<p>
+    @Html.ActionLink("Tạo Mới", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Vị trí
+        </th>
+        <th>
+            Số Lượng
+        </th>
+        <th>
+            Yêu Cầu
+        </th>
+        <th>
+            Tiêu Đề
+        </th>
+        <th>
+            Loại tuyển dụng
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ViTri)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoLuong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YeuCau)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TieuDe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoaiTuyenDung)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+}
+</table>
