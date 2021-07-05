@@ -17,6 +17,8 @@ namespace SEP21.Models
         public int ID { get; set; }
         public Nullable<int> MSSV { get; set; }
         public string ChucVu { get; set; }
+        public Nullable<bool> Doan { get; set; }
+        public Nullable<bool> Hoi { get; set; }
     
         public virtual SinhVien SinhVien { get; set; }
     }

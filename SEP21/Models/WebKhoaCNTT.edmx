@@ -40,6 +40,8 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MSSV" Type="int" />
           <Property Name="ChucVu" Type="nvarchar" MaxLength="50" />
+          <Property Name="Doan" Type="bit" />
+          <Property Name="Hoi" Type="bit" />
         </EntityType>
         <EntityType Name="GioiThieu">
           <Key>
@@ -512,6 +514,8 @@
           <Property Name="MSSV" Type="Int32" />
           <Property Name="ChucVu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SinhVien" Relationship="SEP24Team5Model.FK_DoanHoiKhoa_SinhVien" FromRole="DoanHoiKhoa" ToRole="SinhVien" />
+          <Property Name="Doan" Type="Boolean" />
+          <Property Name="Hoi" Type="Boolean" />
         </EntityType>
         <EntityType Name="GioiThieu">
           <Key>
@@ -851,6 +855,8 @@
           <EntitySetMapping Name="DoanHoiKhoas">
             <EntityTypeMapping TypeName="SEP24Team5Model.DoanHoiKhoa">
               <MappingFragment StoreEntitySet="DoanHoiKhoa">
+                <ScalarProperty Name="Hoi" ColumnName="Hoi" />
+                <ScalarProperty Name="Doan" ColumnName="Doan" />
                 <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
                 <ScalarProperty Name="MSSV" ColumnName="MSSV" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
