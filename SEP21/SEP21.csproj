@@ -177,6 +177,7 @@
     <Compile Include="Areas\QuanLy\Controllers\BaiVietsController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\GioiThieuxController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\SinhViensController.cs" />
+    <Compile Include="Areas\QuanLy\Controllers\TuyenDungController.cs" />
     <Compile Include="Areas\QuanLy\QuanLyAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaiVietsController.cs" />
@@ -186,6 +187,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NhanVienKhoasController.cs" />
     <Compile Include="Controllers\SinhViensController.cs" />
+    <Compile Include="Controllers\TuyenDungController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1041,6 +1043,7 @@
     <Content Include="Plugin\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Plugin\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Plugin\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Areas\QuanLy\Views\TuyenDung\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -1112,6 +1115,8 @@
     <Content Include="Views\Khoas\Details.cshtml" />
     <Content Include="Views\Khoas\Edit.cshtml" />
     <Content Include="Views\Khoas\Index.cshtml" />
+    <Content Include="Views\TuyenDung\Index.cshtml" />
+    <Content Include="Views\TuyenDung\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
