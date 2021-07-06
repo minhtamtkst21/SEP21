@@ -5,7 +5,7 @@
 }
 <h2>Loại bài viết</h2>
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Tạo Mới", "Create")
     </p>
     <table class="table">
         <tr>
@@ -21,9 +21,9 @@
                 @Html.DisplayFor(modelItem => item.TenLoaiBaiViet)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+                @Html.ActionLink("Chỉnh Sửa", "Edit", new { id=item.ID }) |
+                @Html.ActionLink("Chi Tiết", "Details", new { id=item.ID }) |
+                @Html.ActionLink("Xóa", "Delete", new { id=item.ID })
             </td>
         </tr>
     }
