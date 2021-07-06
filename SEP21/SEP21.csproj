@@ -173,12 +173,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\QuanLy\Controllers\AdminHomeController.cs" />
-    <Compile Include="Areas\QuanLy\Controllers\AdminLoginsController.cs" />
-    <Compile Include="Areas\QuanLy\Controllers\DangNhapController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\BaiVietsController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\DoanHoiKhoasController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\GioiThieuxController.cs" />
+    <Compile Include="Areas\QuanLy\Controllers\KhoasController.cs" />
+    <Compile Include="Areas\QuanLy\Controllers\LoaiBaiVietsController.cs" />
+    <Compile Include="Areas\QuanLy\Controllers\ManagerAdminController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\NCKHsController.cs" />
+    <Compile Include="Areas\QuanLy\Controllers\NhanVienKhoasController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\SinhViensController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\ThanhTichesController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\TuyenDungController.cs" />
@@ -196,18 +198,6 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminLoginModels.cs" />
-    <Compile Include="Models\AspNetRole.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUser.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserClaim.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserLogin.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\BaiViet.cs">
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
@@ -243,16 +233,6 @@
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Model1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -298,7 +278,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\QuanLy\Views\AdminHome\Index.cshtml" />
     <Content Include="Areas\QuanLy\Views\BaiViets\Create.cshtml" />
     <Content Include="Areas\QuanLy\Views\BaiViets\Delete.cshtml" />
     <Content Include="Areas\QuanLy\Views\BaiViets\Details.cshtml" />
@@ -306,11 +285,6 @@
     <Content Include="Areas\QuanLy\Views\BaiViets\Index.cshtml" />
     <Content Include="Areas\QuanLy\Views\GioiThieux\Edit.cshtml" />
     <Content Include="Areas\QuanLy\Views\GioiThieux\Index.cshtml" />
-    <Content Include="Areas\QuanLy\Views\DangNhap\Create.cshtml" />
-    <Content Include="Areas\QuanLy\Views\DangNhap\Delete.cshtml" />
-    <Content Include="Areas\QuanLy\Views\DangNhap\Details.cshtml" />
-    <Content Include="Areas\QuanLy\Views\DangNhap\Edit.cshtml" />
-    <Content Include="Areas\QuanLy\Views\DangNhap\Index.cshtml" />
     <Content Include="Areas\QuanLy\Views\DoanHoiKhoas\Create.cshtml" />
     <Content Include="Areas\QuanLy\Views\DoanHoiKhoas\Delete.cshtml" />
     <Content Include="Areas\QuanLy\Views\DoanHoiKhoas\Details.cshtml" />
@@ -321,8 +295,23 @@
     <Content Include="Areas\QuanLy\Views\NCKHs\Details.cshtml" />
     <Content Include="Areas\QuanLy\Views\NCKHs\Edit.cshtml" />
     <Content Include="Areas\QuanLy\Views\NCKHs\Index.cshtml" />
-    <Content Include="Areas\QuanLy\Views\AdminHome\Index 1.cshtml" />
-    <Content Include="Areas\QuanLy\Views\AdminLogin\Login.cshtml" />
+    <Content Include="Areas\QuanLy\Views\AdminHome\Index.cshtml" />
+    <Content Include="Areas\QuanLy\Views\ManagerAdmin\Login.cshtml" />
+    <Content Include="Areas\QuanLy\Views\LoaiBaiViets\Create.cshtml" />
+    <Content Include="Areas\QuanLy\Views\LoaiBaiViets\Delete.cshtml" />
+    <Content Include="Areas\QuanLy\Views\LoaiBaiViets\Details.cshtml" />
+    <Content Include="Areas\QuanLy\Views\LoaiBaiViets\Edit.cshtml" />
+    <Content Include="Areas\QuanLy\Views\LoaiBaiViets\Index.cshtml" />
+    <Content Include="Areas\QuanLy\Views\NhanVienKhoas\Create.cshtml" />
+    <Content Include="Areas\QuanLy\Views\NhanVienKhoas\Delete.cshtml" />
+    <Content Include="Areas\QuanLy\Views\NhanVienKhoas\Details.cshtml" />
+    <Content Include="Areas\QuanLy\Views\NhanVienKhoas\Edit.cshtml" />
+    <Content Include="Areas\QuanLy\Views\NhanVienKhoas\Index.cshtml" />
+    <Content Include="Areas\QuanLy\Views\Khoas\Create.cshtml" />
+    <Content Include="Areas\QuanLy\Views\Khoas\Delete.cshtml" />
+    <Content Include="Areas\QuanLy\Views\Khoas\Details.cshtml" />
+    <Content Include="Areas\QuanLy\Views\Khoas\Edit.cshtml" />
+    <Content Include="Areas\QuanLy\Views\Khoas\Index.cshtml" />
     <None Include="Areas\QuanLy\Views\Shared\_AdminLayout.cshtml" />
     <Content Include="assets\css\style.css" />
     <Content Include="assets\img\apple-touch-icon.png" />
@@ -445,16 +434,6 @@
     <Content Include="js\morris.min.js" />
     <Content Include="js\raphael.min.js" />
     <Content Include="js\startmin.js" />
-    <Content Include="Models\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
     <Content Include="Models\WebKhoaCNTT.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>WebKhoaCNTT.edmx</DependentUpon>
@@ -1012,13 +991,6 @@
     <Content Include="Models\WebKhoaCNTT.edmx.diagram">
       <DependentUpon>WebKhoaCNTT.edmx</DependentUpon>
     </Content>
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\QuanLy\Views\SinhViens\Create.cshtml" />
     <Content Include="Areas\QuanLy\Views\SinhViens\Delete.cshtml" />
     <Content Include="Areas\QuanLy\Views\SinhViens\Details.cshtml" />
@@ -1062,6 +1034,13 @@
     <Content Include="Areas\QuanLy\Views\ThanhTiches\Edit.cshtml" />
     <Content Include="Areas\QuanLy\Views\ThanhTiches\Index.cshtml" />
     <Content Include="Areas\QuanLy\Views\TuyenDung\Index.cshtml" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -1137,7 +1116,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\QuanLy\Data\" />
-    <Folder Include="Areas\QuanLy\Views\AdminLogins\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

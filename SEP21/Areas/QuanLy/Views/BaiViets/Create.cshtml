@@ -7,7 +7,7 @@
 
 <h2>Create</h2>
 <script src="~/Plugin/ckeditor/ckeditor.js"></script>
-@using (Html.BeginForm("Create", "BaiViets", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
@@ -24,19 +24,28 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Nội dung", htmlAttributes: new { @class = "control-label col-md-2"})
+            @Html.Label("Nội dung", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control", @id = "FullDescription" } })
-                @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger"})
-                <script>CKEDITOR.replace("FullDescription")</script>
+                @Html.EditorFor(model => model.NoiDung, new { htmlAttributes = new { @id = "noidung", @class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+                <script>CKEDITOR.replace("noidung")</script>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.LoaiBaiViet, "LoaiBaiViet", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.ActionLink("Tạo loại bài viết", "Create", "LoaiBaiViets")
+            @Html.Label("Loại bài viết", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("LoaiBaiViet", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.LoaiBaiViet, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NguoiDang, "NguoiDang", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("NguoiDang", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NguoiDang, "", new { @class = "text-danger" })
             </div>
         </div>
 

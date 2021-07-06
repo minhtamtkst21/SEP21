@@ -10,116 +10,107 @@ using SEP21.Models;
 
 namespace SEP21.Areas.QuanLy.Controllers
 {
-    public class BaiVietsController : Controller
+    public class LoaiBaiVietsController : Controller
     {
         private SEP24Team5Entities db = new SEP24Team5Entities();
 
-        // GET: QuanLy/BaiViets
+        // GET: QuanLy/LoaiBaiViets
         public ActionResult Index()
         {
-            var baiViets = db.BaiViets.Include(b => b.LoaiBaiViet1).Include(b => b.NhanVienKhoa);
-            return View(baiViets.ToList());
+            return View(db.LoaiBaiViets.ToList());
         }
 
-        // GET: QuanLy/BaiViets/Details/5
+        // GET: QuanLy/LoaiBaiViets/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BaiViet baiViet = db.BaiViets.Find(id);
-            if (baiViet == null)
+            LoaiBaiViet loaiBaiViet = db.LoaiBaiViets.Find(id);
+            if (loaiBaiViet == null)
             {
                 return HttpNotFound();
             }
-            return View(baiViet);
+            return View(loaiBaiViet);
         }
 
-        // GET: QuanLy/BaiViets/Create
+        // GET: QuanLy/LoaiBaiViets/Create
         public ActionResult Create()
         {
-            ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet");
-            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien");
             return View();
         }
 
-        // POST: QuanLy/BaiViets/Create
+        // POST: QuanLy/LoaiBaiViets/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(BaiViet baiViet)
+        public ActionResult Create([Bind(Include = "ID,TenLoaiBaiViet")] LoaiBaiViet loaiBaiViet)
         {
             if (ModelState.IsValid)
             {
-                db.BaiViets.Add(baiViet);
+                db.LoaiBaiViets.Add(loaiBaiViet);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", baiViet.LoaiBaiViet);
-            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", baiViet.NguoiDang);
-            return View(baiViet);
+            return View(loaiBaiViet);
         }
 
-        // GET: QuanLy/BaiViets/Edit/5
+        // GET: QuanLy/LoaiBaiViets/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BaiViet baiViet = db.BaiViets.Find(id);
-            if (baiViet == null)
+            LoaiBaiViet loaiBaiViet = db.LoaiBaiViets.Find(id);
+            if (loaiBaiViet == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", baiViet.LoaiBaiViet);
-            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", baiViet.NguoiDang);
-            return View(baiViet);
+            return View(loaiBaiViet);
         }
 
-        // POST: QuanLy/BaiViets/Edit/5
+        // POST: QuanLy/LoaiBaiViets/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,NgayDangBai,TieuDe,NguoiDang,NoiDung,LoaiBaiViet")] BaiViet baiViet)
+        public ActionResult Edit([Bind(Include = "ID,TenLoaiBaiViet")] LoaiBaiViet loaiBaiViet)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(baiViet).State = EntityState.Modified;
+                db.Entry(loaiBaiViet).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", baiViet.LoaiBaiViet);
-            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", baiViet.NguoiDang);
-            return View(baiViet);
+            return View(loaiBaiViet);
         }
 
-        // GET: QuanLy/BaiViets/Delete/5
+        // GET: QuanLy/LoaiBaiViets/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BaiViet baiViet = db.BaiViets.Find(id);
-            if (baiViet == null)
+            LoaiBaiViet loaiBaiViet = db.LoaiBaiViets.Find(id);
+            if (loaiBaiViet == null)
             {
                 return HttpNotFound();
             }
-            return View(baiViet);
+            return View(loaiBaiViet);
         }
 
-        // POST: QuanLy/BaiViets/Delete/5
+        // POST: QuanLy/LoaiBaiViets/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BaiViet baiViet = db.BaiViets.Find(id);
-            db.BaiViets.Remove(baiViet);
+            LoaiBaiViet loaiBaiViet = db.LoaiBaiViets.Find(id);
+            db.LoaiBaiViets.Remove(loaiBaiViet);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
