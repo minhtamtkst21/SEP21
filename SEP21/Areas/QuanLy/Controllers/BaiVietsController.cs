@@ -35,7 +35,6 @@ namespace SEP21.Areas.QuanLy.Controllers
             }
             return View(baiViet);
         }
-
         // GET: QuanLy/BaiViets/Create
         public ActionResult Create()
         {
@@ -48,6 +47,7 @@ namespace SEP21.Areas.QuanLy.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Create(BaiViet baiViet)
         {
@@ -84,6 +84,7 @@ namespace SEP21.Areas.QuanLy.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,NgayDangBai,TieuDe,NguoiDang,NoiDung,LoaiBaiViet")] BaiViet baiViet)
         {
