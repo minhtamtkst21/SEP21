@@ -173,6 +173,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\QuanLy\Controllers\AdminHomeController.cs" />
+    <Compile Include="Areas\QuanLy\Controllers\AspNetUsersController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\BaiVietsController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\DoanHoiKhoasController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\GioiThieuxController.cs" />
@@ -198,6 +199,18 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminLoginModels.cs" />
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BaiViet.cs">
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
@@ -233,11 +246,6 @@
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\NCKH.cs">
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
@@ -312,6 +320,11 @@
     <Content Include="Areas\QuanLy\Views\Khoas\Details.cshtml" />
     <Content Include="Areas\QuanLy\Views\Khoas\Edit.cshtml" />
     <Content Include="Areas\QuanLy\Views\Khoas\Index.cshtml" />
+    <Content Include="Areas\QuanLy\Views\AspNetUsers\Create.cshtml" />
+    <Content Include="Areas\QuanLy\Views\AspNetUsers\Delete.cshtml" />
+    <Content Include="Areas\QuanLy\Views\AspNetUsers\Details.cshtml" />
+    <Content Include="Areas\QuanLy\Views\AspNetUsers\Edit.cshtml" />
+    <Content Include="Areas\QuanLy\Views\AspNetUsers\Index.cshtml" />
     <None Include="Areas\QuanLy\Views\Shared\_AdminLayout.cshtml" />
     <Content Include="assets\css\style.css" />
     <Content Include="assets\img\apple-touch-icon.png" />
@@ -434,6 +447,7 @@
     <Content Include="js\morris.min.js" />
     <Content Include="js\raphael.min.js" />
     <Content Include="js\startmin.js" />
+    <Content Include="Models\.sql" />
     <Content Include="Models\WebKhoaCNTT.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>WebKhoaCNTT.edmx</DependentUpon>
@@ -1034,13 +1048,6 @@
     <Content Include="Areas\QuanLy\Views\ThanhTiches\Edit.cshtml" />
     <Content Include="Areas\QuanLy\Views\ThanhTiches\Index.cshtml" />
     <Content Include="Areas\QuanLy\Views\TuyenDung\Index.cshtml" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
