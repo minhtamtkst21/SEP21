@@ -5,37 +5,31 @@
     Layout = "~/Areas/QuanLy/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Delete</h2>
+<h2>Xóa</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Bạn Chắc Chắn Muốn Xóa Không ?</h3>
 <div>
-    <h4>NCKH</h4>
+    <h4>Nghiên Cứu Khoa Học</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Ten)
+            Tên
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Ten)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.NoiDung)
+            Nội Dung
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.NoiDung)
         </dd>
-
     </dl>
-
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
-
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Trở Lại", "Index")
         </div>
     }
 </div>
