@@ -8,109 +8,114 @@ using System.Web;
 using System.Web.Mvc;
 using SEP21.Models;
 
-namespace SEP21.Controllers
+namespace SEP21.Areas.QuanLy.Controllers
 {
-    public class GioiThieuxController : Controller
+    public class TuyenDungsController : Controller
     {
         private SEP24Team5Entities db = new SEP24Team5Entities();
 
-        // GET: GioiThieux
+        // GET: QuanLy/TuyenDungs
         public ActionResult Index()
         {
-            return View(db.GioiThieux.ToList());
+            var tuyenDungs = db.TuyenDungs.Include(t => t.LoaiTuyenDung1);
+            return View(tuyenDungs.ToList());
         }
 
-        // GET: GioiThieux/Details/5
+        // GET: QuanLy/TuyenDungs/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GioiThieu gioiThieu = db.GioiThieux.Find(id);
-            if (gioiThieu == null)
+            TuyenDung tuyenDung = db.TuyenDungs.Find(id);
+            if (tuyenDung == null)
             {
                 return HttpNotFound();
             }
-            return View(gioiThieu);
+            return View(tuyenDung);
         }
 
-        // GET: GioiThieux/Create
+        // GET: QuanLy/TuyenDungs/Create
         public ActionResult Create()
         {
+            ViewBag.LoaiTuyenDung = new SelectList(db.LoaiTuyenDungs, "ID", "LoaiTuyenDung1");
             return View();
         }
 
-        // POST: GioiThieux/Create
+        // POST: QuanLy/TuyenDungs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SuMang,TamNhin,TrietLyGiaoDuc,ID")] GioiThieu gioiThieu)
+        public ActionResult Create([Bind(Include = "ID,ViTri,SoLuong,YeuCau,TieuDe,LoaiTuyenDung")] TuyenDung tuyenDung)
         {
             if (ModelState.IsValid)
             {
-                db.GioiThieux.Add(gioiThieu);
+                db.TuyenDungs.Add(tuyenDung);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(gioiThieu);
+            ViewBag.LoaiTuyenDung = new SelectList(db.LoaiTuyenDungs, "ID", "LoaiTuyenDung1", tuyenDung.LoaiTuyenDung);
+            return View(tuyenDung);
         }
 
-        // GET: GioiThieux/Edit/5
+        // GET: QuanLy/TuyenDungs/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GioiThieu gioiThieu = db.GioiThieux.Find(id);
-            if (gioiThieu == null)
+            TuyenDung tuyenDung = db.TuyenDungs.Find(id);
+            if (tuyenDung == null)
             {
                 return HttpNotFound();
             }
-            return View(gioiThieu);
+            ViewBag.LoaiTuyenDung = new SelectList(db.LoaiTuyenDungs, "ID", "LoaiTuyenDung1", tuyenDung.LoaiTuyenDung);
+            return View(tuyenDung);
         }
 
-        // POST: GioiThieux/Edit/5
+        // POST: QuanLy/TuyenDungs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SuMang,TamNhin,TrietLyGiaoDuc,ID")] GioiThieu gioiThieu)
+        public ActionResult Edit([Bind(Include = "ID,ViTri,SoLuong,YeuCau,TieuDe,LoaiTuyenDung")] TuyenDung tuyenDung)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(gioiThieu).State = EntityState.Modified;
+                db.Entry(tuyenDung).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(gioiThieu);
+            ViewBag.LoaiTuyenDung = new SelectList(db.LoaiTuyenDungs, "ID", "LoaiTuyenDung1", tuyenDung.LoaiTuyenDung);
+            return View(tuyenDung);
         }
 
-        // GET: GioiThieux/Delete/5
+        // GET: QuanLy/TuyenDungs/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GioiThieu gioiThieu = db.GioiThieux.Find(id);
-            if (gioiThieu == null)
+            TuyenDung tuyenDung = db.TuyenDungs.Find(id);
+            if (tuyenDung == null)
             {
                 return HttpNotFound();
             }
-            return View(gioiThieu);
+            return View(tuyenDung);
         }
 
-        // POST: GioiThieux/Delete/5
+        // POST: QuanLy/TuyenDungs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            GioiThieu gioiThieu = db.GioiThieux.Find(id);
-            db.GioiThieux.Remove(gioiThieu);
+            TuyenDung tuyenDung = db.TuyenDungs.Find(id);
+            db.TuyenDungs.Remove(tuyenDung);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
