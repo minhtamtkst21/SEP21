@@ -10,17 +10,21 @@ using SEP21.Models;
 
 namespace SEP21.Controllers
 {
-    public class GioiThieuxController : Controller
+    public class GioiThieusController : Controller
     {
         private SEP24Team5Entities db = new SEP24Team5Entities();
 
-        // GET: GioiThieux
+        // GET: GioiThieus
         public ActionResult Index()
         {
             return View(db.GioiThieux.ToList());
         }
+        public ActionResult Index2()
+        {
+            return View(db.GioiThieux.ToList());
+        }
 
-        // GET: GioiThieux/Details/5
+        // GET: GioiThieus/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,13 +39,13 @@ namespace SEP21.Controllers
             return View(gioiThieu);
         }
 
-        // GET: GioiThieux/Create
+        // GET: GioiThieus/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: GioiThieux/Create
+        // POST: GioiThieus/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -58,7 +62,7 @@ namespace SEP21.Controllers
             return View(gioiThieu);
         }
 
-        // GET: GioiThieux/Edit/5
+        // GET: GioiThieus/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,7 +77,7 @@ namespace SEP21.Controllers
             return View(gioiThieu);
         }
 
-        // POST: GioiThieux/Edit/5
+        // POST: GioiThieus/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -89,7 +93,7 @@ namespace SEP21.Controllers
             return View(gioiThieu);
         }
 
-        // GET: GioiThieux/Delete/5
+        // GET: GioiThieus/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -104,7 +108,7 @@ namespace SEP21.Controllers
             return View(gioiThieu);
         }
 
-        // POST: GioiThieux/Delete/5
+        // POST: GioiThieus/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -188,7 +188,7 @@
     <Compile Include="Areas\QuanLy\QuanLyAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaiVietsController.cs" />
-    <Compile Include="Controllers\GioiThieuxController.cs" />
+    <Compile Include="Controllers\GioiThieusController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhoasController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -1098,11 +1098,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\GioiThieux\Create.cshtml" />
-    <Content Include="Views\GioiThieux\Delete.cshtml" />
-    <Content Include="Views\GioiThieux\Details.cshtml" />
-    <Content Include="Views\GioiThieux\Edit.cshtml" />
-    <Content Include="Views\GioiThieux\Index.cshtml" />
     <Content Include="Views\BaiViets\Create.cshtml" />
     <Content Include="Views\BaiViets\Delete.cshtml" />
     <Content Include="Views\BaiViets\Details.cshtml" />
@@ -1123,6 +1118,8 @@
     <Content Include="Views\Khoas\Details.cshtml" />
     <Content Include="Views\Khoas\Edit.cshtml" />
     <Content Include="Views\Khoas\Index.cshtml" />
+    <Content Include="Views\GioiThieus\Index.cshtml" />
+    <Content Include="Views\GioiThieus\Index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
