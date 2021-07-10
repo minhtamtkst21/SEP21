@@ -66,6 +66,7 @@
           <Property Name="NguoiDang" Type="int" Nullable="false" />
           <Property Name="NoiDung" Type="nvarchar(max)" />
           <Property Name="LoaiBaiViet" Type="int" Nullable="false" />
+          <Property Name="picture" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="DangKyHoatDong">
           <Key>
@@ -623,6 +624,7 @@
           <Property Name="LoaiBaiViet" Type="Int32" Nullable="false" />
           <NavigationProperty Name="LoaiBaiViet1" Relationship="SEP24Team5Model.FK_BaiViet_LoaiBaiViet" FromRole="BaiViet" ToRole="LoaiBaiViet" />
           <NavigationProperty Name="NhanVienKhoa" Relationship="SEP24Team5Model.FK_BaiViet_NhanVienKhoa" FromRole="BaiViet" ToRole="NhanVienKhoa" />
+          <Property Name="picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DangKyHoatDong">
           <Key>
@@ -1045,6 +1047,7 @@
           <EntitySetMapping Name="BaiViets">
             <EntityTypeMapping TypeName="SEP24Team5Model.BaiViet">
               <MappingFragment StoreEntitySet="BaiViet">
+                <ScalarProperty Name="picture" ColumnName="picture" />
                 <ScalarProperty Name="LoaiBaiViet" ColumnName="LoaiBaiViet" />
                 <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
                 <ScalarProperty Name="NguoiDang" ColumnName="NguoiDang" />

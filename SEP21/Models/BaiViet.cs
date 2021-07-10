@@ -20,6 +20,7 @@ namespace SEP21.Models
         public int NguoiDang { get; set; }
         public string NoiDung { get; set; }
         public int LoaiBaiViet { get; set; }
+        public string picture { get; set; }
     
         public virtual LoaiBaiViet LoaiBaiViet1 { get; set; }
         public virtual NhanVienKhoa NhanVienKhoa { get; set; }
