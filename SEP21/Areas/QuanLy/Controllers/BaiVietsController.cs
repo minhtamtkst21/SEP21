@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using SEP21.Models;
@@ -35,6 +36,12 @@ namespace SEP21.Areas.QuanLy.Controllers
             }
             return View(baiViet);
         }
+        public ActionResult Picture(int id)
+        {
+            var path = Server.MapPath(PICTURE_PATH);
+            return File(path + id, "images");
+        }
+        private const string PICTURE_PATH = "~/images/BaiViet/";
         // GET: QuanLy/BaiViets/Create
         public ActionResult Create()
         {
@@ -46,21 +53,32 @@ namespace SEP21.Areas.QuanLy.Controllers
         // POST: QuanLy/BaiViets/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateInput(false)]
+        [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(BaiViet baiViet)
+        public ActionResult Create(BaiViet BaiViet, HttpPostedFileBase picture)
         {
             if (ModelState.IsValid)
             {
-                db.BaiViets.Add(baiViet);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (picture != null)
+                {
+                    using (var scope = new TransactionScope())
+                    {
+                        db.BaiViets.Add(BaiViet);
+                        db.SaveChanges();
+
+                        var path = Server.MapPath(PICTURE_PATH);
+                        picture.SaveAs(path + BaiViet.ID);
+
+                        scope.Complete();
+                        return RedirectToAction("Index");
+                    }
+                }
+                else ModelState.AddModelError("", " Picture not found!");
             }
 
-            ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", baiViet.LoaiBaiViet);
-            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", baiViet.NguoiDang);
-            return View(baiViet);
+            ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", BaiViet.LoaiBaiViet);
+            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", BaiViet.NguoiDang);
+            return View(BaiViet);
         }
 
         // GET: QuanLy/BaiViets/Edit/5
@@ -86,13 +104,24 @@ namespace SEP21.Areas.QuanLy.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,NgayDangBai,TieuDe,NguoiDang,NoiDung,LoaiBaiViet")] BaiViet baiViet)
+        public ActionResult Edit(BaiViet baiViet, HttpPostedFileBase picture)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(baiViet).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                using (var scope = new TransactionScope())
+                {
+                    db.Entry(baiViet).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    if (picture != null)
+                    {
+                        var path = Server.MapPath(PICTURE_PATH);
+                        picture.SaveAs(path + baiViet.ID);
+                    }
+
+                    scope.Complete();
+                    return RedirectToAction("Index");
+                }
             }
             ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", baiViet.LoaiBaiViet);
             ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", baiViet.NguoiDang);
@@ -119,10 +148,17 @@ namespace SEP21.Areas.QuanLy.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BaiViet baiViet = db.BaiViets.Find(id);
-            db.BaiViets.Remove(baiViet);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            using (var scope = new TransactionScope())
+            {
+                BaiViet baiViet = db.BaiViets.Find(id);
+                db.BaiViets.Remove(baiViet);
+                db.SaveChanges();
+
+                var path = Server.MapPath(PICTURE_PATH);
+                System.IO.File.Delete(path + baiViet.ID);
+
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

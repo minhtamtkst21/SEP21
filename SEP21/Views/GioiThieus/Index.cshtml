@@ -2,8 +2,6 @@
 @{
     ViewBag.Title = "Index";
 }
-<h2 style="font-family:'Times New Roman'">Giới Thiệu</h2>
-
 @foreach (var item in Model)
 {
     <section id="services" class="services section-bg">
@@ -13,13 +11,10 @@
                 <h2 style="font-family:'Times New Roman'">Sứ Mạng</h2>
                 <h3 style="font-family:'Times New Roman'">@item.SuMang</h3>
             </div>
-
-
         </div>
     </section>
     <section id="portfolio" class="portfolio">
         <div class="container aos-init aos-animate" data-aos="fade-up">
-
             <div class="section-title">
                 <h2 style="font-family:'Times New Roman'">Tầm Nhìn</h2>
                 <h3 style="font-family:'Times New Roman'">@item.TamNhin</h3>
@@ -28,7 +23,6 @@
     </section>
     <section id="team" class="team section-bg">
         <div class="container aos-init aos-animate" data-aos="fade-up">
-
             <div class="section-title">
                 <h2 style="font-family:'Times New Roman'">Triết Lý Giáo Dục</h2>
                 <h3 style="font-family:'Times New Roman'">@item.TrietLyGiaoDuc</h3>
