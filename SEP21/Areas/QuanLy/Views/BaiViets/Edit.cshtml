@@ -7,63 +7,70 @@
 
 <h2>Chỉnh Sửa</h2>
 <script src="~/Plugin/ckeditor/ckeditor.js"></script>
-@using (Html.BeginForm("Edit", "BaiViet", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "BaiViets", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Bài Viết</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ID)
+<div class="form-horizontal">
+    <h4>Bài Viết</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ID)
 
-        <div class="form-group">
-            @Html.Label("Ngày Đăng Bài", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NgayDangBai, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NgayDangBai, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label("Tiêu Đề", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TieuDe, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label("Người Đăng", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("NguoiDang", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.NguoiDang, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label("Nội dung", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control", @id = "FullDescription" } })
-                @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
-                <script>CKEDITOR.replace("FullDescription")</script>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label("Loại Bài Viết", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("LoaiBaiViet", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.LoaiBaiViet, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Lưu" class="btn btn-default" />
-            </div>
+    <div class="form-group">
+        @Html.Label("Ngày Đăng Bài", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NgayDangBai, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NgayDangBai, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.Label("Tiêu Đề", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TieuDe, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Người Đăng", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("NguoiDang", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.NguoiDang, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Nội dung", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control", @id = "FullDescription" } })
+            @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+            <script>CKEDITOR.replace("FullDescription")</script>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Loại Bài Viết", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("LoaiBaiViet", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.LoaiBaiViet, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="IMG">Picture</label>
+        <div class="col-md-10">
+            <input class="form-control" type="file" name="Picture" id="IMG" onchange="readPicture(this)" accept="image/gif,image/jpeg,image/png" />
+        </div>
+        <img id="Picture" src="@Url.Action("Picture", new { Model.ID })" />
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Lưu" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 }
 
 <div>

@@ -27,32 +27,38 @@
         <th>
             Người đăng
         </th>
+        <th>
+            Hình ảnh
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgayDangBai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TieuDe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NoiDung)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LoaiBaiViet1.TenLoaiBaiViet)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NhanVienKhoa.MaNhanVien)
-        </td>
-        <td>
-            @Html.ActionLink("Chỉnh Sửa", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Chi Tiết", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Xóa", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.NgayDangBai)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TieuDe)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NoiDung)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LoaiBaiViet1.TenLoaiBaiViet)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NhanVienKhoa.MaNhanVien)
+    </td>
+    <td>
+        <img src="@Url.Action("Picture", new { item.ID })" width="50px" height="50px" />
+    </td>
+    <td>
+        @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = item.ID }) |
+        @Html.ActionLink("Chi Tiết", "Details", new { id = item.ID }) |
+        @Html.ActionLink("Xóa", "Delete", new { id = item.ID })
+    </td>
+</tr>
 }
 
 </table>
