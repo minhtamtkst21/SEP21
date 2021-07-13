@@ -34,8 +34,14 @@
         <dd>
             @Html.DisplayFor(model => model.NoiDung)
         </dd>
-
+        <dt>
+            Hình Ảnh
+        </dt>
     </dl>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="IMG"></label>
+        <img id="Picture" src="@Url.Action("Picture", new { Model.ID })" />
+    </div>
 </div>
 <p>
     @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.ID }) |

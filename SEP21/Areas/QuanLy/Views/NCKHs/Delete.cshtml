@@ -24,6 +24,13 @@
         <dd>
             @Html.DisplayFor(model => model.NoiDung)
         </dd>
+        <dt>
+            Hình Ảnh
+        </dt>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="IMG"></label>
+            <img id="Picture" src="@Url.Action("Picture", new { Model.ID })"  />
+        </div>
     </dl>
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()

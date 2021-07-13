@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using SEP21.Models;
@@ -34,7 +35,12 @@ namespace SEP21.Areas.QuanLy.Controllers
             }
             return View(nCKH);
         }
-
+        public ActionResult Picture(int id)
+        {
+            var path = Server.MapPath(PICTURE_PATH);
+            return File(path + id, "images");
+        }
+        private const string PICTURE_PATH = "~/images/NCKH/";
         // GET: QuanLy/NCKHs/Create
         public ActionResult Create()
         {
@@ -46,15 +52,26 @@ namespace SEP21.Areas.QuanLy.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Ten,NoiDung")] NCKH nCKH)
+        public ActionResult Create(NCKH nCKH, HttpPostedFileBase picture)
         {
             if (ModelState.IsValid)
             {
-                db.NCKHs.Add(nCKH);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                if (picture != null)
+                {
+                    using (var scope = new TransactionScope())
+                    {
+                        db.NCKHs.Add(nCKH);
+                        db.SaveChanges();
 
+                        var path = Server.MapPath(PICTURE_PATH);
+                        picture.SaveAs(path + nCKH.ID);
+
+                        scope.Complete();
+                        return RedirectToAction("Index");
+                    }
+                }
+                else ModelState.AddModelError("", " Picture not found!");
+            }
             return View(nCKH);
         }
 
@@ -77,14 +94,26 @@ namespace SEP21.Areas.QuanLy.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Ten,NoiDung")] NCKH nCKH)
+        public ActionResult Edit(NCKH nCKH, HttpPostedFileBase picture)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(nCKH).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                using (var scope = new TransactionScope())
+                {
+                    db.Entry(nCKH).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    if (picture != null)
+                    {
+                        var path = Server.MapPath(PICTURE_PATH);
+                        picture.SaveAs(path + nCKH.ID);
+                    }
+
+                    scope.Complete();
+                    return RedirectToAction("Index");
+                }
             }
             return View(nCKH);
         }
@@ -112,6 +141,10 @@ namespace SEP21.Areas.QuanLy.Controllers
             NCKH nCKH = db.NCKHs.Find(id);
             db.NCKHs.Remove(nCKH);
             db.SaveChanges();
+
+            var path = Server.MapPath(PICTURE_PATH);
+
+            System.IO.File.Delete(path + nCKH.ID);
             return RedirectToAction("Index");
         }
 
