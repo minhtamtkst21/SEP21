@@ -20,7 +20,12 @@ namespace SEP21.Controllers
             var baiViets = db.BaiViets.Include(b => b.LoaiBaiViet1).Include(b => b.NhanVienKhoa);
             return View(baiViets.ToList());
         }
-
+        public ActionResult Picture(int id)
+        {
+            var path = Server.MapPath(PICTURE_PATH);
+            return File(path + id, "images");
+        }
+        private const string PICTURE_PATH = "~/images/BaiViet/";
         // GET: BaiViets/Details/5
         public ActionResult Details(int? id)
         {

@@ -18,6 +18,12 @@ namespace SEP21.Controllers
         {
             return View(db.BaiViets.ToList());
         }
+        public ActionResult Picture(int id)
+        {
+            var path = Server.MapPath(PICTURE_PATH);
+            return File(path + id, "images");
+        }
+        private const string PICTURE_PATH = "~/images/BaiViet/";
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
