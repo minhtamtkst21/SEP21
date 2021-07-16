@@ -4,16 +4,43 @@
     ViewBag.Title = "Create";
     Layout = "~/Areas/QuanLy/Views/Shared/_AdminLayout.cshtml";
 }
-
+@section js{
+    <script src="~/Plugin/ckfinder/ckfinder.js"></script>
+    <script src="~/Plugin/ckeditor/ckeditor.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $('#btn-img-select').click(function (e) {
+                e.preventDefault();
+                var finder = new CKFinder();
+                finder.selectActionFunction = function (url) {
+                    $("#imgvalue").val(url);
+                };
+                finder.popup();
+            });
+            CKEDITOR.replace('NoiDung');
+        });
+    </script>
+}
 <h2>Tạo Mới</h2>
-<script src="~/Plugin/ckeditor/ckeditor.js"></script>
-@using (Html.BeginForm("Create", "BaiViets", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
         <h4>Bài Viết</h4>
         <hr />
+
+        @*<div class="form-group">
+            <div class="col-md-3">
+                <button id="btn-img-select" class="btn btn-primary">Chọn hình ảnh</button>
+            </div>
+            <div class="col-md-9">
+                <input id="imgvalue" class="form-control" />
+            </div>
+        </div>*@
+
+
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.Label(" Tiêu Đề ", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -26,13 +53,14 @@
         <div class="form-group">
             @Html.Label("Nội dung", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.NoiDung, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
                 <script>CKEDITOR.replace("NoiDung")</script>
             </div>
         </div>
 
         <div class="form-group">
+            @Html.ActionLink("Tạo loại bài viết", "Create", "LoaiBaiViets")
             @Html.Label("Loại bài viết", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("LoaiBaiViet", null, htmlAttributes: new { @class = "form-control" })
@@ -47,13 +75,7 @@
                 @Html.ValidationMessageFor(model => model.NguoiDang, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="form-group">
-            <label class="control-label col-md-2" for="IMG">Picture</label>
-            <div class="col-md-10">
-                <input class="form-control" type="file" name="Picture" id="IMG" onchange="readPicture(this)" accept="image/gif,image/jpeg,image/png" />
-            </div>
-            <img id="Picture" />
-        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Tạo" class="btn btn-default" />
@@ -61,21 +83,7 @@
         </div>
     </div>
 }
+
 <div>
     @Html.ActionLink("Trở Lại", "Index")
 </div>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    <script>
-        function readPicture(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('img#Picture').attr('src', e.target.result);
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-    </script>
-}
