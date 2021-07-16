@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using SEP21.Models;
@@ -34,6 +35,12 @@ namespace SEP21.Areas.QuanLy.Controllers
             }
             return View(thanhTich);
         }
+        public ActionResult Picture(int id)
+        {
+            var path = Server.MapPath(PICTURE_PATH);
+            return File(path + id, "images");
+        }
+        private const string PICTURE_PATH = "~/images/ThanhTich/";
 
         // GET: QuanLy/ThanhTiches/Create
         public ActionResult Create()
@@ -46,13 +53,25 @@ namespace SEP21.Areas.QuanLy.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,TenThanhTich,NguoiDatThanhTich,NoiDung")] ThanhTich thanhTich)
+        public ActionResult Create(ThanhTich thanhTich, HttpPostedFileBase picture)
         {
             if (ModelState.IsValid)
             {
-                db.ThanhTiches.Add(thanhTich);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (picture != null)
+                {
+                    using (var scope = new TransactionScope())
+                    {
+                        db.ThanhTiches.Add(thanhTich);
+                        db.SaveChanges();
+
+                        var path = Server.MapPath(PICTURE_PATH);
+                        picture.SaveAs(path + thanhTich.ID);
+
+                        scope.Complete();
+                        return RedirectToAction("Index");
+                    }
+                }
+                else ModelState.AddModelError("", " Picture not found!");
             }
 
             return View(thanhTich);
@@ -78,13 +97,24 @@ namespace SEP21.Areas.QuanLy.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,TenThanhTich,NguoiDatThanhTich,NoiDung")] ThanhTich thanhTich)
+        public ActionResult Edit(ThanhTich thanhTich, HttpPostedFileBase picture)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(thanhTich).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                using (var scope = new TransactionScope())
+                {
+                    db.Entry(thanhTich).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    if (picture != null)
+                    {
+                        var path = Server.MapPath(PICTURE_PATH);
+                        picture.SaveAs(path + thanhTich.ID);
+                    }
+
+                    scope.Complete();
+                    return RedirectToAction("Index");
+                }
             }
             return View(thanhTich);
         }

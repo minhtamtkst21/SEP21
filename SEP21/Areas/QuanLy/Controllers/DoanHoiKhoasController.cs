@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using SEP21.Models;
@@ -35,6 +36,12 @@ namespace SEP21.Areas.QuanLy.Controllers
             }
             return View(doanHoiKhoa);
         }
+        public ActionResult Picture(int id)
+        {
+            var path = Server.MapPath(PICTURE_PATH);
+            return File(path + id, "images");
+        }
+        private const string PICTURE_PATH = "~/images/DoanHoiKhoa/";
 
         // GET: QuanLy/DoanHoiKhoas/Create
         public ActionResult Create()
@@ -48,13 +55,25 @@ namespace SEP21.Areas.QuanLy.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,MSSV,ChucVu,Doan,Hoi")] DoanHoiKhoa doanHoiKhoa)
+        public ActionResult Create(DoanHoiKhoa doanHoiKhoa, HttpPostedFileBase picture)
         {
             if (ModelState.IsValid)
             {
-                db.DoanHoiKhoas.Add(doanHoiKhoa);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (picture != null)
+                {
+                    using (var scope = new TransactionScope())
+                    {
+                        db.DoanHoiKhoas.Add(doanHoiKhoa);
+                        db.SaveChanges();
+
+                        var path = Server.MapPath(PICTURE_PATH);
+                        picture.SaveAs(path + doanHoiKhoa.ID);
+
+                        scope.Complete();
+                        return RedirectToAction("Index");
+                    }
+                }
+                else ModelState.AddModelError("", " Picture not found!");
             }
 
             ViewBag.MSSV = new SelectList(db.SinhViens, "ID", "MSSV", doanHoiKhoa.MSSV);
@@ -81,14 +100,26 @@ namespace SEP21.Areas.QuanLy.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,MSSV,ChucVu,Doan,Hoi")] DoanHoiKhoa doanHoiKhoa)
+        public ActionResult Edit(DoanHoiKhoa doanHoiKhoa, HttpPostedFileBase picture)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(doanHoiKhoa).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                using (var scope = new TransactionScope())
+                {
+                    db.Entry(doanHoiKhoa).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    if (picture != null)
+                    {
+                        var path = Server.MapPath(PICTURE_PATH);
+                        picture.SaveAs(path + doanHoiKhoa.ID);
+                    }
+
+                    scope.Complete();
+                    return RedirectToAction("Index");
+                }
             }
             ViewBag.MSSV = new SelectList(db.SinhViens, "ID", "MSSV", doanHoiKhoa.MSSV);
             return View(doanHoiKhoa);
