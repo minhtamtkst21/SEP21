@@ -184,6 +184,7 @@
     <Compile Include="Areas\QuanLy\Controllers\AdminHomeController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\AspNetUsersController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\BaiVietsController.cs" />
+    <Compile Include="Areas\QuanLy\Controllers\DangKyHoatDongsController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\DoanHoiKhoasController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\GioiThieuxController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\KhoasController.cs" />
@@ -341,6 +342,11 @@
     <Content Include="Areas\QuanLy\Views\Logins\Details.cshtml" />
     <Content Include="Areas\QuanLy\Views\Logins\Edit.cshtml" />
     <Content Include="Areas\QuanLy\Views\Logins\Index.cshtml" />
+    <Content Include="Areas\QuanLy\Views\DangKyHoatDongs\Create.cshtml" />
+    <Content Include="Areas\QuanLy\Views\DangKyHoatDongs\Delete.cshtml" />
+    <Content Include="Areas\QuanLy\Views\DangKyHoatDongs\Details.cshtml" />
+    <Content Include="Areas\QuanLy\Views\DangKyHoatDongs\Edit.cshtml" />
+    <Content Include="Areas\QuanLy\Views\DangKyHoatDongs\Index.cshtml" />
     <None Include="Areas\QuanLy\Views\Shared\_AdminLayout.cshtml" />
     <Content Include="assets1\images\avatar-1.jpg" />
     <Content Include="assets1\images\avatar-2.jpg" />
