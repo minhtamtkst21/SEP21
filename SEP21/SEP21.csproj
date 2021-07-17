@@ -334,6 +334,7 @@
     <Content Include="Areas\QuanLy\Views\AspNetUsers\Details.cshtml" />
     <Content Include="Areas\QuanLy\Views\AspNetUsers\Edit.cshtml" />
     <Content Include="Areas\QuanLy\Views\AspNetUsers\Index.cshtml" />
+    <Content Include="Areas\QuanLy\Views\BaiViets\Index2.cshtml" />
     <None Include="Areas\QuanLy\Views\Shared\_AdminLayout.cshtml" />
     <Content Include="assets1\images\avatar-1.jpg" />
     <Content Include="assets1\images\avatar-2.jpg" />
@@ -809,6 +810,8 @@
     <Content Include="css\morris.css" />
     <Content Include="css\startmin.css" />
     <Content Include="css\timeline.css" />
+    <Content Include="Data\images\up.jpg" />
+    <Content Include="Data\_thumbs\Images\up.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

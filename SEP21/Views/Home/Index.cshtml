@@ -19,11 +19,20 @@
                                 <img class="img-fluid" style="max-width:100%" src="@Url.Action("Picture", new { item.ID })" alt="hinhanh">
                                 <div class="card-body">
                                     <h3 class="card-title">@item.TieuDe</h3>
-                                    <p class="card-text">@item.NoiDung</p>
+                                    <p class="card-text">
+                                        @if (item.NoiDung != null && item.NoiDung.Length > 100)
+                                        {
+                                            @item.NoiDung.Substring(0, 100)
+                                        }
+                                        else
+                                        {
+                                            @item.NoiDung
+                                        }
+                                    </p>
                                     <p class="text-muted">Last updated 3 mins ago
                                     @if (item.LoaiBaiViet1.TenLoaiBaiViet == "Hoạt động")
                                     {
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        <a href="#" class="btn btn-primary">Đăng ký hoạt động</a>
                                     }
                                     </p>
                                 </div>

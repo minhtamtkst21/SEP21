@@ -16,7 +16,8 @@ namespace SEP21.Controllers
         private SEP24Team5Entities db = new SEP24Team5Entities();
         public ActionResult Index()
         {
-            return View(db.BaiViets.ToList());
+            var bv = db.BaiViets.OrderByDescending(i => i.ID);
+            return View(bv.ToList());
         }
         public ActionResult Picture(int id)
         {

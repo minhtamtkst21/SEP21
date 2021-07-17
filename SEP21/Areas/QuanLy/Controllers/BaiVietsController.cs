@@ -21,6 +21,11 @@ namespace SEP21.Areas.QuanLy.Controllers
             var baiViets = db.BaiViets.Include(b => b.LoaiBaiViet1).Include(b => b.NhanVienKhoa);
             return View(baiViets.ToList());
         }
+        public ActionResult Index2()
+        {
+            var baiViets = db.BaiViets.Include(b => b.LoaiBaiViet1).Include(b => b.NhanVienKhoa);
+            return View(baiViets.ToList());
+        }
 
         // GET: QuanLy/BaiViets/Details/5
         public ActionResult Details(int? id)
@@ -58,8 +63,8 @@ namespace SEP21.Areas.QuanLy.Controllers
         public ActionResult Create(BaiViet BaiViet)
         {
             if (ModelState.IsValid)
-            
                     {
+                        BaiViet.NoiDung.Substring(3,BaiViet.NoiDung.Length - 6);
                         db.BaiViets.Add(BaiViet);
                         db.SaveChanges();
                         return RedirectToAction("Index");
