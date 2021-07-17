@@ -1880,12 +1880,6 @@
     <Content Include="Areas\QuanLy\Views\TuyenDungs\Details.cshtml" />
     <Content Include="Areas\QuanLy\Views\TuyenDungs\Edit.cshtml" />
     <Content Include="Areas\QuanLy\Views\TuyenDungs\Index.cshtml" />
-    <Content Include="Plugin\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
-    <Content Include="Plugin\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Plugin\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Plugin\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Plugin\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Plugin\ckfinder\userfiles\.htaccess" />
     <Content Include="Plugin\ckeditor\CHANGES.md" />
     <Content Include="Plugin\ckeditor\LICENSE.md" />
     <Content Include="Plugin\ckeditor\plugins\scayt\CHANGELOG.md" />
@@ -1901,6 +1895,12 @@
     <Content Include="Plugin\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Plugin\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Plugin\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Plugin\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
+    <Content Include="Plugin\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Plugin\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Plugin\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Plugin\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Plugin\ckfinder\userfiles\.htaccess" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
