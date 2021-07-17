@@ -60,17 +60,26 @@ namespace SEP21.Areas.QuanLy.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(BaiViet BaiViet)
+        public ActionResult Create(BaiViet BaiViet, HttpPostedFileBase picture)
         {
             if (ModelState.IsValid)
+            {
+                if (picture != null)
+                {
+                    using (var scope = new TransactionScope())
                     {
-                        BaiViet.NoiDung.Substring(3,BaiViet.NoiDung.Length - 6);
                         db.BaiViets.Add(BaiViet);
                         db.SaveChanges();
+
+                        var path = Server.MapPath(PICTURE_PATH);
+                        picture.SaveAs(path + BaiViet.ID);
+
+                        scope.Complete();
                         return RedirectToAction("Index");
                     }
-                
-            
+                }
+                else ModelState.AddModelError("", " Picture not found!");
+            }
             ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", BaiViet.LoaiBaiViet);
             ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", BaiViet.NguoiDang);
             return View(BaiViet);
@@ -99,16 +108,26 @@ namespace SEP21.Areas.QuanLy.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(BaiViet baiViet)
+        public ActionResult Edit(BaiViet baiViet, HttpPostedFileBase picture)
         {
             if (ModelState.IsValid)
             {
+                using (var scope = new TransactionScope())
+                {
                     db.Entry(baiViet).State = EntityState.Modified;
                     db.SaveChanges();
 
+                    if (picture != null)
+                    {
+                        var path = Server.MapPath(PICTURE_PATH);
+                        picture.SaveAs(path + baiViet.ID);
+                    }
+
+                    scope.Complete();
                     return RedirectToAction("Index");
+                }
             }
-            
+
             ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", baiViet.LoaiBaiViet);
             ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", baiViet.NguoiDang);
             return View(baiViet);
@@ -134,10 +153,18 @@ namespace SEP21.Areas.QuanLy.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-                BaiViet baiViet = db.BaiViets.Find(id);
-                db.BaiViets.Remove(baiViet);
+            using (var scope = new TransactionScope())
+            {
+                var model = db.BaiViets.Find(id);
+                db.BaiViets.Remove(model);
                 db.SaveChanges();
+
+                var path = Server.MapPath(PICTURE_PATH);
+                System.IO.File.Delete(path + model.ID);
+
+                scope.Complete();
                 return RedirectToAction("Index");
+            }
         }
         protected override void Dispose(bool disposing)
         {
