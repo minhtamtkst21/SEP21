@@ -36,7 +36,7 @@ namespace SEP21.Areas.QuanLy.Controllers
             }
             return View();
         }
-        public ActionResult Logout(int id)
+        public ActionResult Logout()
         {
             Session.Clear();
             return RedirectToAction("Login");
