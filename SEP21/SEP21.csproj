@@ -199,7 +199,8 @@
     <Compile Include="Areas\QuanLy\Controllers\TuyenDungsController.cs" />
     <Compile Include="Areas\QuanLy\QuanLyAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\BaiVietsController.cs" />
+    <Compile Include="Controllers\BaiVietController.cs" />
+    <Compile Include="Controllers\DangKyHoatDongsController.cs" />
     <Compile Include="Controllers\GioiThieusController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhoasController.cs" />
@@ -1968,11 +1969,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\BaiViets\Create.cshtml" />
-    <Content Include="Views\BaiViets\Delete.cshtml" />
-    <Content Include="Views\BaiViets\Details.cshtml" />
-    <Content Include="Views\BaiViets\Edit.cshtml" />
-    <Content Include="Views\BaiViets\Index.cshtml" />
+    <Content Include="Views\BaiViet\Create.cshtml" />
+    <Content Include="Views\BaiViet\Delete.cshtml" />
+    <Content Include="Views\BaiViet\Details.cshtml" />
+    <Content Include="Views\BaiViet\Edit.cshtml" />
+    <Content Include="Views\BaiViet\Index.cshtml" />
     <Content Include="Views\SinhViens\Create.cshtml" />
     <Content Include="Views\SinhViens\Delete.cshtml" />
     <Content Include="Views\SinhViens\Details.cshtml" />
@@ -1990,6 +1991,11 @@
     <Content Include="Views\Khoas\Index.cshtml" />
     <Content Include="Views\GioiThieus\Index.cshtml" />
     <Content Include="Views\GioiThieus\Index2.cshtml" />
+    <Content Include="Views\DangKyHoatDongs\Create.cshtml" />
+    <Content Include="Views\DangKyHoatDongs\Delete.cshtml" />
+    <Content Include="Views\DangKyHoatDongs\Details.cshtml" />
+    <Content Include="Views\DangKyHoatDongs\Edit.cshtml" />
+    <Content Include="Views\DangKyHoatDongs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

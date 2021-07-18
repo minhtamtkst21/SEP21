@@ -10,121 +10,116 @@ using SEP21.Models;
 
 namespace SEP21.Controllers
 {
-    public class BaiVietsController : Controller
+    public class DangKyHoatDongsController : Controller
     {
         private SEP24Team5Entities db = new SEP24Team5Entities();
 
-        // GET: BaiViets
+        // GET: DangKyHoatDongs
         public ActionResult Index()
         {
-            var baiViets = db.BaiViets.Include(b => b.LoaiBaiViet1).Include(b => b.NhanVienKhoa);
-            return View(baiViets.ToList());
+            var dangKyHoatDongs = db.DangKyHoatDongs.Include(d => d.HoatDong1).Include(d => d.SinhVien);
+            return View(dangKyHoatDongs.ToList());
         }
-        public ActionResult Picture(int id)
-        {
-            var path = Server.MapPath(PICTURE_PATH);
-            return File(path + id, "images");
-        }
-        private const string PICTURE_PATH = "~/images/BaiViet/";
-        // GET: BaiViets/Details/5
+
+        // GET: DangKyHoatDongs/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BaiViet baiViet = db.BaiViets.Find(id);
-            if (baiViet == null)
+            DangKyHoatDong dangKyHoatDong = db.DangKyHoatDongs.Find(id);
+            if (dangKyHoatDong == null)
             {
                 return HttpNotFound();
             }
-            return View(baiViet);
+            return View(dangKyHoatDong);
         }
 
-        // GET: BaiViets/Create
+        // GET: DangKyHoatDongs/Create
         public ActionResult Create()
         {
-            ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet");
-            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien");
+            ViewBag.HoatDong = new SelectList(db.HoatDongs, "ID", "TenHoatDong");
+            ViewBag.MSSV = new SelectList(db.SinhViens, "ID", "MSSV");
             return View();
         }
 
-        // POST: BaiViets/Create
+        // POST: DangKyHoatDongs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,NgayDangBai,TieuDe,NguoiDang,NoiDung,LoaiBaiViet")] BaiViet baiViet)
+        public ActionResult Create([Bind(Include = "ID,HoatDong,MSSV,ThoiGianDangKy")] DangKyHoatDong dangKyHoatDong)
         {
             if (ModelState.IsValid)
             {
-                db.BaiViets.Add(baiViet);
+                db.DangKyHoatDongs.Add(dangKyHoatDong);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", baiViet.LoaiBaiViet);
-            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", baiViet.NguoiDang);
-            return View(baiViet);
+            ViewBag.HoatDong = new SelectList(db.HoatDongs, "ID", "TenHoatDong", dangKyHoatDong.HoatDong);
+            ViewBag.MSSV = new SelectList(db.SinhViens, "ID", "MSSV", dangKyHoatDong.MSSV);
+            return View(dangKyHoatDong);
         }
 
-        // GET: BaiViets/Edit/5
+        // GET: DangKyHoatDongs/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BaiViet baiViet = db.BaiViets.Find(id);
-            if (baiViet == null)
+            DangKyHoatDong dangKyHoatDong = db.DangKyHoatDongs.Find(id);
+            if (dangKyHoatDong == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", baiViet.LoaiBaiViet);
-            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", baiViet.NguoiDang);
-            return View(baiViet);
+            ViewBag.HoatDong = new SelectList(db.HoatDongs, "ID", "TenHoatDong", dangKyHoatDong.HoatDong);
+            ViewBag.MSSV = new SelectList(db.SinhViens, "ID", "MSSV", dangKyHoatDong.MSSV);
+            return View(dangKyHoatDong);
         }
 
-        // POST: BaiViets/Edit/5
+        // POST: DangKyHoatDongs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,NgayDangBai,TieuDe,NguoiDang,NoiDung,LoaiBaiViet")] BaiViet baiViet)
+        public ActionResult Edit([Bind(Include = "ID,HoatDong,MSSV,ThoiGianDangKy")] DangKyHoatDong dangKyHoatDong)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(baiViet).State = EntityState.Modified;
+                db.Entry(dangKyHoatDong).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", baiViet.LoaiBaiViet);
-            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", baiViet.NguoiDang);
-            return View(baiViet);
+            ViewBag.HoatDong = new SelectList(db.HoatDongs, "ID", "TenHoatDong", dangKyHoatDong.HoatDong);
+            ViewBag.MSSV = new SelectList(db.SinhViens, "ID", "MSSV", dangKyHoatDong.MSSV);
+            return View(dangKyHoatDong);
         }
 
-        // GET: BaiViets/Delete/5
+        // GET: DangKyHoatDongs/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BaiViet baiViet = db.BaiViets.Find(id);
-            if (baiViet == null)
+            DangKyHoatDong dangKyHoatDong = db.DangKyHoatDongs.Find(id);
+            if (dangKyHoatDong == null)
             {
                 return HttpNotFound();
             }
-            return View(baiViet);
+            return View(dangKyHoatDong);
         }
 
-        // POST: BaiViets/Delete/5
+        // POST: DangKyHoatDongs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BaiViet baiViet = db.BaiViets.Find(id);
-            db.BaiViets.Remove(baiViet);
+            DangKyHoatDong dangKyHoatDong = db.DangKyHoatDongs.Find(id);
+            db.DangKyHoatDongs.Remove(dangKyHoatDong);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

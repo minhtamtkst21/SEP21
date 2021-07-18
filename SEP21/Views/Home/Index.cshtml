@@ -20,9 +20,9 @@
                                 <div class="card-body">
                                     <h3 class="card-title">@item.TieuDe</h3>
                                     <p class="card-text">
-                                        @if (item.NoiDung != null && item.NoiDung.Length > 100)
+                                        @if (item.NoiDung != null && item.NoiDung.Length > 20)
                                         {
-                                            @item.NoiDung.Substring(0, 100)
+                                            @item.NoiDung.Substring(0, 20)
                                         }
                                         else
                                         {
@@ -32,7 +32,7 @@
                                     <p class="text-muted">Last updated 3 mins ago
                                     @if (item.LoaiBaiViet1.TenLoaiBaiViet == "Hoạt động")
                                     {
-                                        <a href="#" class="btn btn-primary">Đăng ký hoạt động</a>
+                                        <a href="@Url.Action("Details", "BaiViet", new { item.ID })" class="btn btn-primary">Đăng ký hoạt động</a>
                                     }
                                     </p>
                                 </div>
