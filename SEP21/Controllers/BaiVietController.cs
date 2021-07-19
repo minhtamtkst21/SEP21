@@ -20,6 +20,26 @@ namespace SEP21.Controllers
             var baiViets = db.BaiViets.Include(b => b.LoaiBaiViet1).Include(b => b.NhanVienKhoa);
             return View(baiViets.ToList());
         }
+        [HttpPost]
+        public ActionResult Login(string username, string password, int id)
+        {
+            var sinhvien = db.Logins.FirstOrDefault(x => x.username == username);
+            if (sinhvien != null)
+            {
+                if (sinhvien.password.Equals(password))
+                {
+                    Session["FullName"] = sinhvien.username;
+                    Session["UserID"] = sinhvien.ID;
+                    ViewBag.Message = "Đăng ký thành công";
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                ViewBag.Message = "tài khoản không tồn tại";
+            }
+            return RedirectToAction("Details", new { id });
+        }
         public ActionResult Picture(int id)
         {
             var path = Server.MapPath(PICTURE_PATH);
