@@ -184,6 +184,7 @@
     <Compile Include="Areas\QuanLy\Controllers\AdminHomeController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\BaiVietsController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\DangKyHoatDongsController.cs" />
+    <Compile Include="Areas\QuanLy\Controllers\DaoTaosController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\DoanHoiKhoasController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\GioiThieuxController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\KhoasController.cs" />
@@ -215,6 +216,9 @@
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DangKyHoatDong.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DaoTao.cs">
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DatThanhTich.cs">
@@ -250,6 +254,9 @@
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SinhVien.cs">
+      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ThanhTich.cs">
@@ -332,6 +339,11 @@
     <Content Include="Areas\QuanLy\Views\LoginAdmins\Details.cshtml" />
     <Content Include="Areas\QuanLy\Views\LoginAdmins\Edit.cshtml" />
     <Content Include="Areas\QuanLy\Views\LoginAdmins\Index.cshtml" />
+    <Content Include="Areas\QuanLy\Views\Daotaos\Create.cshtml" />
+    <Content Include="Areas\QuanLy\Views\Daotaos\Delete.cshtml" />
+    <Content Include="Areas\QuanLy\Views\Daotaos\Details.cshtml" />
+    <Content Include="Areas\QuanLy\Views\Daotaos\Edit.cshtml" />
+    <Content Include="Areas\QuanLy\Views\Daotaos\Index.cshtml" />
     <None Include="Areas\QuanLy\Views\Shared\_AdminLayout.cshtml" />
     <Content Include="assets1\images\avatar-1.jpg" />
     <Content Include="assets1\images\avatar-2.jpg" />

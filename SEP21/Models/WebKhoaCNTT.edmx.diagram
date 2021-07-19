@@ -32,6 +32,8 @@
         <AssociationConnector Association="SEP24Team5Model.FK_SinhVien_Khoa" />
         <AssociationConnector Association="SEP24Team5Model.FK_NguoiThucHienNCKH_NCKH" />
         <AssociationConnector Association="SEP24Team5Model.FK_NguoiThucHienNCKH_NhanVienKhoa" />
+        <EntityTypeShape EntityType="SEP24Team5Model.DaoTao" Width="1.5" PointX="7.375" PointY="3.75" />
+        <EntityTypeShape EntityType="SEP24Team5Model.sysdiagram" Width="1.5" PointX="9.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
