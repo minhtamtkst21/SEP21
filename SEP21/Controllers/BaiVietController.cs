@@ -37,14 +37,35 @@ namespace SEP21.Controllers
                     sv.ThoiGianDangKy = DateTime.Now;
                     db.DangKyHoatDongs.Add(sv);
                     db.SaveChanges();
-                    return RedirectToAction("Index", "Home");
+                    SetAlert("Bạn đã đăng kí thành công", "success");
+                    return RedirectToAction("Details", new { id });
+                }
+                else
+                {
+                    SetAlert("Vui lòng nhập lại mật khẩu", "warning");
                 }
             }
             else
             {
-                ViewBag.Message = "tài khoản không tồn tại";
+                SetAlert("Bạn đã nhập sai tài khoản, vui lòng nhập lại!","warning");
             }
             return RedirectToAction("Details", new { id });
+        }
+        public void SetAlert(string message, string type)
+        {
+            TempData["AlertMessage"] = message;
+            if (type == "success")
+            {
+                TempData["AlertType"] = "alert-success";
+            }
+            if (type == "warning")
+            {
+                TempData["AlertType"] = "alert-warning";
+            }
+            if (type == "error")
+            {
+                TempData["AlertType"] = "alert-danger";
+            }
         }
         public bool checkDK()
         {
@@ -68,6 +89,7 @@ namespace SEP21.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.DangKyHoatDong = new SelectList(db.DangKyHoatDongs, "ID", "MSSV");
             return View(baiViet);
         }
 
@@ -78,7 +100,10 @@ namespace SEP21.Controllers
             ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien");
             return View();
         }
-
+        public bool CheckHD()
+        {
+            return false;
+        }
         // POST: BaiViets/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.

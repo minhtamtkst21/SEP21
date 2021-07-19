@@ -55,50 +55,21 @@
                     <li class="dropdown">
                         <a href="#"><span>Sinh viên</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="https://online.vlu.edu.vn/" target="_blank">Thông tin sinh viên</a></li>
                             <li><a href="#">Đoàn - hội Khoa</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="nav-link scrollto" href="#about">Hoạt động</a></li>
-                    <li class="dropdown">
-                        <a href="#"><span>Tra cứu</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li class="dropdown">
-                                <a href="#"><span>Nghiên cứu khoa học</span> <i class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Sinh viên</a></li>
-                                    <li><a href="#">Giảng viên</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#"><span>Thành tích</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li class="dropdown">
-                                <a href="#"><span>Thành tích</span> <i class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Sinh viên</a></li>
-                                    <li><a href="#">Giảng viên</a></li>
-                                    <li><a href="#">Sinh viên & giảng viên</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Học bổng</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#"><span>Tuyển dụng</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="https://ejob.vanlanguni.edu.vn/" target="_blank">Sinh viên đang học</a></li>
-                            <li><a href="#">Sinh viên đã ra trường</a></li>
-                            <li><a href="#">Tuyển dụng cho Khoa CNTT</a></li>
-                            <li><a href="#">Tuyển dụng cho Trường</a></li>
+                            <li><a href="#">Tuyển dụng</a></li>
                         </ul>
                     </li>
                     <li><a class="nav-link scrollto" href="https://tuyensinh.vanlanguni.edu.vn/cong-nghe-thong-tin/" target="_blank">Tuyển sinh</a></li>
                     <li class="dropdown">
                         <a href="#"><span>Liên kết</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
+                            <li><a href="https://online.vlu.edu.vn/" target="_blank">Thông tin sinh viên</a></li>
                             <li><a href="https://thuvien.vanlanguni.edu.vn/" target="_blank">Thư viện Văn Lang</a></li>
                             <li><a href="https://elearning.vanlanguni.edu.vn/" target="_blank">Trang học trực tuyến</a></li>
                             <li><a href="https://youth.vanlanguni.edu.vn/" target="_blank">Trang Đoàn - Hội</a></li>
@@ -111,7 +82,14 @@
 
         </div>
     </header><!-- End Header -->
-    @RenderBody()
+    <p></p><br/><br />
+        @if (TempData["AlertMessage"] != null)
+        {
+        <div class="alert @TempData["AlertType"] hide">
+            @TempData["AlertMessage"]
+        </div>
+        }
+        @RenderBody()
     <!-- ======= Footer ======= -->
     <footer id="footer">
         <div class="footer-top">
@@ -236,6 +214,18 @@
     <!-- Template Main JS File -->
     <script src="@Url.Content("~/assets/js/main.js")"></script>
     @RenderSection("scripts", required: false)
+    <script>
+        // tooltip demo
+        $('.tooltip-demo').tooltip({
+            selector: "[data-toggle=tooltip]",
+            container: "body"
+        })
+
+        // popover demo
+        $("[data-toggle=popover]").popover()
+        $('#alertBox').removeClass('hide');
+        $('#alertBox').delay(1000).slideUp(500);
+    </script>
 </body>
 
 </html>
