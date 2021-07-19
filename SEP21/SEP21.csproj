@@ -182,7 +182,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\QuanLy\Controllers\AdminHomeController.cs" />
-    <Compile Include="Areas\QuanLy\Controllers\AspNetUsersController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\BaiVietsController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\DangKyHoatDongsController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\DoanHoiKhoasController.cs" />
@@ -212,18 +211,6 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminLoginModels.cs" />
-    <Compile Include="Models\AspNetRole.cs">
-      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUser.cs">
-      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserClaim.cs">
-      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserLogin.cs">
-      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\BaiViet.cs">
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
@@ -239,17 +226,11 @@
     <Compile Include="Models\GioiThieu.cs">
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HoatDong.cs">
-      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Khoa.cs">
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LoaiBaiViet.cs">
-      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LoaiTuyenDung.cs">
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Login.cs">
@@ -269,9 +250,6 @@
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SinhVien.cs">
-      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ThanhTich.cs">

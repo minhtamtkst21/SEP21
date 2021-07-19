@@ -19,7 +19,7 @@ namespace SEP21.Models
         public int MSSV { get; set; }
         public System.DateTime ThoiGianDangKy { get; set; }
     
-        public virtual HoatDong HoatDong1 { get; set; }
+        public virtual BaiViet BaiViet { get; set; }
         public virtual SinhVien SinhVien { get; set; }
     }
 }

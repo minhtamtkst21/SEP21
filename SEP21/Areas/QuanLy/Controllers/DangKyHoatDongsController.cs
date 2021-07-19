@@ -17,7 +17,7 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/DangKyHoatDongs
         public ActionResult Index()
         {
-            var dangKyHoatDongs = db.DangKyHoatDongs.Include(d => d.HoatDong1).Include(d => d.SinhVien);
+            var dangKyHoatDongs = db.DangKyHoatDongs.Include(d => d.BaiViet).Include(d => d.SinhVien);
             return View(dangKyHoatDongs.ToList());
         }
 
@@ -39,7 +39,7 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/DangKyHoatDongs/Create
         public ActionResult Create()
         {
-            ViewBag.HoatDong = new SelectList(db.HoatDongs, "ID", "TenHoatDong");
+            ViewBag.HoatDong = new SelectList(db.BaiViets, "ID", "TenHoatDong");
             ViewBag.MSSV = new SelectList(db.SinhViens, "ID", "MSSV");
             return View();
         }
@@ -58,7 +58,7 @@ namespace SEP21.Areas.QuanLy.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.HoatDong = new SelectList(db.HoatDongs, "ID", "TenHoatDong", dangKyHoatDong.HoatDong);
+            ViewBag.HoatDong = new SelectList(db.BaiViets, "ID", "TenHoatDong", dangKyHoatDong.HoatDong);
             ViewBag.MSSV = new SelectList(db.SinhViens, "ID", "MSSV", dangKyHoatDong.MSSV);
             return View(dangKyHoatDong);
         }
@@ -75,7 +75,7 @@ namespace SEP21.Areas.QuanLy.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.HoatDong = new SelectList(db.HoatDongs, "ID", "TenHoatDong", dangKyHoatDong.HoatDong);
+            ViewBag.HoatDong = new SelectList(db.BaiViets, "ID", "TenHoatDong", dangKyHoatDong.HoatDong);
             ViewBag.MSSV = new SelectList(db.SinhViens, "ID", "MSSV", dangKyHoatDong.MSSV);
             return View(dangKyHoatDong);
         }
@@ -85,7 +85,7 @@ namespace SEP21.Areas.QuanLy.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,HoatDong,MSSV,ThoiGianDangKy")] DangKyHoatDong dangKyHoatDong)
+        public ActionResult Edit(DangKyHoatDong dangKyHoatDong)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +93,7 @@ namespace SEP21.Areas.QuanLy.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.HoatDong = new SelectList(db.HoatDongs, "ID", "TenHoatDong", dangKyHoatDong.HoatDong);
+            ViewBag.HoatDong = new SelectList(db.BaiViets, "ID", "TenHoatDong", dangKyHoatDong.HoatDong);
             ViewBag.MSSV = new SelectList(db.SinhViens, "ID", "MSSV", dangKyHoatDong.MSSV);
             return View(dangKyHoatDong);
         }

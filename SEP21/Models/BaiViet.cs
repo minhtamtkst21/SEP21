@@ -14,6 +14,12 @@ namespace SEP21.Models
     
     public partial class BaiViet
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public BaiViet()
+        {
+            this.DangKyHoatDongs = new HashSet<DangKyHoatDong>();
+        }
+    
         public int ID { get; set; }
         public System.DateTime NgayDangBai { get; set; }
         public string TieuDe { get; set; }
@@ -24,5 +30,7 @@ namespace SEP21.Models
     
         public virtual LoaiBaiViet LoaiBaiViet1 { get; set; }
         public virtual NhanVienKhoa NhanVienKhoa { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DangKyHoatDong> DangKyHoatDongs { get; set; }
     }
 }

@@ -29,8 +29,8 @@
                             <tr>
                                 <th>Ngày đăng</th>
                                 <th>Tiêu đề</th>
-                                <th>Nội dung</th>
                                 <th>Loại bài viết</th>
+                                <th>Người đăng bài</th>
                                 <th>Thao tác</th>
                             </tr>
                         </thead>
@@ -40,8 +40,8 @@
                                 <tr class="odd gradeX">
                                     <td>@item.NgayDangBai</td>
                                     <td>@item.TieuDe</td>
-                                    <td>@item.NoiDung</td>
                                     <td class="center">@item.LoaiBaiViet1.TenLoaiBaiViet</td>
+                                    <td>@item.NgayDangBai</td>
                                     <td>
                                         @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = item.ID }) |
                                         @Html.ActionLink("Chi Tiết", "Details", new { id = item.ID }) |

@@ -30,22 +30,15 @@ namespace SEP21.Models
         public virtual DbSet<DatThanhTich> DatThanhTiches { get; set; }
         public virtual DbSet<DoanHoiKhoa> DoanHoiKhoas { get; set; }
         public virtual DbSet<GioiThieu> GioiThieux { get; set; }
-        public virtual DbSet<HoatDong> HoatDongs { get; set; }
         public virtual DbSet<Khoa> Khoas { get; set; }
         public virtual DbSet<LoaiBaiViet> LoaiBaiViets { get; set; }
-        public virtual DbSet<LoaiTuyenDung> LoaiTuyenDungs { get; set; }
         public virtual DbSet<Login> Logins { get; set; }
         public virtual DbSet<LoginAdmin> LoginAdmins { get; set; }
         public virtual DbSet<NCKH> NCKHs { get; set; }
         public virtual DbSet<NguoiThucHienNCKH> NguoiThucHienNCKHs { get; set; }
         public virtual DbSet<NhanVienKhoa> NhanVienKhoas { get; set; }
         public virtual DbSet<SinhVien> SinhViens { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<ThanhTich> ThanhTiches { get; set; }
         public virtual DbSet<TuyenDung> TuyenDungs { get; set; }
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     }
 }

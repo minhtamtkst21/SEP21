@@ -5,27 +5,24 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2624a3f2849f4dc681ef1ac6d9e0e7ac" Name="Diagram1" ZoomLevel="62">
-        <EntityTypeShape EntityType="SEP24Team5Model.BaiViet" Width="1.5" PointX="8.25" PointY="11" />
-        <EntityTypeShape EntityType="SEP24Team5Model.DangKyHoatDong" Width="1.5" PointX="5.25" PointY="5.5" />
-        <EntityTypeShape EntityType="SEP24Team5Model.DatThanhTich" Width="1.5" PointX="8.25" PointY="7.25" />
-        <EntityTypeShape EntityType="SEP24Team5Model.DoanHoiKhoa" Width="1.5" PointX="5.25" PointY="8.625" />
-        <EntityTypeShape EntityType="SEP24Team5Model.GioiThieu" Width="1.5" PointX="10.75" PointY="4.75" />
-        <EntityTypeShape EntityType="SEP24Team5Model.HoatDong" Width="1.5" PointX="3" PointY="1.625" />
-        <EntityTypeShape EntityType="SEP24Team5Model.Khoa" Width="1.5" PointX="0.75" PointY="7.375" />
-        <EntityTypeShape EntityType="SEP24Team5Model.LoaiBaiViet" Width="1.5" PointX="6" PointY="14.5" />
-        <EntityTypeShape EntityType="SEP24Team5Model.LoaiTuyenDung" Width="1.5" PointX="8.75" PointY="1.375" />
-        <EntityTypeShape EntityType="SEP24Team5Model.Login" Width="1.5" PointX="10.75" PointY="7.75" />
-        <EntityTypeShape EntityType="SEP24Team5Model.LoginAdmin" Width="1.5" PointX="10.75" PointY="10.75" />
-        <EntityTypeShape EntityType="SEP24Team5Model.NCKH" Width="1.5" PointX="3" PointY="13.375" />
-        <EntityTypeShape EntityType="SEP24Team5Model.NguoiThucHienNCKH" Width="1.5" PointX="5.25" PointY="11.25" />
-        <EntityTypeShape EntityType="SEP24Team5Model.NhanVienKhoa" Width="1.5" PointX="3" PointY="8.875" />
-        <EntityTypeShape EntityType="SEP24Team5Model.SinhVien" Width="1.5" PointX="3" PointY="5" />
-        <EntityTypeShape EntityType="SEP24Team5Model.sysdiagram" Width="1.5" PointX="12.75" PointY="4.75" />
-        <EntityTypeShape EntityType="SEP24Team5Model.ThanhTich" Width="1.5" PointX="6" PointY="2.375" />
-        <EntityTypeShape EntityType="SEP24Team5Model.TuyenDung" Width="1.5" PointX="11" PointY="1" />
+        <EntityTypeShape EntityType="SEP24Team5Model.BaiViet" Width="1.5" PointX="8.25" PointY="8.125" />
+        <EntityTypeShape EntityType="SEP24Team5Model.DangKyHoatDong" Width="1.5" PointX="10.5" PointY="6.625" />
+        <EntityTypeShape EntityType="SEP24Team5Model.DatThanhTich" Width="1.5" PointX="5.25" PointY="8.625" />
+        <EntityTypeShape EntityType="SEP24Team5Model.DoanHoiKhoa" Width="1.5" PointX="5.25" PointY="4.875" />
+        <EntityTypeShape EntityType="SEP24Team5Model.GioiThieu" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SEP24Team5Model.Khoa" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="SEP24Team5Model.LoaiBaiViet" Width="1.5" PointX="6" PointY="14.875" />
+        <EntityTypeShape EntityType="SEP24Team5Model.Login" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SEP24Team5Model.LoginAdmin" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SEP24Team5Model.NCKH" Width="1.5" PointX="3" PointY="15.75" />
+        <EntityTypeShape EntityType="SEP24Team5Model.NguoiThucHienNCKH" Width="1.5" PointX="5.25" PointY="11.625" />
+        <EntityTypeShape EntityType="SEP24Team5Model.NhanVienKhoa" Width="1.5" PointX="3" PointY="8.25" />
+        <EntityTypeShape EntityType="SEP24Team5Model.SinhVien" Width="1.5" PointX="3" PointY="4.375" />
+        <EntityTypeShape EntityType="SEP24Team5Model.ThanhTich" Width="1.5" PointX="3" PointY="12.75" />
+        <EntityTypeShape EntityType="SEP24Team5Model.TuyenDung" Width="1.5" PointX="6.75" PointY="0.75" />
         <AssociationConnector Association="SEP24Team5Model.FK_BaiViet_LoaiBaiViet" />
         <AssociationConnector Association="SEP24Team5Model.FK_BaiViet_NhanVienKhoa" />
-        <AssociationConnector Association="SEP24Team5Model.FK_DangKyHoatDong_HoatDong" />
+        <AssociationConnector Association="SEP24Team5Model.FK_DangKyHoatDong_BaiViet" />
         <AssociationConnector Association="SEP24Team5Model.FK_DangKyHoatDong_SinhVien" />
         <AssociationConnector Association="SEP24Team5Model.FK_DatThanhTich_NhanVienKhoa" />
         <AssociationConnector Association="SEP24Team5Model.FK_DatThanhTich_SinhVien" />
@@ -33,16 +30,8 @@
         <AssociationConnector Association="SEP24Team5Model.FK_DoanHoiKhoa_SinhVien" />
         <AssociationConnector Association="SEP24Team5Model.FK_NhanVienKhoa_Khoa" />
         <AssociationConnector Association="SEP24Team5Model.FK_SinhVien_Khoa" />
-        <AssociationConnector Association="SEP24Team5Model.FK_TuyenDung_LoaiTuyenDung" />
         <AssociationConnector Association="SEP24Team5Model.FK_NguoiThucHienNCKH_NCKH" />
         <AssociationConnector Association="SEP24Team5Model.FK_NguoiThucHienNCKH_NhanVienKhoa" />
-        <EntityTypeShape EntityType="SEP24Team5Model.AspNetRole" Width="1.5" PointX="13.375" PointY="9.5" />
-        <EntityTypeShape EntityType="SEP24Team5Model.AspNetUserClaim" Width="1.5" PointX="17.875" PointY="10.625" />
-        <EntityTypeShape EntityType="SEP24Team5Model.AspNetUserLogin" Width="1.5" PointX="17.875" PointY="8" />
-        <EntityTypeShape EntityType="SEP24Team5Model.AspNetUser" Width="1.5" PointX="15.625" PointY="8.375" />
-        <AssociationConnector Association="SEP24Team5Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="SEP24Team5Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="SEP24Team5Model.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

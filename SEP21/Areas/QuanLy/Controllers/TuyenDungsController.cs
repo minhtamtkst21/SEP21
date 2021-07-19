@@ -17,7 +17,7 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/TuyenDungs
         public ActionResult Index()
         {
-            var tuyenDungs = db.TuyenDungs.Include(t => t.LoaiTuyenDung1);
+            var tuyenDungs = db.TuyenDungs;
             return View(tuyenDungs.ToList());
         }
 
@@ -39,7 +39,6 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/TuyenDungs/Create
         public ActionResult Create()
         {
-            ViewBag.LoaiTuyenDung = new SelectList(db.LoaiTuyenDungs, "ID", "LoaiTuyenDung1");
             return View();
         }
 
@@ -56,8 +55,6 @@ namespace SEP21.Areas.QuanLy.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.LoaiTuyenDung = new SelectList(db.LoaiTuyenDungs, "ID", "LoaiTuyenDung1", tuyenDung.LoaiTuyenDung);
             return View(tuyenDung);
         }
 
@@ -73,7 +70,6 @@ namespace SEP21.Areas.QuanLy.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.LoaiTuyenDung = new SelectList(db.LoaiTuyenDungs, "ID", "LoaiTuyenDung1", tuyenDung.LoaiTuyenDung);
             return View(tuyenDung);
         }
 
@@ -90,7 +86,6 @@ namespace SEP21.Areas.QuanLy.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.LoaiTuyenDung = new SelectList(db.LoaiTuyenDungs, "ID", "LoaiTuyenDung1", tuyenDung.LoaiTuyenDung);
             return View(tuyenDung);
         }
 

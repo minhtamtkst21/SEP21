@@ -17,7 +17,7 @@ namespace SEP21.Controllers
         // GET: DangKyHoatDongs
         public ActionResult Index()
         {
-            var dangKyHoatDongs = db.DangKyHoatDongs.Include(d => d.HoatDong1).Include(d => d.SinhVien);
+            var dangKyHoatDongs = db.DangKyHoatDongs.Include(d => d.BaiViet).Include(d => d.SinhVien);
             return View(dangKyHoatDongs.ToList());
         }
 
@@ -39,7 +39,7 @@ namespace SEP21.Controllers
         // GET: DangKyHoatDongs/Create
         public ActionResult Create()
         {
-            ViewBag.HoatDong = new SelectList(db.HoatDongs, "ID", "TenHoatDong");
+            ViewBag.HoatDong = new SelectList(db.BaiViets, "ID", "TenHoatDong");
             ViewBag.MSSV = new SelectList(db.SinhViens, "ID", "MSSV");
             return View();
         }
@@ -58,7 +58,7 @@ namespace SEP21.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.HoatDong = new SelectList(db.HoatDongs, "ID", "TenHoatDong", dangKyHoatDong.HoatDong);
+            ViewBag.HoatDong = new SelectList(db.BaiViets, "ID", "TenHoatDong", dangKyHoatDong.HoatDong);
             ViewBag.MSSV = new SelectList(db.SinhViens, "ID", "MSSV", dangKyHoatDong.MSSV);
             return View(dangKyHoatDong);
         }
@@ -75,7 +75,7 @@ namespace SEP21.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.HoatDong = new SelectList(db.HoatDongs, "ID", "TenHoatDong", dangKyHoatDong.HoatDong);
+            ViewBag.HoatDong = new SelectList(db.BaiViets, "ID", "TenHoatDong", dangKyHoatDong.HoatDong);
             ViewBag.MSSV = new SelectList(db.SinhViens, "ID", "MSSV", dangKyHoatDong.MSSV);
             return View(dangKyHoatDong);
         }
@@ -93,7 +93,7 @@ namespace SEP21.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.HoatDong = new SelectList(db.HoatDongs, "ID", "TenHoatDong", dangKyHoatDong.HoatDong);
+            ViewBag.HoatDong = new SelectList(db.BaiViets, "ID", "TenHoatDong", dangKyHoatDong.HoatDong);
             ViewBag.MSSV = new SelectList(db.SinhViens, "ID", "MSSV", dangKyHoatDong.MSSV);
             return View(dangKyHoatDong);
         }

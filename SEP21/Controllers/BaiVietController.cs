@@ -13,7 +13,7 @@ namespace SEP21.Controllers
     public class BaiVietController : Controller
     {
         private SEP24Team5Entities db = new SEP24Team5Entities();
-
+        private DangKyHoatDong sv = new DangKyHoatDong();
         // GET: BaiViets
         public ActionResult Index()
         {
@@ -30,7 +30,12 @@ namespace SEP21.Controllers
                 {
                     Session["FullName"] = sinhvien.username;
                     Session["UserID"] = sinhvien.ID;
-                    ViewBag.Message = "Đăng ký thành công";
+                    sv.MSSV = sinhvien.ID;
+                    sv.HoatDong = id;
+                    var Sinhvien = db.SinhViens.FirstOrDefault(x => x.MSSV == username.Substring(username.Length - 10, 10));
+                    sv.ThoiGianDangKy = DateTime.Now;
+                    db.DangKyHoatDongs.Add(sv);
+                    db.SaveChanges();
                     return RedirectToAction("Index", "Home");
                 }
             }

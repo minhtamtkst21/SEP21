@@ -20,7 +20,5 @@ namespace SEP21.Models
         public string YeuCau { get; set; }
         public string TieuDe { get; set; }
         public int LoaiTuyenDung { get; set; }
-    
-        public virtual LoaiTuyenDung LoaiTuyenDung1 { get; set; }
     }
 }

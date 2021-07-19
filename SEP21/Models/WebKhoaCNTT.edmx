@@ -5,57 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SEP24Team5Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="AspNetRoles">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
-        </EntityType>
-        <EntityType Name="AspNetUserClaims">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ClaimType" Type="nvarchar(max)" />
-          <Property Name="ClaimValue" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="AspNetUserLogins">
-          <Key>
-            <PropertyRef Name="LoginProvider" />
-            <PropertyRef Name="ProviderKey" />
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-        </EntityType>
-        <EntityType Name="AspNetUserRoles">
-          <Key>
-            <PropertyRef Name="AspNetRoles_Id" />
-            <PropertyRef Name="AspNetUsers_Id" />
-          </Key>
-          <Property Name="AspNetRoles_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="AspNetUsers_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-        </EntityType>
-        <EntityType Name="AspNetUsers">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="256" />
-          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
-          <Property Name="PasswordHash" Type="nvarchar(max)" />
-          <Property Name="SecurityStamp" Type="nvarchar(max)" />
-          <Property Name="PhoneNumber" Type="nvarchar(max)" />
-          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
-          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
-          <Property Name="LockoutEndDateUtc" Type="datetime" />
-          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
-          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
-        </EntityType>
         <EntityType Name="BaiViet">
           <Key>
             <PropertyRef Name="ID" />
@@ -104,15 +53,6 @@
           <Property Name="TrietLyGiaoDuc" Type="nvarchar(max)" />
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
-        <EntityType Name="HoatDong">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenHoatDong" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="NoiDung" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="NgayKetThucDangKy" Type="datetime" Nullable="false" />
-        </EntityType>
         <EntityType Name="Khoa">
           <Key>
             <PropertyRef Name="ID" />
@@ -127,13 +67,6 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenLoaiBaiViet" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="LoaiTuyenDung">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="LoaiTuyenDung" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -189,16 +122,6 @@
           <Property Name="SoDienThoai" Type="int" />
           <Property Name="mail" Type="varchar(max)" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="ThanhTich">
           <Key>
             <PropertyRef Name="ID" />
@@ -219,30 +142,6 @@
           <Property Name="TieuDe" Type="nvarchar(max)" Nullable="false" />
           <Property Name="LoaiTuyenDung" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_AspNetUserRoles_AspNetRoles">
-          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetRoles">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserRoles">
-              <PropertyRef Name="AspNetRoles_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AspNetUserRoles_AspNetUsers">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserRoles">
-              <PropertyRef Name="AspNetUsers_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_BaiViet_LoaiBaiViet">
           <End Role="LoaiBaiViet" Type="Self.LoaiBaiViet" Multiplicity="1" />
           <End Role="BaiViet" Type="Self.BaiViet" Multiplicity="*" />
@@ -267,11 +166,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DangKyHoatDong_HoatDong">
-          <End Role="HoatDong" Type="Self.HoatDong" Multiplicity="1" />
+        <Association Name="FK_DangKyHoatDong_BaiViet">
+          <End Role="BaiViet" Type="Self.BaiViet" Multiplicity="1" />
           <End Role="DangKyHoatDong" Type="Self.DangKyHoatDong" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="HoatDong">
+            <Principal Role="BaiViet">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="DangKyHoatDong">
@@ -324,34 +223,6 @@
             </Principal>
             <Dependent Role="DatThanhTich">
               <PropertyRef Name="ThanhTich" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserClaims">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserLogins">
-              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -415,50 +286,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TuyenDung_LoaiTuyenDung">
-          <End Role="LoaiTuyenDung" Type="Self.LoaiTuyenDung" Multiplicity="1" />
-          <End Role="TuyenDung" Type="Self.TuyenDung" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LoaiTuyenDung">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="TuyenDung">
-              <PropertyRef Name="LoaiTuyenDung" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="SEP24Team5ModelStoreContainer">
-          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BaiViet" EntityType="Self.BaiViet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DangKyHoatDong" EntityType="Self.DangKyHoatDong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DatThanhTich" EntityType="Self.DatThanhTich" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DoanHoiKhoa" EntityType="Self.DoanHoiKhoa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GioiThieu" EntityType="Self.GioiThieu" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="HoatDong" EntityType="Self.HoatDong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Khoa" EntityType="Self.Khoa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoaiBaiViet" EntityType="Self.LoaiBaiViet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="LoaiTuyenDung" EntityType="Self.LoaiTuyenDung" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoginAdmin" EntityType="Self.LoginAdmin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NCKH" EntityType="Self.NCKH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NguoiThucHienNCKH" EntityType="Self.NguoiThucHienNCKH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NhanVienKhoa" EntityType="Self.NhanVienKhoa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SinhVien" EntityType="Self.SinhVien" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThanhTich" EntityType="Self.ThanhTich" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TuyenDung" EntityType="Self.TuyenDung" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_AspNetUserRoles_AspNetRoles" Association="Self.FK_AspNetUserRoles_AspNetRoles">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AspNetUserRoles_AspNetUsers" Association="Self.FK_AspNetUserRoles_AspNetUsers">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-          </AssociationSet>
           <AssociationSet Name="FK_BaiViet_LoaiBaiViet" Association="Self.FK_BaiViet_LoaiBaiViet">
             <End Role="LoaiBaiViet" EntitySet="LoaiBaiViet" />
             <End Role="BaiViet" EntitySet="BaiViet" />
@@ -467,8 +310,8 @@
             <End Role="NhanVienKhoa" EntitySet="NhanVienKhoa" />
             <End Role="BaiViet" EntitySet="BaiViet" />
           </AssociationSet>
-          <AssociationSet Name="FK_DangKyHoatDong_HoatDong" Association="Self.FK_DangKyHoatDong_HoatDong">
-            <End Role="HoatDong" EntitySet="HoatDong" />
+          <AssociationSet Name="FK_DangKyHoatDong_BaiViet" Association="Self.FK_DangKyHoatDong_BaiViet">
+            <End Role="BaiViet" EntitySet="BaiViet" />
             <End Role="DangKyHoatDong" EntitySet="DangKyHoatDong" />
           </AssociationSet>
           <AssociationSet Name="FK_DangKyHoatDong_SinhVien" Association="Self.FK_DangKyHoatDong_SinhVien">
@@ -486,14 +329,6 @@
           <AssociationSet Name="FK_DatThanhTich_ThanhTich" Association="Self.FK_DatThanhTich_ThanhTich">
             <End Role="ThanhTich" EntitySet="ThanhTich" />
             <End Role="DatThanhTich" EntitySet="DatThanhTich" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
           <AssociationSet Name="FK_DoanHoiKhoa_SinhVien" Association="Self.FK_DoanHoiKhoa_SinhVien">
             <End Role="SinhVien" EntitySet="SinhVien" />
@@ -515,10 +350,6 @@
             <End Role="Khoa" EntitySet="Khoa" />
             <End Role="SinhVien" EntitySet="SinhVien" />
           </AssociationSet>
-          <AssociationSet Name="FK_TuyenDung_LoaiTuyenDung" Association="Self.FK_TuyenDung_LoaiTuyenDung">
-            <End Role="LoaiTuyenDung" EntitySet="LoaiTuyenDung" />
-            <End Role="TuyenDung" EntitySet="TuyenDung" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -530,17 +361,14 @@
           <EntitySet Name="DatThanhTiches" EntityType="SEP24Team5Model.DatThanhTich" />
           <EntitySet Name="DoanHoiKhoas" EntityType="SEP24Team5Model.DoanHoiKhoa" />
           <EntitySet Name="GioiThieux" EntityType="SEP24Team5Model.GioiThieu" />
-          <EntitySet Name="HoatDongs" EntityType="SEP24Team5Model.HoatDong" />
           <EntitySet Name="Khoas" EntityType="SEP24Team5Model.Khoa" />
           <EntitySet Name="LoaiBaiViets" EntityType="SEP24Team5Model.LoaiBaiViet" />
-          <EntitySet Name="LoaiTuyenDungs" EntityType="SEP24Team5Model.LoaiTuyenDung" />
           <EntitySet Name="Logins" EntityType="SEP24Team5Model.Login" />
           <EntitySet Name="LoginAdmins" EntityType="SEP24Team5Model.LoginAdmin" />
           <EntitySet Name="NCKHs" EntityType="SEP24Team5Model.NCKH" />
           <EntitySet Name="NguoiThucHienNCKHs" EntityType="SEP24Team5Model.NguoiThucHienNCKH" />
           <EntitySet Name="NhanVienKhoas" EntityType="SEP24Team5Model.NhanVienKhoa" />
           <EntitySet Name="SinhViens" EntityType="SEP24Team5Model.SinhVien" />
-          <EntitySet Name="sysdiagrams" EntityType="SEP24Team5Model.sysdiagram" />
           <EntitySet Name="ThanhTiches" EntityType="SEP24Team5Model.ThanhTich" />
           <EntitySet Name="TuyenDungs" EntityType="SEP24Team5Model.TuyenDung" />
           <AssociationSet Name="FK_BaiViet_LoaiBaiViet" Association="SEP24Team5Model.FK_BaiViet_LoaiBaiViet">
@@ -551,8 +379,8 @@
             <End Role="NhanVienKhoa" EntitySet="NhanVienKhoas" />
             <End Role="BaiViet" EntitySet="BaiViets" />
           </AssociationSet>
-          <AssociationSet Name="FK_DangKyHoatDong_HoatDong" Association="SEP24Team5Model.FK_DangKyHoatDong_HoatDong">
-            <End Role="HoatDong" EntitySet="HoatDongs" />
+          <AssociationSet Name="FK_DangKyHoatDong_BaiViet" Association="SEP24Team5Model.FK_DangKyHoatDong_BaiViet">
+            <End Role="BaiViet" EntitySet="BaiViets" />
             <End Role="DangKyHoatDong" EntitySet="DangKyHoatDongs" />
           </AssociationSet>
           <AssociationSet Name="FK_DangKyHoatDong_SinhVien" Association="SEP24Team5Model.FK_DangKyHoatDong_SinhVien">
@@ -583,10 +411,6 @@
             <End Role="Khoa" EntitySet="Khoas" />
             <End Role="SinhVien" EntitySet="SinhViens" />
           </AssociationSet>
-          <AssociationSet Name="FK_TuyenDung_LoaiTuyenDung" Association="SEP24Team5Model.FK_TuyenDung_LoaiTuyenDung">
-            <End Role="LoaiTuyenDung" EntitySet="LoaiTuyenDungs" />
-            <End Role="TuyenDung" EntitySet="TuyenDungs" />
-          </AssociationSet>
           <AssociationSet Name="FK_NguoiThucHienNCKH_NCKH" Association="SEP24Team5Model.FK_NguoiThucHienNCKH_NCKH">
             <End Role="NCKH" EntitySet="NCKHs" />
             <End Role="NguoiThucHienNCKH" EntitySet="NguoiThucHienNCKHs" />
@@ -594,22 +418,6 @@
           <AssociationSet Name="FK_NguoiThucHienNCKH_NhanVienKhoa" Association="SEP24Team5Model.FK_NguoiThucHienNCKH_NhanVienKhoa">
             <End Role="NhanVienKhoa" EntitySet="NhanVienKhoas" />
             <End Role="NguoiThucHienNCKH" EntitySet="NguoiThucHienNCKHs" />
-          </AssociationSet>
-          <EntitySet Name="AspNetRoles" EntityType="SEP24Team5Model.AspNetRole" />
-          <EntitySet Name="AspNetUserClaims" EntityType="SEP24Team5Model.AspNetUserClaim" />
-          <EntitySet Name="AspNetUserLogins" EntityType="SEP24Team5Model.AspNetUserLogin" />
-          <EntitySet Name="AspNetUsers" EntityType="SEP24Team5Model.AspNetUser" />
-          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="SEP24Team5Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="SEP24Team5Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="AspNetUserRoles" Association="SEP24Team5Model.AspNetUserRoles">
-            <End Role="AspNetRole" EntitySet="AspNetRoles" />
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="BaiViet">
@@ -622,9 +430,10 @@
           <Property Name="NguoiDang" Type="Int32" Nullable="false" />
           <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="LoaiBaiViet" Type="Int32" Nullable="false" />
+          <Property Name="picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="LoaiBaiViet1" Relationship="SEP24Team5Model.FK_BaiViet_LoaiBaiViet" FromRole="BaiViet" ToRole="LoaiBaiViet" />
           <NavigationProperty Name="NhanVienKhoa" Relationship="SEP24Team5Model.FK_BaiViet_NhanVienKhoa" FromRole="BaiViet" ToRole="NhanVienKhoa" />
-          <Property Name="picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DangKyHoatDongs" Relationship="SEP24Team5Model.FK_DangKyHoatDong_BaiViet" FromRole="BaiViet" ToRole="DangKyHoatDong" />
         </EntityType>
         <EntityType Name="DangKyHoatDong">
           <Key>
@@ -634,7 +443,7 @@
           <Property Name="HoatDong" Type="Int32" Nullable="false" />
           <Property Name="MSSV" Type="Int32" Nullable="false" />
           <Property Name="ThoiGianDangKy" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="HoatDong1" Relationship="SEP24Team5Model.FK_DangKyHoatDong_HoatDong" FromRole="DangKyHoatDong" ToRole="HoatDong" />
+          <NavigationProperty Name="BaiViet" Relationship="SEP24Team5Model.FK_DangKyHoatDong_BaiViet" FromRole="DangKyHoatDong" ToRole="BaiViet" />
           <NavigationProperty Name="SinhVien" Relationship="SEP24Team5Model.FK_DangKyHoatDong_SinhVien" FromRole="DangKyHoatDong" ToRole="SinhVien" />
         </EntityType>
         <EntityType Name="DatThanhTich">
@@ -655,9 +464,9 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MSSV" Type="Int32" />
           <Property Name="ChucVu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="SinhVien" Relationship="SEP24Team5Model.FK_DoanHoiKhoa_SinhVien" FromRole="DoanHoiKhoa" ToRole="SinhVien" />
           <Property Name="Doan" Type="Boolean" />
           <Property Name="Hoi" Type="Boolean" />
+          <NavigationProperty Name="SinhVien" Relationship="SEP24Team5Model.FK_DoanHoiKhoa_SinhVien" FromRole="DoanHoiKhoa" ToRole="SinhVien" />
         </EntityType>
         <EntityType Name="GioiThieu">
           <Key>
@@ -667,16 +476,6 @@
           <Property Name="TamNhin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TrietLyGiaoDuc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-        </EntityType>
-        <EntityType Name="HoatDong">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenHoatDong" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NoiDung" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NgayKetThucDangKy" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="DangKyHoatDongs" Relationship="SEP24Team5Model.FK_DangKyHoatDong_HoatDong" FromRole="HoatDong" ToRole="DangKyHoatDong" />
         </EntityType>
         <EntityType Name="Khoa">
           <Key>
@@ -695,14 +494,6 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenLoaiBaiViet" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BaiViets" Relationship="SEP24Team5Model.FK_BaiViet_LoaiBaiViet" FromRole="LoaiBaiViet" ToRole="BaiViet" />
-        </EntityType>
-        <EntityType Name="LoaiTuyenDung">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LoaiTuyenDung1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TuyenDungs" Relationship="SEP24Team5Model.FK_TuyenDung_LoaiTuyenDung" FromRole="LoaiTuyenDung" ToRole="TuyenDung" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -769,16 +560,6 @@
           <NavigationProperty Name="DoanHoiKhoas" Relationship="SEP24Team5Model.FK_DoanHoiKhoa_SinhVien" FromRole="SinhVien" ToRole="DoanHoiKhoa" />
           <NavigationProperty Name="Khoa" Relationship="SEP24Team5Model.FK_SinhVien_Khoa" FromRole="SinhVien" ToRole="Khoa" />
         </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="ThanhTich">
           <Key>
             <PropertyRef Name="ID" />
@@ -799,7 +580,6 @@
           <Property Name="YeuCau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TieuDe" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="LoaiTuyenDung" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="LoaiTuyenDung1" Relationship="SEP24Team5Model.FK_TuyenDung_LoaiTuyenDung" FromRole="TuyenDung" ToRole="LoaiTuyenDung" />
         </EntityType>
         <Association Name="FK_BaiViet_LoaiBaiViet">
           <End Type="SEP24Team5Model.LoaiBaiViet" Role="LoaiBaiViet" Multiplicity="1" />
@@ -825,11 +605,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DangKyHoatDong_HoatDong">
-          <End Type="SEP24Team5Model.HoatDong" Role="HoatDong" Multiplicity="1" />
+        <Association Name="FK_DangKyHoatDong_BaiViet">
+          <End Type="SEP24Team5Model.BaiViet" Role="BaiViet" Multiplicity="1" />
           <End Type="SEP24Team5Model.DangKyHoatDong" Role="DangKyHoatDong" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="HoatDong">
+            <Principal Role="BaiViet">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="DangKyHoatDong">
@@ -921,18 +701,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TuyenDung_LoaiTuyenDung">
-          <End Type="SEP24Team5Model.LoaiTuyenDung" Role="LoaiTuyenDung" Multiplicity="1" />
-          <End Type="SEP24Team5Model.TuyenDung" Role="TuyenDung" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LoaiTuyenDung">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="TuyenDung">
-              <PropertyRef Name="LoaiTuyenDung" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_NguoiThucHienNCKH_NCKH">
           <End Type="SEP24Team5Model.NCKH" Role="NCKH" Multiplicity="1" />
           <End Type="SEP24Team5Model.NguoiThucHienNCKH" Role="NguoiThucHienNCKH" Multiplicity="*" />
@@ -956,87 +724,6 @@
               <PropertyRef Name="NguoiThucHien" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <EntityType Name="AspNetRole">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUsers" Relationship="SEP24Team5Model.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
-        </EntityType>
-        <EntityType Name="AspNetUserClaim">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="SEP24Team5Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
-        </EntityType>
-        <EntityType Name="AspNetUserLogin">
-          <Key>
-            <PropertyRef Name="LoginProvider" />
-            <PropertyRef Name="ProviderKey" />
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="SEP24Team5Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
-        </EntityType>
-        <EntityType Name="AspNetUser">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
-          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
-          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
-          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUserClaims" Relationship="SEP24Team5Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
-          <NavigationProperty Name="AspNetUserLogins" Relationship="SEP24Team5Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
-          <NavigationProperty Name="AspNetRoles" Relationship="SEP24Team5Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
-        </EntityType>
-        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-          <End Type="SEP24Team5Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="SEP24Team5Model.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserClaim">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Type="SEP24Team5Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="SEP24Team5Model.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserLogin">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="AspNetUserRoles">
-          <End Type="SEP24Team5Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
-          <End Type="SEP24Team5Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -1097,16 +784,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="HoatDongs">
-            <EntityTypeMapping TypeName="SEP24Team5Model.HoatDong">
-              <MappingFragment StoreEntitySet="HoatDong">
-                <ScalarProperty Name="NgayKetThucDangKy" ColumnName="NgayKetThucDangKy" />
-                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-                <ScalarProperty Name="TenHoatDong" ColumnName="TenHoatDong" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Khoas">
             <EntityTypeMapping TypeName="SEP24Team5Model.Khoa">
               <MappingFragment StoreEntitySet="Khoa">
@@ -1120,14 +797,6 @@
             <EntityTypeMapping TypeName="SEP24Team5Model.LoaiBaiViet">
               <MappingFragment StoreEntitySet="LoaiBaiViet">
                 <ScalarProperty Name="TenLoaiBaiViet" ColumnName="TenLoaiBaiViet" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LoaiTuyenDungs">
-            <EntityTypeMapping TypeName="SEP24Team5Model.LoaiTuyenDung">
-              <MappingFragment StoreEntitySet="LoaiTuyenDung">
-                <ScalarProperty Name="LoaiTuyenDung1" ColumnName="LoaiTuyenDung" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1192,17 +861,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="SEP24Team5Model.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ThanhTiches">
             <EntityTypeMapping TypeName="SEP24Team5Model.ThanhTich">
               <MappingFragment StoreEntitySet="ThanhTich">
@@ -1225,59 +883,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="SEP24Team5Model.AspNetRole">
-              <MappingFragment StoreEntitySet="AspNetRoles">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="SEP24Team5Model.AspNetUserClaim">
-              <MappingFragment StoreEntitySet="AspNetUserClaims">
-                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
-                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="SEP24Team5Model.AspNetUserLogin">
-              <MappingFragment StoreEntitySet="AspNetUserLogins">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
-                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="SEP24Team5Model.AspNetUser">
-              <MappingFragment StoreEntitySet="AspNetUsers">
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
-                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="SEP24Team5Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-            <EndProperty Name="AspNetUser">
-              <ScalarProperty Name="Id" ColumnName="AspNetUsers_Id" />
-            </EndProperty>
-            <EndProperty Name="AspNetRole">
-              <ScalarProperty Name="Id" ColumnName="AspNetRoles_Id" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
