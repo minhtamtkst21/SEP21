@@ -4,7 +4,23 @@
     ViewBag.Title = "Details";
     Layout = "~/Areas/QuanLy/Views/Shared/_AdminLayout.cshtml";
 }
-
+@section scripts{
+    <script src="~/Plugin/ckfinder/ckfinder.js"></script>
+    <script src="~/Plugin/ckeditor/ckeditor.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $('#btn-img-select').click(function (e) {
+                e.preventDefault();
+                var finder = new CKFinder();
+                finder.selectActionFunction = function (url) {
+                    $("#imgvalue").val(url);
+                };
+                finder.popup();
+            });
+            CKEDITOR.replace('NoiDung');
+        });
+    </script>
+}
 <h2>Details</h2>
 
 <div>

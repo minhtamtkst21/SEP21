@@ -4,56 +4,52 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section scripts{
+    <script src="~/Plugin/ckfinder/ckfinder.js"></script>
+    <script src="~/Plugin/ckeditor/ckeditor.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $('#btn-img-select').click(function (e) {
+                e.preventDefault();
+                var finder = new CKFinder();
+                finder.selectActionFunction = function (url) {
+                    $("#imgvalue").val(url);
+                };
+                finder.popup();
+            });
+            CKEDITOR.replace('NoiDung');
+            $editor_data = $_POST['NoiDung'];
+        });
+    </script>
+}
+<main id="main">
 
-<h2>Details</h2>
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+            <ol>
+                <li><a href="index.html">Home</a></li>
+                <li>@Model.TieuDe</li>
+            </ol>
+            <h2>@Model.TieuDe</h2>
+        </div>
+    </section><!-- End Breadcrumbs -->
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-12">
+                    <div class="portfolio-info">
+                       <textarea name="NoiDung" id="editor" readonly>
+                           @Model.NoiDung
+                       </textarea>
+                        <h3>Để đăng ký hoạt động, vui lòng điền thông tin của bạn</h3>
+                    </div>
+                </div>
 
-<div>
-    <h4>BaiViet</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayDangBai)
-        </dt>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.NgayDangBai)
-        </dd>
+        </div>
+    </section><!-- End Portfolio Details Section -->
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TieuDe)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TieuDe)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NoiDung)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NoiDung)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LoaiBaiViet1.TenLoaiBaiViet)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LoaiBaiViet1.TenLoaiBaiViet)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NhanVienKhoa.MaNhanVien)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NhanVienKhoa.MaNhanVien)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</main><!-- End #main -->
