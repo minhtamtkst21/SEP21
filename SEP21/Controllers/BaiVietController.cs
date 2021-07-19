@@ -30,9 +30,10 @@ namespace SEP21.Controllers
                 {
                     Session["FullName"] = sinhvien.username;
                     Session["UserID"] = sinhvien.ID;
-                    sv.MSSV = sinhvien.ID;
+                    Session["Password"] = sinhvien.password;
                     sv.HoatDong = id;
                     var Sinhvien = db.SinhViens.FirstOrDefault(x => x.MSSV == username.Substring(username.Length - 10, 10));
+                    sv.MSSV = Sinhvien.ID;
                     sv.ThoiGianDangKy = DateTime.Now;
                     db.DangKyHoatDongs.Add(sv);
                     db.SaveChanges();
@@ -44,6 +45,10 @@ namespace SEP21.Controllers
                 ViewBag.Message = "tài khoản không tồn tại";
             }
             return RedirectToAction("Details", new { id });
+        }
+        public bool checkDK()
+        {
+            return false;
         }
         public ActionResult Picture(int id)
         {

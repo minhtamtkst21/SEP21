@@ -1,5 +1,4 @@
 ﻿@model SEP21.Models.BaiViet
-
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -40,26 +39,56 @@
             <div class="row gy-4">
                 <div class="col-lg-12">
                     <div class="portfolio-info">
-                        @*<textarea name="NoiDung" id="editor" readonly>
-                           @Model.NoiDung
-                       </textarea>*@
                         @Html.Raw(Model.NoiDung);
-                        <h3>Để đăng ký hoạt động, vui lòng điền thông tin của bạn</h3>
-                        <form role="form" action="~/BaiViet/Login" method="post">
-                            <input hidden class="form-control" value="@Model.ID" name="id"/>
-                            <div class="form-group">
-                                <label>thông tin đăng nhập</label>
-                                <input class="form-control" name="username">
-                                <p class="help-block">Bao gồm tên.mssv</p>
-                            </div>
-                            <div class="form-group">
-                                <label>Mật khẩu</label>
-                                <input class="form-control" name="password">
-                                <p class="help-block">Mặc định: VLUmssv</p>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Đăng ký</button>
-                            @Html.ActionLink("Forgot your password?", "ForgotPassword", "Account")
-                        </form>
+                        @if (Session["UserID"] == null)
+                        {
+                            <h3>Để đăng ký hoạt động, vui lòng điền thông tin của bạn</h3>
+                            <form role="form" action="~/BaiViet/Login" method="post">
+                                <input hidden class="form-control" value="@Model.ID" name="id" />
+                                <div class="form-group">
+                                    <label>thông tin đăng nhập</label>
+                                    <input class="form-control" name="username">
+                                    <p class="help-block">Bao gồm tên.mssv</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Mật khẩu</label>
+                                    <input class="form-control" name="password">
+                                    <p class="help-block">Mặc định: VLUmssv</p>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Đăng ký</button>
+                                @Html.ActionLink("Forgot your password?", "ForgotPassword", "Account")
+                            </form>
+                        }
+                        else
+                        {
+                            var hd = Model.DangKyHoatDongs.FirstOrDefault(x => x.MSSV.ToString() == Session["UserID"].ToString());
+                        if (hd != null && hd.ID == Model.ID)
+                        {
+                            <h3>
+                                Bạn đã đăng ký thành công,
+                                <a href="@Url.Action("Delete","DangKyHoatDong", new { id = Model.ID })">ấn vào đây</a>
+                                để hủy đăng ký
+                            </h3>
+                        } else
+                        {
+                            <h3>
+                                Bạn chưa đăng ký
+                            </h3>
+                            <form role="form" action="~/BaiViet/Login" method="post" contenteditable="false">
+                                <input hidden class="form-control" value="@Model.ID" name="id" />
+                                <div class="form-group">
+                                    <label>thông tin đăng nhập</label>
+                                    <input class="form-control" name="username" value="@Session["FullName"]">
+                                </div>
+                                <div class="form-group">
+                                    <label>Mật khẩu</label>
+                                    <input class="form-control" name="password" value="@Session["Password"]" hidden>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Đăng ký</button>
+                                @Html.ActionLink("Forgot your password?", "ForgotPassword", "Account")
+                            </form>
+                        }
+                    }
                     </div>
                 </div>
 

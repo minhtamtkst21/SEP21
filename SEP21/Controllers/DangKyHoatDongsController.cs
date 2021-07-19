@@ -33,6 +33,7 @@ namespace SEP21.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.DKHD = db.DangKyHoatDongs.ToList();
             return View(dangKyHoatDong);
         }
 
