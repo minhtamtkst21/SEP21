@@ -20,9 +20,22 @@
             CKEDITOR.replace('NoiDung');
         });
     </script>
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function readPicture(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('img#Picture').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 }
 <h2>Tạo Mới</h2>
-@using (Html.BeginForm())
+@using (Html.BeginForm(Html.BeginForm("Create", "BaiViets", FormMethod.Post, new { enctype = "multipart/form-data" })))
 {
     @Html.AntiForgeryToken()
 
