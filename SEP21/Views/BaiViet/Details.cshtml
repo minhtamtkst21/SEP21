@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    bool dk = false;
 }
 @section scripts{
     <script src="~/Plugin/ckfinder/ckfinder.js"></script>
@@ -64,13 +65,23 @@
                             }
                             else
                             {
+                                foreach (var item in ViewData["list"] as List<SEP21.Models.DangKyHoatDong>)
+                                {
+                                    if (item.BaiViet.ID == Model.ID && item.MSSV.ToString() == Session["UserID"].ToString())
+                                    {
+                                        dk = true;
+                                        break;
+                                    }
+                                }
+                                if(dk)
                                 {
                                     <h3>
-                                    Bạn đã đăng ký thành công,
-                                    <a href = "@Url.Action("Delete", "DangKyHoatDong", new { id = Model })" > ấn vào đây</a>
-                                    để hủy đăng ký
+                                        Bạn đã đăng ký thành công,
+                                        <a href="@Url.Action("Delete", "DangKyHoatDong", new { id = Model })"> ấn vào đây</a>
+                                        để hủy đăng ký
                                     </h3>
                                 }
+                                else
                                 {
                                     <h3>
                                         Bạn chưa đăng ký

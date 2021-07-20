@@ -35,20 +35,7 @@
                                 <a href="@Url.Action("Details","BaiViet", new { item.ID })">
                                     <img class="img-fluid" style="max-width:100%" src="@Url.Action("Picture", new { item.ID })" alt="hinhanh">
                                     <div class="card-body">
-                                        <h3 class="card-title">@item.TieuDe</h3>
-                                        <p class="card-text">
-                                            @if (item.NoiDung != null && item.NoiDung.Length > 20)
-                                            {
-                                                @item.NoiDung.Substring(0, 20)
-                                            }
-                                            else
-                                            {
-                                                @item.NoiDung
-                                            }
-                                        </p>
-                                        <p class="text-muted">
-                                            Last updated 3 mins ago
-                                        </p>
+                                        <h3 class="card-title">*@item.LoaiBaiViet1.TenLoaiBaiViet* @item.TieuDe</h3>
                                     </div>
                                 </a>
                             </div>

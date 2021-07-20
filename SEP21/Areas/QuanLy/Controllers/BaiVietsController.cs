@@ -47,6 +47,22 @@ namespace SEP21.Areas.QuanLy.Controllers
             return File(path + id, "images");
         }
         private const string PICTURE_PATH = "~/images/BaiViet/";
+        public void SetAlert(string message, string type)
+        {
+            TempData["AlertMessage"] = message;
+            if (type == "success")
+            {
+                TempData["AlertType"] = "alert-success";
+            }
+            if (type == "warning")
+            {
+                TempData["AlertType"] = "alert-warning";
+            }
+            if (type == "error")
+            {
+                TempData["AlertType"] = "alert-danger";
+            }
+        }
         // GET: QuanLy/BaiViets/Create
         public ActionResult Create()
         {
@@ -75,11 +91,13 @@ namespace SEP21.Areas.QuanLy.Controllers
                         picture.SaveAs(path + BaiViet.ID);
 
                         scope.Complete();
-                        return RedirectToAction("Index");
+                        SetAlert("Bạn đã tạo thành công", "success");
+                        return RedirectToAction("Index2");
                     }
                 }
-                else ModelState.AddModelError("", " Picture not found!");
+                else SetAlert("Lỗi hình ảnh, vui lòng sửa lại", "warning");
             }
+            else SetAlert("Bạn đã tạo không thành công", "warning");
             ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", BaiViet.LoaiBaiViet);
             ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", BaiViet.NguoiDang);
             return View(BaiViet);
@@ -124,7 +142,7 @@ namespace SEP21.Areas.QuanLy.Controllers
                     }
 
                     scope.Complete();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index2");
                 }
             }
 
@@ -163,7 +181,7 @@ namespace SEP21.Areas.QuanLy.Controllers
                 System.IO.File.Delete(path + model.ID);
 
                 scope.Complete();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index2");
             }
         }
         protected override void Dispose(bool disposing)

@@ -35,7 +35,7 @@
     </script>
 }
 <h2>Tạo Mới</h2>
-@using (Html.BeginForm(Html.BeginForm("Create", "BaiViets", FormMethod.Post, new { enctype = "multipart/form-data" })))
+@using (Html.BeginForm("Create", "BaiViets", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 

@@ -1885,8 +1885,6 @@
     <Content Include="Areas\QuanLy\Views\ThanhTiches\Details.cshtml" />
     <Content Include="Areas\QuanLy\Views\ThanhTiches\Edit.cshtml" />
     <Content Include="Areas\QuanLy\Views\ThanhTiches\Index.cshtml" />
-    <Content Include="images\BaiViet\48" />
-    <Content Include="images\BaiViet\49" />
     <Content Include="Areas\QuanLy\Views\TuyenDungs\Create.cshtml" />
     <Content Include="Areas\QuanLy\Views\TuyenDungs\Delete.cshtml" />
     <Content Include="Areas\QuanLy\Views\TuyenDungs\Details.cshtml" />
@@ -1990,6 +1988,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\QuanLy\Data\" />
+    <Folder Include="images\BaiViet\" />
     <Folder Include="images\DoanHoiKhoa\" />
     <Folder Include="images\NCKH\" />
     <Folder Include="images\ThanhTich\" />

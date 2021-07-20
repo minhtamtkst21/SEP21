@@ -89,7 +89,7 @@ namespace SEP21.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DangKyHoatDong = new SelectList(db.DangKyHoatDongs, "ID", "MSSV");
+            ViewData["list"] = db.DangKyHoatDongs.ToList();
             return View(baiViet);
         }
 
