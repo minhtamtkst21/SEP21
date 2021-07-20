@@ -5,15 +5,15 @@
     Layout = "~/Areas/QuanLy/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Đào Tạo</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Tạo Mới", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TieuDe)
+            Tiêu Đề
         </th>
         <th></th>
     </tr>
@@ -24,9 +24,9 @@
             @Html.DisplayFor(modelItem => item.TieuDe)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Chỉnh Sửa", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Chi Tiết", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.ID })
         </td>
     </tr>
 }

@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Quản Lý Admin</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.username)
+            Tài Khoản
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.password)
+            Mật Khẩu
         </th>
         <th></th>
     </tr>
@@ -26,11 +26,11 @@
             @Html.DisplayFor(modelItem => item.username)
         </td>
         <td>
-            ********
+            @Html.DisplayFor(modelItem => item.password)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Chỉnh Sửa", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.ID })
         </td>
     </tr>
 }

@@ -5,21 +5,21 @@
     Layout = "~/Areas/QuanLy/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Chi Tiết</h2>
 
 <div>
-    <h4>DaoTao</h4>
+    <h4>Đào Tạo</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.TieuDe)
+            Tiêu Đề
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.TieuDe)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.NoiDung)
+            Nội Dung
         </dt>
 
         <dd>
@@ -29,6 +29,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Trở Lại", "Index")
 </p>

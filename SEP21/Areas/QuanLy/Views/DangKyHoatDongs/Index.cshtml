@@ -5,15 +5,15 @@
     Layout = "~/Areas/QuanLy/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Danh Sách Đăng Kí Hoạt Động</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ThoiGianDangKy)
+            Thời Gian Đăng Ký
         </th>
         <th>
             Tên hoạt động
@@ -36,9 +36,9 @@
             @Html.DisplayFor(modelItem => item.SinhVien.MSSV)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Chỉnh Sửa", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Chi Tiết", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.ID })
         </td>
     </tr>
 }

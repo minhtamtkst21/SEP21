@@ -47,7 +47,7 @@ namespace SEP21.Controllers
             }
             else
             {
-                SetAlert("Bạn đã nhập sai tài khoản, vui lòng nhập lại!","warning");
+                SetAlert("Bạn đã nhập sai tài khoản hoặc mật khẩu, vui lòng nhập lại!","warning");
             }
             return RedirectToAction("Details", new { id });
         }

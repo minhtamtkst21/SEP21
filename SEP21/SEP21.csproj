@@ -192,7 +192,6 @@
     <Compile Include="Areas\QuanLy\Controllers\LoginAdminsController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\LoginsController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\ManagerAdminController.cs" />
-    <Compile Include="Areas\QuanLy\Controllers\NCKHsController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\NhanVienKhoasController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\SinhViensController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\ThanhTichesController.cs" />
@@ -296,11 +295,6 @@
     <Content Include="Areas\QuanLy\Views\DoanHoiKhoas\Details.cshtml" />
     <Content Include="Areas\QuanLy\Views\DoanHoiKhoas\Edit.cshtml" />
     <Content Include="Areas\QuanLy\Views\DoanHoiKhoas\Index.cshtml" />
-    <Content Include="Areas\QuanLy\Views\NCKHs\Create.cshtml" />
-    <Content Include="Areas\QuanLy\Views\NCKHs\Delete.cshtml" />
-    <Content Include="Areas\QuanLy\Views\NCKHs\Details.cshtml" />
-    <Content Include="Areas\QuanLy\Views\NCKHs\Edit.cshtml" />
-    <Content Include="Areas\QuanLy\Views\NCKHs\Index.cshtml" />
     <Content Include="Areas\QuanLy\Views\AdminHome\Index.cshtml" />
     <Content Include="Areas\QuanLy\Views\ManagerAdmin\Login.cshtml" />
     <Content Include="Areas\QuanLy\Views\LoaiBaiViets\Create.cshtml" />
@@ -1885,11 +1879,6 @@
     <Content Include="Areas\QuanLy\Views\ThanhTiches\Details.cshtml" />
     <Content Include="Areas\QuanLy\Views\ThanhTiches\Edit.cshtml" />
     <Content Include="Areas\QuanLy\Views\ThanhTiches\Index.cshtml" />
-    <Content Include="Areas\QuanLy\Views\TuyenDungs\Create.cshtml" />
-    <Content Include="Areas\QuanLy\Views\TuyenDungs\Delete.cshtml" />
-    <Content Include="Areas\QuanLy\Views\TuyenDungs\Details.cshtml" />
-    <Content Include="Areas\QuanLy\Views\TuyenDungs\Edit.cshtml" />
-    <Content Include="Areas\QuanLy\Views\TuyenDungs\Index.cshtml" />
     <Content Include="Plugin\ckeditor\CHANGES.md" />
     <Content Include="Plugin\ckeditor\LICENSE.md" />
     <Content Include="Plugin\ckeditor\plugins\scayt\CHANGELOG.md" />
@@ -1911,6 +1900,11 @@
     <Content Include="Plugin\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Plugin\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Plugin\ckfinder\userfiles\.htaccess" />
+    <Content Include="Areas\QuanLy\Views\TuyenDungs\Create.cshtml" />
+    <Content Include="Areas\QuanLy\Views\TuyenDungs\Delete.cshtml" />
+    <Content Include="Areas\QuanLy\Views\TuyenDungs\Details.cshtml" />
+    <Content Include="Areas\QuanLy\Views\TuyenDungs\Edit.cshtml" />
+    <Content Include="Areas\QuanLy\Views\TuyenDungs\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

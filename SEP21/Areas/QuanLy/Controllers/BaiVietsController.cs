@@ -95,9 +95,9 @@ namespace SEP21.Areas.QuanLy.Controllers
                         return RedirectToAction("Index2");
                     }
                 }
-                else SetAlert("Lỗi hình ảnh, vui lòng sửa lại", "warning");
+                else SetAlert("Lỗi hình ảnh, vui lòng sửa lại", "danger");
             }
-            else SetAlert("Bạn đã tạo không thành công", "warning");
+            else SetAlert("Bạn đã tạo không thành công", "danger");
             ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", BaiViet.LoaiBaiViet);
             ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", BaiViet.NguoiDang);
             return View(BaiViet);
@@ -139,13 +139,14 @@ namespace SEP21.Areas.QuanLy.Controllers
                     {
                         var path = Server.MapPath(PICTURE_PATH);
                         picture.SaveAs(path + baiViet.ID);
+                        SetAlert("Bạn đã chỉnh sửa thành công", "success");
                     }
-
+                    else SetAlert("Lỗi hình ảnh, vui lòng sửa lại", "danger");
                     scope.Complete();
-                    return RedirectToAction("Index2");
+                    return RedirectToAction("Index2");              
                 }
             }
-
+            else SetAlert("Bạn chỉnh sửa không thành công", "danger");
             ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", baiViet.LoaiBaiViet);
             ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", baiViet.NguoiDang);
             return View(baiViet);
@@ -176,11 +177,12 @@ namespace SEP21.Areas.QuanLy.Controllers
                 var model = db.BaiViets.Find(id);
                 db.BaiViets.Remove(model);
                 db.SaveChanges();
-
+               
                 var path = Server.MapPath(PICTURE_PATH);
                 System.IO.File.Delete(path + model.ID);
-
+               
                 scope.Complete();
+                SetAlert("Bạn đã xóa thành công", "success");
                 return RedirectToAction("Index2");
             }
         }

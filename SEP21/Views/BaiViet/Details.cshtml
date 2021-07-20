@@ -28,10 +28,10 @@
     <section id="breadcrumbs" class="breadcrumbs">
         <div class="container">
             <ol>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="@Url.Action("Index","Home")">Home</a></li>
                 <li>@Model.TieuDe</li>
             </ol>
-            <h2>@Model.TieuDe</h2>
+            <h2 style="font-family:Arial">@Model.TieuDe</h2>
         </div>
     </section><!-- End Breadcrumbs -->
     <!-- ======= Portfolio Details Section ======= -->
@@ -45,18 +45,18 @@
                         {
                             if (Session["UserID"] == null)
                             {
-                                <h3>Để đăng ký hoạt động, vui lòng điền thông tin của bạn</h3>
+                                <h3 style="font-family: Arial">Để đăng ký hoạt động, vui lòng điền thông tin của bạn</h3>
                                 <p>@ViewBag.Messege</p>
                                 <form role="form" action="~/BaiViet/Login" method="post">
                                     <input hidden class="form-control" value="@Model.ID" name="id" />
                                     <div class="form-group">
-                                        <label>thông tin đăng nhập</label>
+                                        <label>Thông tin đăng nhập</label>
                                         <input class="form-control" name="username">
                                         <p class="help-block">Bao gồm tên.mssv</p>
                                     </div>
                                     <div class="form-group">
                                         <label>Mật khẩu</label>
-                                        <input class="form-control" name="password">
+                                        <input class="form-control" name="password" type="password">
                                         <p class="help-block">Mặc định: VLUmssv</p>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Đăng ký</button>
