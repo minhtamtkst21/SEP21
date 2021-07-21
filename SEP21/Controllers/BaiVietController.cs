@@ -31,13 +31,7 @@ namespace SEP21.Controllers
                     Session["FullName"] = sinhvien.username;
                     Session["UserID"] = sinhvien.ID;
                     Session["Password"] = sinhvien.password;
-                    sv.HoatDong = id;
-                    var Sinhvien = db.SinhViens.FirstOrDefault(x => x.MSSV == username.Substring(username.Length - 10, 10));
-                    sv.MSSV = Sinhvien.ID;
-                    sv.ThoiGianDangKy = DateTime.Now;
-                    db.DangKyHoatDongs.Add(sv);
-                    db.SaveChanges();
-                    SetAlert("Bạn đã đăng kí thành công", "success");
+                    Session["MSSV"] = sinhvien.username.Substring(sinhvien.username.Length - 10, 10);
                     return RedirectToAction("Details", new { id });
                 }
                 else
@@ -47,8 +41,30 @@ namespace SEP21.Controllers
             }
             else
             {
-                SetAlert("Bạn đã nhập sai tài khoản hoặc mật khẩu, vui lòng nhập lại!","warning");
+                SetAlert("Bạn đã nhập sai tài khoản hoặc mật khẩu, vui lòng nhập lại!", "warning");
             }
+            return RedirectToAction("Details", new { id });
+        }
+        public ActionResult DangKy(string username, int id)
+        {
+            sv.HoatDong = id;
+            var Sinhvien = db.SinhViens.FirstOrDefault(x => x.MSSV == username.Substring(username.Length - 10, 10));
+            sv.MSSV = Sinhvien.ID;
+            sv.ThoiGianDangKy = DateTime.Now;
+            sv.hd_mssv = username.ToString().Substring(username.Length - 10, 10) + "." + id.ToString();
+            db.DangKyHoatDongs.Add(sv);
+            db.SaveChanges();
+            SetAlert("Bạn đã đăng kí thành công", "success");
+            return RedirectToAction("Details", new { id });
+        }
+        public ActionResult XoaDK(string username, int id)
+        {
+            sv.HoatDong = id;
+            var hd_mssv = username.ToString().Substring(username.Length - 10, 10) + "." + id.ToString();
+            var hoatdong = db.DangKyHoatDongs.FirstOrDefault(x => x.hd_mssv == hd_mssv);
+            DangKyHoatDong dangkyhoatdong = db.DangKyHoatDongs.Find(hoatdong.ID);
+            db.DangKyHoatDongs.Remove(dangkyhoatdong);
+            db.SaveChanges();
             return RedirectToAction("Details", new { id });
         }
         public void SetAlert(string message, string type)
@@ -66,10 +82,6 @@ namespace SEP21.Controllers
             {
                 TempData["AlertType"] = "alert-danger";
             }
-        }
-        public bool checkDK()
-        {
-            return false;
         }
         public ActionResult Picture(int id)
         {

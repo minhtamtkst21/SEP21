@@ -25,6 +25,7 @@
           <Property Name="HoatDong" Type="int" Nullable="false" />
           <Property Name="MSSV" Type="int" Nullable="false" />
           <Property Name="ThoiGianDangKy" Type="date" Nullable="false" />
+          <Property Name="hd_mssv" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="DaoTao">
           <Key>
@@ -467,6 +468,7 @@
           <Property Name="ThoiGianDangKy" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="BaiViet" Relationship="SEP24Team5Model.FK_DangKyHoatDong_BaiViet" FromRole="DangKyHoatDong" ToRole="BaiViet" />
           <NavigationProperty Name="SinhVien" Relationship="SEP24Team5Model.FK_DangKyHoatDong_SinhVien" FromRole="DangKyHoatDong" ToRole="SinhVien" />
+          <Property Name="hd_mssv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DatThanhTich">
           <Key>
@@ -787,6 +789,7 @@
           <EntitySetMapping Name="DangKyHoatDongs">
             <EntityTypeMapping TypeName="SEP24Team5Model.DangKyHoatDong">
               <MappingFragment StoreEntitySet="DangKyHoatDong">
+                <ScalarProperty Name="hd_mssv" ColumnName="hd_mssv" />
                 <ScalarProperty Name="ThoiGianDangKy" ColumnName="ThoiGianDangKy" />
                 <ScalarProperty Name="MSSV" ColumnName="MSSV" />
                 <ScalarProperty Name="HoatDong" ColumnName="HoatDong" />

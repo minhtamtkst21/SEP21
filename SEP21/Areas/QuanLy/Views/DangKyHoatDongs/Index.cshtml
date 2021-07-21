@@ -19,7 +19,7 @@
             Tên hoạt động
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SinhVien.MSSV)
+            MSSV
         </th>
         <th></th>
     </tr>
@@ -27,13 +27,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ThoiGianDangKy)
+            @item.ThoiGianDangKy
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.BaiViet.TieuDe)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SinhVien.MSSV)
+            @Html.DisplayFor(modelItem => item.SinhVien.HoTen)
         </td>
         <td>
             @Html.ActionLink("Chỉnh Sửa", "Edit", new { id=item.ID }) |

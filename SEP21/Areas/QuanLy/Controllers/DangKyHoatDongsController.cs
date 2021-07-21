@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -13,12 +14,11 @@ namespace SEP21.Areas.QuanLy.Controllers
     public class DangKyHoatDongsController : Controller
     {
         private SEP24Team5Entities db = new SEP24Team5Entities();
-
         // GET: QuanLy/DangKyHoatDongs
         public ActionResult Index()
         {
-            var dangKyHoatDongs = db.DangKyHoatDongs.Include(d => d.BaiViet).Include(d => d.SinhVien);
-            return View(dangKyHoatDongs.ToList());
+            var list = db.DangKyHoatDongs.Include(d => d.BaiViet).Include(d => d.SinhVien);
+            return View(list.ToList());
         }
 
         // GET: QuanLy/DangKyHoatDongs/Details/5

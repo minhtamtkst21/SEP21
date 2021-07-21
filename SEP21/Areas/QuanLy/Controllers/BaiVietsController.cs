@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -14,7 +15,6 @@ namespace SEP21.Areas.QuanLy.Controllers
     public class BaiVietsController : Controller
     {
         private SEP24Team5Entities db = new SEP24Team5Entities();
-
         // GET: QuanLy/BaiViets
         public ActionResult Index()
         {

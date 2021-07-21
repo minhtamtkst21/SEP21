@@ -59,7 +59,7 @@
                                         <input class="form-control" name="password" type="password">
                                         <p class="help-block">Mặc định: VLUmssv</p>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Đăng ký</button>
+                                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
                                     @Html.ActionLink("Forgot your password?", "ForgotPassword", "Account")
                                 </form>
                             }
@@ -67,18 +67,25 @@
                             {
                                 foreach (var item in ViewData["list"] as List<SEP21.Models.DangKyHoatDong>)
                                 {
-                                    if (item.BaiViet.ID == Model.ID && item.MSSV.ToString() == Session["UserID"].ToString())
+                                    if (item.BaiViet.ID == Model.ID && item.SinhVien.MSSV == Session["MSSV"].ToString())
                                     {
                                         dk = true;
                                         break;
                                     }
                                 }
-                                if(dk)
+                                if (dk)
                                 {
                                     <h3>
                                         Bạn đã đăng ký thành công,
-                                        <a href="@Url.Action("Delete", "DangKyHoatDong", new { id = Model })"> ấn vào đây</a>
-                                        để hủy đăng ký
+                                        <div class="form-group" hidden>
+                                            <label>thông tin đăng nhập</label>
+                                            <input class="form-control" name="username" value="@Session["FullName"].ToString()" hidden>
+                                        </div>
+                                        <form role="form" action="~/BaiViet/XoaDK" method="post" contenteditable="false">
+                                            <input hidden class="form-control" value="@Model.ID" name="id" />
+                                            <input class="form-control" name="username" value="@Session["FullName"].ToString()" hidden>
+                                            <button type="submit" class="btn btn-primary">Hủy đăng kí</button>
+                                        </form>
                                     </h3>
                                 }
                                 else
@@ -86,17 +93,19 @@
                                     <h3>
                                         Bạn chưa đăng ký
                                     </h3>
-                                    <form role="form" action="~/BaiViet/Login" method="post" contenteditable="false">
+                                    <form role="form" action="~/BaiViet/DangKy" method="post" contenteditable="false">
+
                                         <input hidden class="form-control" value="@Model.ID" name="id" />
-                                        <div class="form-group">
+                                        <div class="form-group" hidden>
                                             <label>thông tin đăng nhập</label>
-                                            <input class="form-control" name="username" value="@Session["FullName"]">
+                                            <input class="form-control" name="username" value="@Session["FullName"].ToString()" hidden>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" hidden>
                                             <label>Mật khẩu</label>
-                                            <input class="form-control" name="password" value="@Session["Password"]">
+                                            <input class="form-control" name="password" type="password" value="@Session["Password"]" hidden>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Đăng ký</button>
+
 
                                         @Html.ActionLink("Forgot your password?", "ForgotPassword", "Account")
                                     </form>
