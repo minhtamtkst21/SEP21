@@ -45,6 +45,7 @@ namespace SEP21.Areas.QuanLy.Controllers
                 Sheet.Cells[string.Format("B{0}",row)].Value = item.ThoiGianDangKy;
                 Sheet.Cells[string.Format("C{0}",row)].Value = item.BaiViet.TieuDe;
                 Sheet.Cells[string.Format("D{0}",row)].Value = item.SinhVien.HoTen;
+                row++;
             }
             Sheet.Cells["A:AZ"].AutoFitColumns();
             Response.Clear();
