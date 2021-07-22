@@ -45,6 +45,13 @@ namespace SEP21.Controllers
             }
             return RedirectToAction("Details", new { id });
         }
+        public ActionResult Search(string keyword)
+        {
+            var model = db.BaiViets.ToList();
+            model = model.Where(p => p.TieuDe.ToLower().Contains(keyword.ToLower())).ToList();
+            ViewBag.Keyword = keyword;
+            return View("Index2", model);
+        }
         public ActionResult DangKy(string username, int id)
         {
             sv.HoatDong = id;

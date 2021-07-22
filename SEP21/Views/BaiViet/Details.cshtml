@@ -47,7 +47,7 @@
                             {
                                 <h3 style="font-family: Arial">Để đăng ký hoạt động, vui lòng điền thông tin của bạn</h3>
                                 <p>@ViewBag.Messege</p>
-                                <form role="form" action="~/BaiViet/Login" method="post">
+                                <form role="form" action="@Url.Action("Login")" method="post">
                                     <input hidden class="form-control" value="@Model.ID" name="id" />
                                     <div class="form-group">
                                         <label>Thông tin đăng nhập</label>
@@ -81,7 +81,7 @@
                                             <label>thông tin đăng nhập</label>
                                             <input class="form-control" name="username" value="@Session["FullName"].ToString()" hidden>
                                         </div>
-                                        <form role="form" action="~/BaiViet/XoaDK" method="post" contenteditable="false">
+                                        <form role="form" action="@Url.Action("XoaDK")" method="post" contenteditable="false">
                                             <input hidden class="form-control" value="@Model.ID" name="id" />
                                             <input class="form-control" name="username" value="@Session["FullName"].ToString()" hidden>
                                             <button type="submit" class="btn btn-primary">Hủy đăng kí</button>
@@ -93,7 +93,7 @@
                                     <h3>
                                         Bạn chưa đăng ký
                                     </h3>
-                                    <form role="form" action="~/BaiViet/DangKy" method="post" contenteditable="false">
+                                    <form role="form" action="@Url.Action("DangKy")" method="post" contenteditable="false">
 
                                         <input hidden class="form-control" value="@Model.ID" name="id" />
                                         <div class="form-group" hidden>
@@ -105,9 +105,6 @@
                                             <input class="form-control" name="password" type="password" value="@Session["Password"]" hidden>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Đăng ký</button>
-
-
-                                        @Html.ActionLink("Forgot your password?", "ForgotPassword", "Account")
                                     </form>
                                 }
                             }
