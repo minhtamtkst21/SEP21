@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using OfficeOpenXml;
 using SEP21.Models;
 
 namespace SEP21.Areas.QuanLy.Controllers
@@ -25,7 +26,34 @@ namespace SEP21.Areas.QuanLy.Controllers
             var list = db.DangKyHoatDongs.Include(d => d.BaiViet).Include(d => d.SinhVien);
             return View(list.ToList());
         }
+        public ActionResult ExportExcel()
+        {
+            var list = db.DangKyHoatDongs.Include(d => d.BaiViet).Include(d => d.SinhVien);
+            int stt = 1;
+            ExcelPackage ep = new ExcelPackage();
+            ExcelWorksheet Sheet = ep.Workbook.Worksheets.Add("Report");
+            Sheet.Cells["A1"].Value = "STT";
+            Sheet.Cells["B1"].Value = "Thời gian đăng ký";
+            Sheet.Cells["C1"].Value = "Hoạt động";
+            Sheet.Cells["D1"].Value = "Tên sinh viên";
 
+            int row = 2;// dòng bắt đầu ghi dữ liệu
+            foreach (var item in list)
+            {
+                Sheet.Cells[string.Format("A{0}",row)].Value = stt;
+                stt++;
+                Sheet.Cells[string.Format("B{0}",row)].Value = item.ThoiGianDangKy;
+                Sheet.Cells[string.Format("C{0}",row)].Value = item.BaiViet.TieuDe;
+                Sheet.Cells[string.Format("D{0}",row)].Value = item.SinhVien.HoTen;
+            }
+            Sheet.Cells["A:AZ"].AutoFitColumns();
+            Response.Clear();
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.AddHeader("content-disposition", "attachment; filename=" + "Report.xlsx");
+            Response.BinaryWrite(ep.GetAsByteArray());
+            Response.End();
+            return View("Index2");
+        }
 
         // GET: QuanLy/DangKyHoatDongs/Details/5
         public ActionResult Details(int? id)

@@ -11,8 +11,10 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
-            <br />           
-
+            <br />
+            <a href="@Url.Action("ExportExcel")">
+                <button type="button" class="btn btn-primary">Xuất excel</button>
+            </a>
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <div class="table-responsive">
@@ -23,21 +25,21 @@
                                 <th>Thời Gian Đăng Ký</th>
                                 <th>Tên Hoạt Động</th>
                                 <th>Họ Tên</th>
-                                
+
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr class="odd gradeX">
-                                    <td>
-                                    @{STT++;}
-                                    @STT
-                                    </td>
-                                    <td>@item.ThoiGianDangKy.ToShortDateString()</td>
-                                    <td>@item.BaiViet.TieuDe</td>                                   
-                                    <td>@item.SinhVien.HoTen</td>                                   
-                                </tr>
+                                    <tr class="odd gradeX">
+                                        <td>
+                                            @{STT++;}
+                                            @STT
+                                        </td>
+                                        <td>@item.ThoiGianDangKy.ToShortDateString()</td>
+                                        <td>@item.BaiViet.TieuDe</td>
+                                        <td>@item.SinhVien.HoTen</td>
+                                    </tr>
                             }
                         </tbody>
                     </table>
