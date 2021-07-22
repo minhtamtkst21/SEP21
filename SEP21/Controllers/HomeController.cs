@@ -31,7 +31,13 @@ namespace SEP21.Controllers
 
             return View();
         }
-
+        public ActionResult Search(string keyword)
+        {
+            var model = db.BaiViets.ToList();
+            model = model.Where(p => p.TieuDe.ToLower().Contains(keyword.ToLower())).ToList();
+            ViewBag.Keyword = keyword;
+            return View("Index", model);
+        }
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

@@ -50,7 +50,7 @@ namespace SEP21.Controllers
             var model = db.BaiViets.ToList();
             model = model.Where(p => p.TieuDe.ToLower().Contains(keyword.ToLower())).ToList();
             ViewBag.Keyword = keyword;
-            return View("Index2", model);
+            return View("Index", "home", model);
         }
         public ActionResult DangKy(string username, int id)
         {

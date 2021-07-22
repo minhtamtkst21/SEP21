@@ -26,17 +26,16 @@
             <div class="container" data-aos="fade-up">
                 <div class="section-title">
                     <div class="col-md-3 col-md-offset-3">
-                        <form action="@Url.Action("Search","BaiViet")">
+                        <form action="@Url.Action("Search")" method="get">
                             <div class="form-group input-group">
-                                <input type="text" class="form-control" name="text">
+                                <input type="text" class="form-control" name="keyword" placeholder="Tìm kiếm bài viết" value="@ViewBag.Keyword">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
+                                    <button class="btn btn-default" type="submit">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </span>
                             </div>
                         </form>
-                        <h2>@(ViewBag.Keyword != null ? "Search Results" : "All Products")</h2>
                     </div>
                     <h2 style="font-family: Arial">Tin tức - hoạt động</h2>
                 </div>
