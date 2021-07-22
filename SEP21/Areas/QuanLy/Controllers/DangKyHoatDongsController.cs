@@ -20,6 +20,12 @@ namespace SEP21.Areas.QuanLy.Controllers
             var list = db.DangKyHoatDongs.Include(d => d.BaiViet).Include(d => d.SinhVien);
             return View(list.ToList());
         }
+        public ActionResult Index2()
+        {
+            var list = db.DangKyHoatDongs.Include(d => d.BaiViet).Include(d => d.SinhVien);
+            return View(list.ToList());
+        }
+
 
         // GET: QuanLy/DangKyHoatDongs/Details/5
         public ActionResult Details(int? id)
