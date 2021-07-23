@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Data.OleDb;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using LinqToExcel;
+using OfficeOpenXml;
 using SEP21.Models;
 
 namespace SEP21.Areas.QuanLy.Controllers
@@ -20,7 +24,43 @@ namespace SEP21.Areas.QuanLy.Controllers
             var sinhViens = db.SinhViens.Include(s => s.Khoa);
             return View(sinhViens.ToList());
         }
-
+        [HttpPost]
+        public ActionResult Upload(FormCollection formCollection)
+        {
+            var usersList = new List<SinhVien>();
+            if (Request != null)
+            {
+                HttpPostedFileBase file = Request.Files["UploadedFile"];
+                if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                {
+                    string fileName = file.FileName;
+                    string fileContentType = file.ContentType;
+                    byte[] fileBytes = new byte[file.ContentLength];
+                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
+                    using (var package = new ExcelPackage(file.InputStream))
+                    {
+                        var currentSheet = package.Workbook.Worksheets;
+                        var workSheet = currentSheet.First();
+                        var noOfCol = workSheet.Dimension.End.Column;
+                        var noOfRow = workSheet.Dimension.End.Row;
+                        for (int rowIterator = 2; rowIterator <= noOfRow; rowIterator++)
+                        {
+                            var user = new SinhVien();
+                            user.MSSV = (workSheet.Cells[rowIterator, 1].Value).ToString();
+                            user.HoTen = workSheet.Cells[rowIterator, 2].Value.ToString();
+                            user.mail = (workSheet.Cells[rowIterator, 3].Value).ToString();
+                            usersList.Add(user);
+                        }
+                    }
+                }
+            }
+            foreach (var item in usersList)
+            {
+                db.SinhViens.Add(item);
+            }
+            db.SaveChanges();
+            return Redirect("Index");
+        }
         // GET: QuanLy/SinhViens1/Details/5
         public ActionResult Details(int? id)
         {
