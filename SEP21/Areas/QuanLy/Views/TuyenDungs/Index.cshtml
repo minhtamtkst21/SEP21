@@ -7,21 +7,21 @@
 <h2>Tuyển Dụng</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Tạo mới", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            Vị Trí
+            Vị trí
         </th>
         <th>
-            Số Lượng
+            Số lượng
         </th>
         <th>
-            Yêu Cầu
+            Yêu cầu
         </th>
         <th>
-            Tiêu Đề
+            Tiêu đề
         </th>
         <th></th>
     </tr>
@@ -40,8 +40,8 @@
             @Html.DisplayFor(modelItem => item.TieuDe)
         </td>
         <td>
-            @Html.ActionLink("Chỉnh Sửa", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Chi Tiết", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.ID }) |
             @Html.ActionLink("Xóa", "Delete", new { id=item.ID })
         </td>
     </tr>
