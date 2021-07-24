@@ -15,7 +15,7 @@ namespace SEP21.Models
     public partial class DaoTao
     {
         public int ID { get; set; }
-        public string NoiDung { get; set; }
         public string TieuDe { get; set; }
+        public string NoiDung { get; set; }
     }
 }

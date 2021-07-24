@@ -4,38 +4,40 @@
     ViewBag.Title = "Edit";
     Layout = "~/Areas/QuanLy/Views/Shared/_AdminLayout.cshtml";
 }
-
+@section scripts{
+    <script src="~/Plugin/ckfinder/ckfinder.js"></script>
+    <script src="~/Plugin/ckeditor/ckeditor.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $('#btn-img-select').click(function (e) {
+                e.preventDefault();
+                var finder = new CKFinder();
+                finder.selectActionFunction = function (url) {
+                    $("#imgvalue").val(url);
+                };
+                finder.popup();
+            });
+            CKEDITOR.replace('NoiDung');
+        });
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+}
 <h2>Chỉnh Sửa</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "GioiThieux", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Giới Thiệu</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.Label(" Sứ Mạng ", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Nội dung", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SuMang, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SuMang, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label(" Tầm Nhìn ", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TamNhin, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TamNhin, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label(" Triết Lý Giáo Dục ", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TrietLyGiaoDuc, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TrietLyGiaoDuc, "", new { @class = "text-danger" })
+                @Html.TextAreaFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+                <script>CKEDITOR.replace("NoiDung")</script>
             </div>
         </div>
 

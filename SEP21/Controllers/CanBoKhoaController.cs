@@ -8,25 +8,20 @@ using System.Web;
 using System.Web.Mvc;
 using SEP21.Models;
 
-namespace SEP21.Areas.QuanLy.Controllers
+namespace SEP21.Controllers
 {
-    public class NhanVienKhoasController : Controller
+    public class CanBoKhoaController : Controller
     {
         private SEP24Team5Entities db = new SEP24Team5Entities();
 
-        // GET: QuanLy/NhanVienKhoas
+        // GET: NhanVienKhoas
         public ActionResult Index()
         {
             var nhanVienKhoas = db.NhanVienKhoas.Include(n => n.Khoa1);
             return View(nhanVienKhoas.ToList());
         }
-        public ActionResult Picture(int id)
-        {
-            var path = Server.MapPath(PICTURE_PATH);
-            return File(path + id, "images");
-        }
-        private const string PICTURE_PATH = "~/images/CanBoKhoa/";
-        // GET: QuanLy/NhanVienKhoas/Details/5
+
+        // GET: NhanVienKhoas/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -40,15 +35,20 @@ namespace SEP21.Areas.QuanLy.Controllers
             }
             return View(nhanVienKhoa);
         }
-
-        // GET: QuanLy/NhanVienKhoas/Create
+        public ActionResult Picture(int id)
+        {
+            var path = Server.MapPath(PICTURE_PATH);
+            return File(path + id, "images");
+        }
+        private const string PICTURE_PATH = "~/images/CanBoKhoa/";
+        // GET: NhanVienKhoas/Create
         public ActionResult Create()
         {
             ViewBag.Khoa = new SelectList(db.Khoas, "ID", "MaKhoa");
             return View();
         }
 
-        // POST: QuanLy/NhanVienKhoas/Create
+        // POST: NhanVienKhoas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -66,7 +66,7 @@ namespace SEP21.Areas.QuanLy.Controllers
             return View(nhanVienKhoa);
         }
 
-        // GET: QuanLy/NhanVienKhoas/Edit/5
+        // GET: NhanVienKhoas/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -82,7 +82,7 @@ namespace SEP21.Areas.QuanLy.Controllers
             return View(nhanVienKhoa);
         }
 
-        // POST: QuanLy/NhanVienKhoas/Edit/5
+        // POST: NhanVienKhoas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -99,7 +99,7 @@ namespace SEP21.Areas.QuanLy.Controllers
             return View(nhanVienKhoa);
         }
 
-        // GET: QuanLy/NhanVienKhoas/Delete/5
+        // GET: NhanVienKhoas/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -114,7 +114,7 @@ namespace SEP21.Areas.QuanLy.Controllers
             return View(nhanVienKhoa);
         }
 
-        // POST: QuanLy/NhanVienKhoas/Delete/5
+        // POST: NhanVienKhoas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

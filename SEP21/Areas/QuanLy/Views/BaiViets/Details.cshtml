@@ -32,7 +32,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NoiDung)
+            @Html.Raw(Model.NoiDung)
         </dd>
 
         <dt>
@@ -43,24 +43,9 @@
             @Html.DisplayFor(model => model.LoaiBaiViet1.TenLoaiBaiViet)
         </dd>
 
-        <dt>
-            Mã Nhân Viên
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NhanVienKhoa.MaNhanVien)
-        </dd>
-        <dt>
-            Hình Ảnh
-        </dt>
-        <div class="form-group">
-            <label class="control-label col-md-2" for="IMG"></label>
-            <img id="Picture" src="@Url.Action("Picture", new { Model.ID })" />
-        </div>
-
     </dl>
 </div>
 <p>
     @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Trở Lại", "Index")
+    @Html.ActionLink("Trở Lại", "Index2")
 </p>

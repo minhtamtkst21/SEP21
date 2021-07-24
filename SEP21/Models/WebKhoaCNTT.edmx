@@ -43,23 +43,11 @@
           <Property Name="NguoiDatThanhTich" Type="int" Nullable="false" />
           <Property Name="ThanhTich" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="DoanHoiKhoa">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MSSV" Type="int" />
-          <Property Name="ChucVu" Type="nvarchar" MaxLength="50" />
-          <Property Name="Doan" Type="bit" />
-          <Property Name="Hoi" Type="bit" />
-        </EntityType>
         <EntityType Name="GioiThieu">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="SuMang" Type="nvarchar(max)" />
-          <Property Name="TamNhin" Type="nvarchar(max)" />
-          <Property Name="TrietLyGiaoDuc" Type="nvarchar(max)" />
+          <Property Name="NoiDung" Type="nvarchar(max)" />
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Khoa">
@@ -114,10 +102,10 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MaNhanVien" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
           <Property Name="ChucVu" Type="nvarchar" MaxLength="50" />
           <Property Name="Khoa" Type="int" />
+          <Property Name="Mail" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="SinhVien">
           <Key>
@@ -159,7 +147,6 @@
           <Property Name="SoLuong" Type="int" />
           <Property Name="YeuCau" Type="nvarchar(max)" />
           <Property Name="TieuDe" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="LoaiTuyenDung" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_BaiViet_LoaiBaiViet">
           <End Role="LoaiBaiViet" Type="Self.LoaiBaiViet" Multiplicity="1" />
@@ -245,18 +232,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DoanHoiKhoa_SinhVien">
-          <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="0..1" />
-          <End Role="DoanHoiKhoa" Type="Self.DoanHoiKhoa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SinhVien">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="DoanHoiKhoa">
-              <PropertyRef Name="MSSV" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_NguoiThucHienNCKH_NCKH">
           <End Role="NCKH" Type="Self.NCKH" Multiplicity="1" />
           <End Role="NguoiThucHienNCKH" Type="Self.NguoiThucHienNCKH" Multiplicity="*" />
@@ -310,7 +285,6 @@
           <EntitySet Name="DangKyHoatDong" EntityType="Self.DangKyHoatDong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DaoTao" EntityType="Self.DaoTao" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DatThanhTich" EntityType="Self.DatThanhTich" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DoanHoiKhoa" EntityType="Self.DoanHoiKhoa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GioiThieu" EntityType="Self.GioiThieu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Khoa" EntityType="Self.Khoa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoaiBaiViet" EntityType="Self.LoaiBaiViet" Schema="dbo" store:Type="Tables" />
@@ -351,10 +325,6 @@
             <End Role="ThanhTich" EntitySet="ThanhTich" />
             <End Role="DatThanhTich" EntitySet="DatThanhTich" />
           </AssociationSet>
-          <AssociationSet Name="FK_DoanHoiKhoa_SinhVien" Association="Self.FK_DoanHoiKhoa_SinhVien">
-            <End Role="SinhVien" EntitySet="SinhVien" />
-            <End Role="DoanHoiKhoa" EntitySet="DoanHoiKhoa" />
-          </AssociationSet>
           <AssociationSet Name="FK_NguoiThucHienNCKH_NCKH" Association="Self.FK_NguoiThucHienNCKH_NCKH">
             <End Role="NCKH" EntitySet="NCKH" />
             <End Role="NguoiThucHienNCKH" EntitySet="NguoiThucHienNCKH" />
@@ -379,8 +349,8 @@
         <EntityContainer Name="SEP24Team5Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BaiViets" EntityType="SEP24Team5Model.BaiViet" />
           <EntitySet Name="DangKyHoatDongs" EntityType="SEP24Team5Model.DangKyHoatDong" />
+          <EntitySet Name="DaoTaos" EntityType="SEP24Team5Model.DaoTao" />
           <EntitySet Name="DatThanhTiches" EntityType="SEP24Team5Model.DatThanhTich" />
-          <EntitySet Name="DoanHoiKhoas" EntityType="SEP24Team5Model.DoanHoiKhoa" />
           <EntitySet Name="GioiThieux" EntityType="SEP24Team5Model.GioiThieu" />
           <EntitySet Name="Khoas" EntityType="SEP24Team5Model.Khoa" />
           <EntitySet Name="LoaiBaiViets" EntityType="SEP24Team5Model.LoaiBaiViet" />
@@ -388,16 +358,11 @@
           <EntitySet Name="LoginAdmins" EntityType="SEP24Team5Model.LoginAdmin" />
           <EntitySet Name="NCKHs" EntityType="SEP24Team5Model.NCKH" />
           <EntitySet Name="NguoiThucHienNCKHs" EntityType="SEP24Team5Model.NguoiThucHienNCKH" />
-          <EntitySet Name="NhanVienKhoas" EntityType="SEP24Team5Model.NhanVienKhoa" />
           <EntitySet Name="SinhViens" EntityType="SEP24Team5Model.SinhVien" />
+          <EntitySet Name="sysdiagrams" EntityType="SEP24Team5Model.sysdiagram" />
           <EntitySet Name="ThanhTiches" EntityType="SEP24Team5Model.ThanhTich" />
-          <EntitySet Name="TuyenDungs" EntityType="SEP24Team5Model.TuyenDung" />
           <AssociationSet Name="FK_BaiViet_LoaiBaiViet" Association="SEP24Team5Model.FK_BaiViet_LoaiBaiViet">
             <End Role="LoaiBaiViet" EntitySet="LoaiBaiViets" />
-            <End Role="BaiViet" EntitySet="BaiViets" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BaiViet_NhanVienKhoa" Association="SEP24Team5Model.FK_BaiViet_NhanVienKhoa">
-            <End Role="NhanVienKhoa" EntitySet="NhanVienKhoas" />
             <End Role="BaiViet" EntitySet="BaiViets" />
           </AssociationSet>
           <AssociationSet Name="FK_DangKyHoatDong_BaiViet" Association="SEP24Team5Model.FK_DangKyHoatDong_BaiViet">
@@ -408,10 +373,6 @@
             <End Role="SinhVien" EntitySet="SinhViens" />
             <End Role="DangKyHoatDong" EntitySet="DangKyHoatDongs" />
           </AssociationSet>
-          <AssociationSet Name="FK_DatThanhTich_NhanVienKhoa" Association="SEP24Team5Model.FK_DatThanhTich_NhanVienKhoa">
-            <End Role="NhanVienKhoa" EntitySet="NhanVienKhoas" />
-            <End Role="DatThanhTich" EntitySet="DatThanhTiches" />
-          </AssociationSet>
           <AssociationSet Name="FK_DatThanhTich_SinhVien" Association="SEP24Team5Model.FK_DatThanhTich_SinhVien">
             <End Role="SinhVien" EntitySet="SinhViens" />
             <End Role="DatThanhTich" EntitySet="DatThanhTiches" />
@@ -419,14 +380,6 @@
           <AssociationSet Name="FK_DatThanhTich_ThanhTich" Association="SEP24Team5Model.FK_DatThanhTich_ThanhTich">
             <End Role="ThanhTich" EntitySet="ThanhTiches" />
             <End Role="DatThanhTich" EntitySet="DatThanhTiches" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DoanHoiKhoa_SinhVien" Association="SEP24Team5Model.FK_DoanHoiKhoa_SinhVien">
-            <End Role="SinhVien" EntitySet="SinhViens" />
-            <End Role="DoanHoiKhoa" EntitySet="DoanHoiKhoas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_NhanVienKhoa_Khoa" Association="SEP24Team5Model.FK_NhanVienKhoa_Khoa">
-            <End Role="Khoa" EntitySet="Khoas" />
-            <End Role="NhanVienKhoa" EntitySet="NhanVienKhoas" />
           </AssociationSet>
           <AssociationSet Name="FK_SinhVien_Khoa" Association="SEP24Team5Model.FK_SinhVien_Khoa">
             <End Role="Khoa" EntitySet="Khoas" />
@@ -436,12 +389,24 @@
             <End Role="NCKH" EntitySet="NCKHs" />
             <End Role="NguoiThucHienNCKH" EntitySet="NguoiThucHienNCKHs" />
           </AssociationSet>
+          <EntitySet Name="NhanVienKhoas" EntityType="SEP24Team5Model.NhanVienKhoa" />
+          <AssociationSet Name="FK_BaiViet_NhanVienKhoa" Association="SEP24Team5Model.FK_BaiViet_NhanVienKhoa">
+            <End Role="NhanVienKhoa" EntitySet="NhanVienKhoas" />
+            <End Role="BaiViet" EntitySet="BaiViets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DatThanhTich_NhanVienKhoa" Association="SEP24Team5Model.FK_DatThanhTich_NhanVienKhoa">
+            <End Role="NhanVienKhoa" EntitySet="NhanVienKhoas" />
+            <End Role="DatThanhTich" EntitySet="DatThanhTiches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NhanVienKhoa_Khoa" Association="SEP24Team5Model.FK_NhanVienKhoa_Khoa">
+            <End Role="Khoa" EntitySet="Khoas" />
+            <End Role="NhanVienKhoa" EntitySet="NhanVienKhoas" />
+          </AssociationSet>
           <AssociationSet Name="FK_NguoiThucHienNCKH_NhanVienKhoa" Association="SEP24Team5Model.FK_NguoiThucHienNCKH_NhanVienKhoa">
             <End Role="NhanVienKhoa" EntitySet="NhanVienKhoas" />
             <End Role="NguoiThucHienNCKH" EntitySet="NguoiThucHienNCKHs" />
           </AssociationSet>
-          <EntitySet Name="DaoTaos" EntityType="SEP24Team5Model.DaoTao" />
-          <EntitySet Name="sysdiagrams" EntityType="SEP24Team5Model.sysdiagram" />
+          <EntitySet Name="TuyenDungs" EntityType="SEP24Team5Model.TuyenDung" />
         </EntityContainer>
         <EntityType Name="BaiViet">
           <Key>
@@ -455,8 +420,8 @@
           <Property Name="LoaiBaiViet" Type="Int32" Nullable="false" />
           <Property Name="picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="LoaiBaiViet1" Relationship="SEP24Team5Model.FK_BaiViet_LoaiBaiViet" FromRole="BaiViet" ToRole="LoaiBaiViet" />
-          <NavigationProperty Name="NhanVienKhoa" Relationship="SEP24Team5Model.FK_BaiViet_NhanVienKhoa" FromRole="BaiViet" ToRole="NhanVienKhoa" />
           <NavigationProperty Name="DangKyHoatDongs" Relationship="SEP24Team5Model.FK_DangKyHoatDong_BaiViet" FromRole="BaiViet" ToRole="DangKyHoatDong" />
+          <NavigationProperty Name="NhanVienKhoa" Relationship="SEP24Team5Model.FK_BaiViet_NhanVienKhoa" FromRole="BaiViet" ToRole="NhanVienKhoa" />
         </EntityType>
         <EntityType Name="DangKyHoatDong">
           <Key>
@@ -466,9 +431,17 @@
           <Property Name="HoatDong" Type="Int32" Nullable="false" />
           <Property Name="MSSV" Type="Int32" Nullable="false" />
           <Property Name="ThoiGianDangKy" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="hd_mssv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BaiViet" Relationship="SEP24Team5Model.FK_DangKyHoatDong_BaiViet" FromRole="DangKyHoatDong" ToRole="BaiViet" />
           <NavigationProperty Name="SinhVien" Relationship="SEP24Team5Model.FK_DangKyHoatDong_SinhVien" FromRole="DangKyHoatDong" ToRole="SinhVien" />
-          <Property Name="hd_mssv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DaoTao">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DatThanhTich">
           <Key>
@@ -477,28 +450,15 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NguoiDatThanhTich" Type="Int32" Nullable="false" />
           <Property Name="ThanhTich" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="NhanVienKhoa" Relationship="SEP24Team5Model.FK_DatThanhTich_NhanVienKhoa" FromRole="DatThanhTich" ToRole="NhanVienKhoa" />
           <NavigationProperty Name="SinhVien" Relationship="SEP24Team5Model.FK_DatThanhTich_SinhVien" FromRole="DatThanhTich" ToRole="SinhVien" />
           <NavigationProperty Name="ThanhTich1" Relationship="SEP24Team5Model.FK_DatThanhTich_ThanhTich" FromRole="DatThanhTich" ToRole="ThanhTich" />
-        </EntityType>
-        <EntityType Name="DoanHoiKhoa">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MSSV" Type="Int32" />
-          <Property Name="ChucVu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Doan" Type="Boolean" />
-          <Property Name="Hoi" Type="Boolean" />
-          <NavigationProperty Name="SinhVien" Relationship="SEP24Team5Model.FK_DoanHoiKhoa_SinhVien" FromRole="DoanHoiKhoa" ToRole="SinhVien" />
+          <NavigationProperty Name="NhanVienKhoa" Relationship="SEP24Team5Model.FK_DatThanhTich_NhanVienKhoa" FromRole="DatThanhTich" ToRole="NhanVienKhoa" />
         </EntityType>
         <EntityType Name="GioiThieu">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="SuMang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TamNhin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TrietLyGiaoDuc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Khoa">
@@ -508,8 +468,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MaKhoa" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="TenKhoa" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="NhanVienKhoas" Relationship="SEP24Team5Model.FK_NhanVienKhoa_Khoa" FromRole="Khoa" ToRole="NhanVienKhoa" />
           <NavigationProperty Name="SinhViens" Relationship="SEP24Team5Model.FK_SinhVien_Khoa" FromRole="Khoa" ToRole="SinhVien" />
+          <NavigationProperty Name="NhanVienKhoas" Relationship="SEP24Team5Model.FK_NhanVienKhoa_Khoa" FromRole="Khoa" ToRole="NhanVienKhoa" />
         </EntityType>
         <EntityType Name="LoaiBaiViet">
           <Key>
@@ -554,20 +514,6 @@
           <NavigationProperty Name="NCKH" Relationship="SEP24Team5Model.FK_NguoiThucHienNCKH_NCKH" FromRole="NguoiThucHienNCKH" ToRole="NCKH" />
           <NavigationProperty Name="NhanVienKhoa" Relationship="SEP24Team5Model.FK_NguoiThucHienNCKH_NhanVienKhoa" FromRole="NguoiThucHienNCKH" ToRole="NhanVienKhoa" />
         </EntityType>
-        <EntityType Name="NhanVienKhoa">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MaNhanVien" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ChucVu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Khoa" Type="Int32" />
-          <NavigationProperty Name="BaiViets" Relationship="SEP24Team5Model.FK_BaiViet_NhanVienKhoa" FromRole="NhanVienKhoa" ToRole="BaiViet" />
-          <NavigationProperty Name="DatThanhTiches" Relationship="SEP24Team5Model.FK_DatThanhTich_NhanVienKhoa" FromRole="NhanVienKhoa" ToRole="DatThanhTich" />
-          <NavigationProperty Name="Khoa1" Relationship="SEP24Team5Model.FK_NhanVienKhoa_Khoa" FromRole="NhanVienKhoa" ToRole="Khoa" />
-          <NavigationProperty Name="NguoiThucHienNCKHs" Relationship="SEP24Team5Model.FK_NguoiThucHienNCKH_NhanVienKhoa" FromRole="NhanVienKhoa" ToRole="NguoiThucHienNCKH" />
-        </EntityType>
         <EntityType Name="SinhVien">
           <Key>
             <PropertyRef Name="ID" />
@@ -581,8 +527,17 @@
           <Property Name="mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="DangKyHoatDongs" Relationship="SEP24Team5Model.FK_DangKyHoatDong_SinhVien" FromRole="SinhVien" ToRole="DangKyHoatDong" />
           <NavigationProperty Name="DatThanhTiches" Relationship="SEP24Team5Model.FK_DatThanhTich_SinhVien" FromRole="SinhVien" ToRole="DatThanhTich" />
-          <NavigationProperty Name="DoanHoiKhoas" Relationship="SEP24Team5Model.FK_DoanHoiKhoa_SinhVien" FromRole="SinhVien" ToRole="DoanHoiKhoa" />
           <NavigationProperty Name="Khoa" Relationship="SEP24Team5Model.FK_SinhVien_Khoa" FromRole="SinhVien" ToRole="Khoa" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="ThanhTich">
           <Key>
@@ -594,17 +549,6 @@
           <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DatThanhTiches" Relationship="SEP24Team5Model.FK_DatThanhTich_ThanhTich" FromRole="ThanhTich" ToRole="DatThanhTich" />
         </EntityType>
-        <EntityType Name="TuyenDung">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ViTri" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="SoLuong" Type="Int32" />
-          <Property Name="YeuCau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TieuDe" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LoaiTuyenDung" Type="Int32" Nullable="false" />
-        </EntityType>
         <Association Name="FK_BaiViet_LoaiBaiViet">
           <End Type="SEP24Team5Model.LoaiBaiViet" Role="LoaiBaiViet" Multiplicity="1" />
           <End Type="SEP24Team5Model.BaiViet" Role="BaiViet" Multiplicity="*" />
@@ -614,18 +558,6 @@
             </Principal>
             <Dependent Role="BaiViet">
               <PropertyRef Name="LoaiBaiViet" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BaiViet_NhanVienKhoa">
-          <End Type="SEP24Team5Model.NhanVienKhoa" Role="NhanVienKhoa" Multiplicity="1" />
-          <End Type="SEP24Team5Model.BaiViet" Role="BaiViet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NhanVienKhoa">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="BaiViet">
-              <PropertyRef Name="NguoiDang" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -653,18 +585,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DatThanhTich_NhanVienKhoa">
-          <End Type="SEP24Team5Model.NhanVienKhoa" Role="NhanVienKhoa" Multiplicity="1" />
-          <End Type="SEP24Team5Model.DatThanhTich" Role="DatThanhTich" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NhanVienKhoa">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="DatThanhTich">
-              <PropertyRef Name="NguoiDatThanhTich" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_DatThanhTich_SinhVien">
           <End Type="SEP24Team5Model.SinhVien" Role="SinhVien" Multiplicity="1" />
           <End Type="SEP24Team5Model.DatThanhTich" Role="DatThanhTich" Multiplicity="*" />
@@ -686,30 +606,6 @@
             </Principal>
             <Dependent Role="DatThanhTich">
               <PropertyRef Name="ThanhTich" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DoanHoiKhoa_SinhVien">
-          <End Type="SEP24Team5Model.SinhVien" Role="SinhVien" Multiplicity="0..1" />
-          <End Type="SEP24Team5Model.DoanHoiKhoa" Role="DoanHoiKhoa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SinhVien">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="DoanHoiKhoa">
-              <PropertyRef Name="MSSV" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_NhanVienKhoa_Khoa">
-          <End Type="SEP24Team5Model.Khoa" Role="Khoa" Multiplicity="0..1" />
-          <End Type="SEP24Team5Model.NhanVienKhoa" Role="NhanVienKhoa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Khoa">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="NhanVienKhoa">
-              <PropertyRef Name="Khoa" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -737,6 +633,56 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="NhanVienKhoa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChucVu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Khoa" Type="Int32" />
+          <Property Name="Mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BaiViets" Relationship="SEP24Team5Model.FK_BaiViet_NhanVienKhoa" FromRole="NhanVienKhoa" ToRole="BaiViet" />
+          <NavigationProperty Name="DatThanhTiches" Relationship="SEP24Team5Model.FK_DatThanhTich_NhanVienKhoa" FromRole="NhanVienKhoa" ToRole="DatThanhTich" />
+          <NavigationProperty Name="Khoa1" Relationship="SEP24Team5Model.FK_NhanVienKhoa_Khoa" FromRole="NhanVienKhoa" ToRole="Khoa" />
+          <NavigationProperty Name="NguoiThucHienNCKHs" Relationship="SEP24Team5Model.FK_NguoiThucHienNCKH_NhanVienKhoa" FromRole="NhanVienKhoa" ToRole="NguoiThucHienNCKH" />
+        </EntityType>
+        <Association Name="FK_BaiViet_NhanVienKhoa">
+          <End Type="SEP24Team5Model.NhanVienKhoa" Role="NhanVienKhoa" Multiplicity="1" />
+          <End Type="SEP24Team5Model.BaiViet" Role="BaiViet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhanVienKhoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BaiViet">
+              <PropertyRef Name="NguoiDang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DatThanhTich_NhanVienKhoa">
+          <End Type="SEP24Team5Model.NhanVienKhoa" Role="NhanVienKhoa" Multiplicity="1" />
+          <End Type="SEP24Team5Model.DatThanhTich" Role="DatThanhTich" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhanVienKhoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DatThanhTich">
+              <PropertyRef Name="NguoiDatThanhTich" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NhanVienKhoa_Khoa">
+          <End Type="SEP24Team5Model.Khoa" Role="Khoa" Multiplicity="0..1" />
+          <End Type="SEP24Team5Model.NhanVienKhoa" Role="NhanVienKhoa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Khoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NhanVienKhoa">
+              <PropertyRef Name="Khoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_NguoiThucHienNCKH_NhanVienKhoa">
           <End Type="SEP24Team5Model.NhanVienKhoa" Role="NhanVienKhoa" Multiplicity="1" />
           <End Type="SEP24Team5Model.NguoiThucHienNCKH" Role="NguoiThucHienNCKH" Multiplicity="*" />
@@ -749,23 +695,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="DaoTao">
+        <EntityType Name="TuyenDung">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ViTri" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SoLuong" Type="Int32" />
+          <Property Name="YeuCau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TieuDe" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -797,6 +735,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DaoTaos">
+            <EntityTypeMapping TypeName="SEP24Team5Model.DaoTao">
+              <MappingFragment StoreEntitySet="DaoTao">
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DatThanhTiches">
             <EntityTypeMapping TypeName="SEP24Team5Model.DatThanhTich">
               <MappingFragment StoreEntitySet="DatThanhTich">
@@ -806,24 +753,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DoanHoiKhoas">
-            <EntityTypeMapping TypeName="SEP24Team5Model.DoanHoiKhoa">
-              <MappingFragment StoreEntitySet="DoanHoiKhoa">
-                <ScalarProperty Name="Hoi" ColumnName="Hoi" />
-                <ScalarProperty Name="Doan" ColumnName="Doan" />
-                <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
-                <ScalarProperty Name="MSSV" ColumnName="MSSV" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="GioiThieux">
             <EntityTypeMapping TypeName="SEP24Team5Model.GioiThieu">
               <MappingFragment StoreEntitySet="GioiThieu">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="TrietLyGiaoDuc" ColumnName="TrietLyGiaoDuc" />
-                <ScalarProperty Name="TamNhin" ColumnName="TamNhin" />
-                <ScalarProperty Name="SuMang" ColumnName="SuMang" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -880,17 +814,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="NhanVienKhoas">
-            <EntityTypeMapping TypeName="SEP24Team5Model.NhanVienKhoa">
-              <MappingFragment StoreEntitySet="NhanVienKhoa">
-                <ScalarProperty Name="Khoa" ColumnName="Khoa" />
-                <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
-                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-                <ScalarProperty Name="MaNhanVien" ColumnName="MaNhanVien" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SinhViens">
             <EntityTypeMapping TypeName="SEP24Team5Model.SinhVien">
               <MappingFragment StoreEntitySet="SinhVien">
@@ -904,6 +827,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SEP24Team5Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ThanhTiches">
             <EntityTypeMapping TypeName="SEP24Team5Model.ThanhTich">
               <MappingFragment StoreEntitySet="ThanhTich">
@@ -914,35 +848,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="NhanVienKhoas">
+            <EntityTypeMapping TypeName="SEP24Team5Model.NhanVienKhoa">
+              <MappingFragment StoreEntitySet="NhanVienKhoa">
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Khoa" ColumnName="Khoa" />
+                <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TuyenDungs">
             <EntityTypeMapping TypeName="SEP24Team5Model.TuyenDung">
               <MappingFragment StoreEntitySet="TuyenDung">
-                <ScalarProperty Name="LoaiTuyenDung" ColumnName="LoaiTuyenDung" />
                 <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
                 <ScalarProperty Name="YeuCau" ColumnName="YeuCau" />
                 <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
                 <ScalarProperty Name="ViTri" ColumnName="ViTri" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DaoTaos">
-            <EntityTypeMapping TypeName="SEP24Team5Model.DaoTao">
-              <MappingFragment StoreEntitySet="DaoTao">
-                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
-                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="SEP24Team5Model.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -18,8 +18,8 @@ namespace SEP21.Models
         public int NguoiDatThanhTich { get; set; }
         public int ThanhTich { get; set; }
     
-        public virtual NhanVienKhoa NhanVienKhoa { get; set; }
         public virtual SinhVien SinhVien { get; set; }
         public virtual ThanhTich ThanhTich1 { get; set; }
+        public virtual NhanVienKhoa NhanVienKhoa { get; set; }
     }
 }

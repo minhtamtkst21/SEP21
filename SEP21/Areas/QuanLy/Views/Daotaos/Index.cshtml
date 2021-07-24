@@ -15,13 +15,18 @@
         <th>
             Tiêu Đề
         </th>
-        <th></th>
+        <th>
+            Nội dung
+        </th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.TieuDe)
+            @item.TieuDe
+        </td>
+        <td>
+            @item.NoiDung
         </td>
         <td>
             @Html.ActionLink("Chỉnh Sửa", "Edit", new { id=item.ID }) |

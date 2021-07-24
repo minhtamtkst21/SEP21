@@ -14,9 +14,7 @@ namespace SEP21.Models
     
     public partial class GioiThieu
     {
-        public string SuMang { get; set; }
-        public string TamNhin { get; set; }
-        public string TrietLyGiaoDuc { get; set; }
+        public string NoiDung { get; set; }
         public int ID { get; set; }
     }
 }

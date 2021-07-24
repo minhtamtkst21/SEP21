@@ -19,6 +19,5 @@ namespace SEP21.Models
         public Nullable<int> SoLuong { get; set; }
         public string YeuCau { get; set; }
         public string TieuDe { get; set; }
-        public int LoaiTuyenDung { get; set; }
     }
 }

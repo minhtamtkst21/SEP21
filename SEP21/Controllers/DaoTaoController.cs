@@ -8,119 +8,109 @@ using System.Web;
 using System.Web.Mvc;
 using SEP21.Models;
 
-namespace SEP21.Areas.QuanLy.Controllers
+namespace SEP21.Controllers
 {
-    public class NhanVienKhoasController : Controller
+    public class DaoTaoController : Controller
     {
         private SEP24Team5Entities db = new SEP24Team5Entities();
 
-        // GET: QuanLy/NhanVienKhoas
+        // GET: DaoTaos
         public ActionResult Index()
         {
-            var nhanVienKhoas = db.NhanVienKhoas.Include(n => n.Khoa1);
-            return View(nhanVienKhoas.ToList());
+            return View(db.DaoTaos.ToList());
         }
-        public ActionResult Picture(int id)
-        {
-            var path = Server.MapPath(PICTURE_PATH);
-            return File(path + id, "images");
-        }
-        private const string PICTURE_PATH = "~/images/CanBoKhoa/";
-        // GET: QuanLy/NhanVienKhoas/Details/5
+
+        // GET: DaoTaos/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NhanVienKhoa nhanVienKhoa = db.NhanVienKhoas.Find(id);
-            if (nhanVienKhoa == null)
+            DaoTao daoTao = db.DaoTaos.Find(id);
+            if (daoTao == null)
             {
                 return HttpNotFound();
             }
-            return View(nhanVienKhoa);
+            return View(daoTao);
         }
 
-        // GET: QuanLy/NhanVienKhoas/Create
+        // GET: DaoTaos/Create
         public ActionResult Create()
         {
-            ViewBag.Khoa = new SelectList(db.Khoas, "ID", "MaKhoa");
             return View();
         }
 
-        // POST: QuanLy/NhanVienKhoas/Create
+        // POST: DaoTaos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,MaNhanVien,HoTen,ChucVu,Khoa")] NhanVienKhoa nhanVienKhoa)
+        public ActionResult Create([Bind(Include = "ID,TieuDe,NoiDung")] DaoTao daoTao)
         {
             if (ModelState.IsValid)
             {
-                db.NhanVienKhoas.Add(nhanVienKhoa);
+                db.DaoTaos.Add(daoTao);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Khoa = new SelectList(db.Khoas, "ID", "MaKhoa", nhanVienKhoa.Khoa);
-            return View(nhanVienKhoa);
+            return View(daoTao);
         }
 
-        // GET: QuanLy/NhanVienKhoas/Edit/5
+        // GET: DaoTaos/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NhanVienKhoa nhanVienKhoa = db.NhanVienKhoas.Find(id);
-            if (nhanVienKhoa == null)
+            DaoTao daoTao = db.DaoTaos.Find(id);
+            if (daoTao == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Khoa = new SelectList(db.Khoas, "ID", "MaKhoa", nhanVienKhoa.Khoa);
-            return View(nhanVienKhoa);
+            return View(daoTao);
         }
 
-        // POST: QuanLy/NhanVienKhoas/Edit/5
+        // POST: DaoTaos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,MaNhanVien,HoTen,ChucVu,Khoa")] NhanVienKhoa nhanVienKhoa)
+        public ActionResult Edit([Bind(Include = "ID,TieuDe,NoiDung")] DaoTao daoTao)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(nhanVienKhoa).State = EntityState.Modified;
+                db.Entry(daoTao).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Khoa = new SelectList(db.Khoas, "ID", "MaKhoa", nhanVienKhoa.Khoa);
-            return View(nhanVienKhoa);
+            return View(daoTao);
         }
 
-        // GET: QuanLy/NhanVienKhoas/Delete/5
+        // GET: DaoTaos/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NhanVienKhoa nhanVienKhoa = db.NhanVienKhoas.Find(id);
-            if (nhanVienKhoa == null)
+            DaoTao daoTao = db.DaoTaos.Find(id);
+            if (daoTao == null)
             {
                 return HttpNotFound();
             }
-            return View(nhanVienKhoa);
+            return View(daoTao);
         }
 
-        // POST: QuanLy/NhanVienKhoas/Delete/5
+        // POST: DaoTaos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            NhanVienKhoa nhanVienKhoa = db.NhanVienKhoas.Find(id);
-            db.NhanVienKhoas.Remove(nhanVienKhoa);
+            DaoTao daoTao = db.DaoTaos.Find(id);
+            db.DaoTaos.Remove(daoTao);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

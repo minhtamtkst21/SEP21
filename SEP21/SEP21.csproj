@@ -212,7 +212,6 @@
     <Compile Include="Areas\QuanLy\Controllers\BaiVietsController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\DangKyHoatDongsController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\DaoTaosController.cs" />
-    <Compile Include="Areas\QuanLy\Controllers\DoanHoiKhoasController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\GioiThieuxController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\KhoasController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\LoaiBaiVietsController.cs" />
@@ -227,12 +226,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaiVietController.cs" />
     <Compile Include="Controllers\DangKyHoatDongsController.cs" />
+    <Compile Include="Controllers\DaoTaoController.cs" />
     <Compile Include="Controllers\GioiThieusController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhoasController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\NhanVienKhoasController.cs" />
+    <Compile Include="Controllers\CanBoKhoaController.cs" />
     <Compile Include="Controllers\SinhViensController.cs" />
+    <Compile Include="Controllers\TuyenDungController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -248,9 +249,6 @@
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DatThanhTich.cs">
-      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DoanHoiKhoa.cs">
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GioiThieu.cs">
@@ -314,14 +312,8 @@
     <Content Include="Areas\QuanLy\Views\BaiViets\Delete.cshtml" />
     <Content Include="Areas\QuanLy\Views\BaiViets\Details.cshtml" />
     <Content Include="Areas\QuanLy\Views\BaiViets\Edit.cshtml" />
-    <Content Include="Areas\QuanLy\Views\BaiViets\Index.cshtml" />
     <Content Include="Areas\QuanLy\Views\GioiThieux\Edit.cshtml" />
     <Content Include="Areas\QuanLy\Views\GioiThieux\Index.cshtml" />
-    <Content Include="Areas\QuanLy\Views\DoanHoiKhoas\Create.cshtml" />
-    <Content Include="Areas\QuanLy\Views\DoanHoiKhoas\Delete.cshtml" />
-    <Content Include="Areas\QuanLy\Views\DoanHoiKhoas\Details.cshtml" />
-    <Content Include="Areas\QuanLy\Views\DoanHoiKhoas\Edit.cshtml" />
-    <Content Include="Areas\QuanLy\Views\DoanHoiKhoas\Index.cshtml" />
     <Content Include="Areas\QuanLy\Views\AdminHome\Index.cshtml" />
     <Content Include="Areas\QuanLy\Views\ManagerAdmin\Login.cshtml" />
     <Content Include="Areas\QuanLy\Views\LoaiBaiViets\Create.cshtml" />
@@ -777,6 +769,7 @@
     <Content Include="assets\img\portfolio\portfolio-details-2.jpg" />
     <Content Include="assets\img\portfolio\portfolio-details-3.jpg" />
     <Content Include="assets\img\skills.png" />
+    <Content Include="assets\img\image.png" />
     <Content Include="assets\img\team\team-1.jpg" />
     <Content Include="assets\img\team\team-2.jpg" />
     <Content Include="assets\img\team\team-3.jpg" />
@@ -1989,29 +1982,38 @@
     <Content Include="Views\SinhViens\Details.cshtml" />
     <Content Include="Views\SinhViens\Edit.cshtml" />
     <Content Include="Views\SinhViens\Index.cshtml" />
-    <Content Include="Views\NhanVienKhoas\Create.cshtml" />
-    <Content Include="Views\NhanVienKhoas\Delete.cshtml" />
-    <Content Include="Views\NhanVienKhoas\Details.cshtml" />
-    <Content Include="Views\NhanVienKhoas\Edit.cshtml" />
-    <Content Include="Views\NhanVienKhoas\Index.cshtml" />
+    <Content Include="Views\CanBoKhoa\Create.cshtml" />
+    <Content Include="Views\CanBoKhoa\Delete.cshtml" />
+    <Content Include="Views\CanBoKhoa\Details.cshtml" />
+    <Content Include="Views\CanBoKhoa\Edit.cshtml" />
+    <Content Include="Views\CanBoKhoa\Index.cshtml" />
     <Content Include="Views\Khoas\Create.cshtml" />
     <Content Include="Views\Khoas\Delete.cshtml" />
     <Content Include="Views\Khoas\Details.cshtml" />
     <Content Include="Views\Khoas\Edit.cshtml" />
     <Content Include="Views\Khoas\Index.cshtml" />
     <Content Include="Views\GioiThieus\Index.cshtml" />
-    <Content Include="Views\GioiThieus\Index2.cshtml" />
     <Content Include="Views\DangKyHoatDongs\Create.cshtml" />
     <Content Include="Views\DangKyHoatDongs\Delete.cshtml" />
     <Content Include="Views\DangKyHoatDongs\Details.cshtml" />
     <Content Include="Views\DangKyHoatDongs\Edit.cshtml" />
     <Content Include="Views\DangKyHoatDongs\Index.cshtml" />
+    <Content Include="Views\DaoTao\Create.cshtml" />
+    <Content Include="Views\DaoTao\Delete.cshtml" />
+    <Content Include="Views\DaoTao\Details.cshtml" />
+    <Content Include="Views\DaoTao\Edit.cshtml" />
+    <Content Include="Views\DaoTao\Index.cshtml" />
+    <Content Include="Views\TuyenDung\Create.cshtml" />
+    <Content Include="Views\TuyenDung\Delete.cshtml" />
+    <Content Include="Views\TuyenDung\Details.cshtml" />
+    <Content Include="Views\TuyenDung\Edit.cshtml" />
+    <Content Include="Views\TuyenDung\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\QuanLy\Data\" />
-    <Folder Include="excel\" />
     <Folder Include="images\BaiViet\" />
+    <Folder Include="images\CanBoKhoa\" />
     <Folder Include="images\DoanHoiKhoa\" />
     <Folder Include="images\NCKH\" />
     <Folder Include="images\ThanhTich\" />

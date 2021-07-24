@@ -1,6 +1,8 @@
-﻿@model IEnumerable<SEP21.Models.GioiThieu>
+﻿@model IEnumerable<SEP21.Models.DaoTao>
+
 @{
     ViewBag.Title = "Index";
+    Layout = "~//Views/Shared/_Layout.cshtml";
 }
 @foreach (var item in Model)
 {
@@ -8,7 +10,7 @@
         <div class="container aos-init aos-animate" data-aos="fade-up">
 
             <div class="section-title">
-                <h2 style="font-family:Arial">Về khoa CNTT</h2>
+                <h2 style="font-family:Arial">@item.TieuDe</h2>
                 <h3 style="font-family:Arial">@Html.Raw(item.NoiDung)</h3>
             </div>
         </div>

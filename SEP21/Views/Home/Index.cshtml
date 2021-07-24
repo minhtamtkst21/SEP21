@@ -8,14 +8,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-                    <h1>Khoa Công nghệ thông tin</h1>
+                    <h1>Chào mừng đến với Khoa Công nghệ thông tin</h1>
                     <h2>Đạo đức - ý chí - sáng tạo</h2>
                     <div class="d-flex justify-content-center justify-content-lg-start">
                         <a href="https://www.youtube.com/watch?v=mveofh0MZDQ" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="@Url.Content("~/assets/img/hero-img.png")" class="img-fluid animated" alt="">
+                    <img src="@Url.Content("~/assets/img/hero-img.png")" class="img-fluid animated">
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
                         <div class="col-lg-6">
                             <div class="card">
                                 <a href="@Url.Action("Details","BaiViet", new { item.ID })">
-                                    <img class="img-fluid" style="max-width:75%" width="600" height="400" src="@Url.Action("Picture", new { item.ID })" alt="hinhanh">
+                                    <img class="img-fluid" width="600px" height="400px" src="@Url.Action("Picture", new { item.ID })" alt="hinhanh">
                                     <div class="card-body">
                                         <h3 class="card-title">*@item.LoaiBaiViet1.TenLoaiBaiViet* @item.TieuDe</h3>
                                     </div>

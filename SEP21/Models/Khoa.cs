@@ -17,8 +17,8 @@ namespace SEP21.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Khoa()
         {
-            this.NhanVienKhoas = new HashSet<NhanVienKhoa>();
             this.SinhViens = new HashSet<SinhVien>();
+            this.NhanVienKhoas = new HashSet<NhanVienKhoa>();
         }
     
         public int ID { get; set; }
@@ -26,8 +26,8 @@ namespace SEP21.Models
         public string TenKhoa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NhanVienKhoa> NhanVienKhoas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SinhVien> SinhViens { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NhanVienKhoa> NhanVienKhoas { get; set; }
     }
 }

@@ -13,9 +13,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.MaNhanVien)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.HoTen)
         </th>
         <th>
@@ -24,29 +21,33 @@
         <th>
             @Html.DisplayNameFor(model => model.Khoa1.MaKhoa)
         </th>
+        <th>
+            Hình ảnh
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaNhanVien)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HoTen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ChucVu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Khoa1.MaKhoa)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChucVu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Khoa1.MaKhoa)
+            </td>
+            <td>
+                <img src="@Url.Action("Picture", "BaiViets", new { item.ID })" width="50px" height="50px" />
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>

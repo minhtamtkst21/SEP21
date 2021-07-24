@@ -23,10 +23,10 @@ namespace SEP21.Models
         }
     
         public int ID { get; set; }
-        public string MaNhanVien { get; set; }
         public string HoTen { get; set; }
         public string ChucVu { get; set; }
         public Nullable<int> Khoa { get; set; }
+        public string Mail { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BaiViet> BaiViets { get; set; }

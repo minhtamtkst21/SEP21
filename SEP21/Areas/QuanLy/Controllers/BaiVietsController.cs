@@ -67,7 +67,7 @@ namespace SEP21.Areas.QuanLy.Controllers
         public ActionResult Create()
         {
             ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet");
-            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien");
+            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "HoTen");
             return View();
         }
 
@@ -116,7 +116,7 @@ namespace SEP21.Areas.QuanLy.Controllers
                 return HttpNotFound();
             }
             ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", baiViet.LoaiBaiViet);
-            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", baiViet.NguoiDang);
+            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "HoTen", baiViet.NguoiDang);
             return View(baiViet);
         }
 
@@ -148,7 +148,7 @@ namespace SEP21.Areas.QuanLy.Controllers
             }
             else SetAlert("Bạn chỉnh sửa không thành công", "danger");
             ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", baiViet.LoaiBaiViet);
-            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", baiViet.NguoiDang);
+            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "HoTen", baiViet.NguoiDang);
             return View(baiViet);
         }
 

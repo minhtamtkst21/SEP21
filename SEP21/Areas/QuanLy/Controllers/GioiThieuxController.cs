@@ -46,7 +46,7 @@ namespace SEP21.Areas.QuanLy.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SuMang,TamNhin,TrietLyGiaoDuc,ID")] GioiThieu gioiThieu)
+        public ActionResult Create(GioiThieu gioiThieu)
         {
             if (ModelState.IsValid)
             {
@@ -77,8 +77,9 @@ namespace SEP21.Areas.QuanLy.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SuMang,TamNhin,TrietLyGiaoDuc,ID")] GioiThieu gioiThieu)
+        public ActionResult Edit(GioiThieu gioiThieu)
         {
             if (ModelState.IsValid)
             {

@@ -19,7 +19,6 @@ namespace SEP21.Models
         {
             this.DangKyHoatDongs = new HashSet<DangKyHoatDong>();
             this.DatThanhTiches = new HashSet<DatThanhTich>();
-            this.DoanHoiKhoas = new HashSet<DoanHoiKhoa>();
         }
     
         public int ID { get; set; }
@@ -34,8 +33,6 @@ namespace SEP21.Models
         public virtual ICollection<DangKyHoatDong> DangKyHoatDongs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DatThanhTich> DatThanhTiches { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DoanHoiKhoa> DoanHoiKhoas { get; set; }
         public virtual Khoa Khoa { get; set; }
     }
 }

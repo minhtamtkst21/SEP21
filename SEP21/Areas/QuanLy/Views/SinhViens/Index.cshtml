@@ -6,19 +6,22 @@
 }
 <h1 class="page-header">Thông tin sinh viên</h1>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Tạo mới", "Create")
 </p>
 @using (Html.BeginForm("Upload", "Sinhviens", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <table>
         <tr>
-            <td>File: </td>
+            <td>
+                File:
+                @Html.ActionLink("Template", "ExportExcel") || 
+            </td>
             <td>
                 <input type="file"
                        name="UploadedFile" />
             </td>
         </tr>
-        <tr>
+        <tr><td></td>
             <td colspan="2">
                 <input type="submit"
                        name="Submit"

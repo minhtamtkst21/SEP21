@@ -32,6 +32,7 @@ namespace SEP21.Controllers
                     Session["UserID"] = sinhvien.ID;
                     Session["Password"] = sinhvien.password;
                     Session["MSSV"] = sinhvien.username.Substring(sinhvien.username.Length - 10, 10);
+                    SetAlert("Bạn đã đăng nhập thành công", "success");
                     return RedirectToAction("Details", new { id });
                 }
                 else
@@ -68,10 +69,11 @@ namespace SEP21.Controllers
         {
             sv.HoatDong = id;
             var hd_mssv = username.ToString().Substring(username.Length - 10, 10) + "." + id.ToString();
-            var hoatdong = db.DangKyHoatDongs.FirstOrDefault(x => x.hd_mssv == hd_mssv);
-            DangKyHoatDong dangkyhoatdong = db.DangKyHoatDongs.Find(hoatdong.ID);
-            db.DangKyHoatDongs.Remove(dangkyhoatdong);
+            sv = db.DangKyHoatDongs.FirstOrDefault(x => x.hd_mssv == hd_mssv);
+            sv = db.DangKyHoatDongs.Find(sv.ID);
+            db.DangKyHoatDongs.Remove(sv);
             db.SaveChanges();
+            SetAlert("Bạn đã hủy đăng kí thành công", "success");
             return RedirectToAction("Details", new { id });
         }
         public void SetAlert(string message, string type)
