@@ -2,15 +2,30 @@
 @{
     ViewBag.Title = "Index";
 }
+<main id="main">
 @foreach (var item in Model)
 {
-    <section id="services" class="services section-bg">
-        <div class="container aos-init aos-animate" data-aos="fade-up">
-
-            <div class="section-title">
-                <h2 style="font-family:Arial">Về khoa CNTT</h2>
-                <h3 style="font-family:Arial">@Html.Raw(item.NoiDung)</h3>
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+            <ol>
+                <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li>Giới thiệu về khoa</li>
+            </ol>
+            <h2 style="font-family:Arial">Giới thiệu về khoa</h2>
+        </div>
+    </section><!-- End Breadcrumbs -->
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-12">
+                    <div class="portfolio-info">
+                        @Html.Raw(item.NoiDung)
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 }
+</main>
