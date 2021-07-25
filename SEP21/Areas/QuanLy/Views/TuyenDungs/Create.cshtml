@@ -3,14 +3,44 @@
 @{
     ViewBag.Title = "Create";
 }
+@section scripts{
+    <script src="~/Plugin/ckfinder/ckfinder.js"></script>
+    <script src="~/Plugin/ckeditor/ckeditor.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $('#btn-img-select').click(function (e) {
+                e.preventDefault();
+                var finder = new CKFinder();
+                finder.selectActionFunction = function (url) {
+                    $("#imgvalue").val(url);
+                };
+                finder.popup();
+            });
+            CKEDITOR.replace('TieuDe');
+        });
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function readPicture(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('img#Picture').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}
 
 <h2>Tạo Mới</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "TuyenDungs", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Tuyển dụng</h4>
         <hr />
@@ -42,8 +72,9 @@
         <div class="form-group">
             @Html.Label("Chi tiết", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TieuDe, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.TieuDe, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
+                <script>CKEDITOR.replace("TieuDe")</script>
             </div>
         </div>
 
@@ -59,6 +90,3 @@
     @Html.ActionLink("Trở lại", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
