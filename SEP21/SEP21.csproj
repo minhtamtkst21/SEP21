@@ -1926,6 +1926,7 @@
     <Content Include="Areas\QuanLy\Views\TuyenDungs\Details.cshtml" />
     <Content Include="Areas\QuanLy\Views\TuyenDungs\Edit.cshtml" />
     <Content Include="Areas\QuanLy\Views\TuyenDungs\Index.cshtml" />
+    <Content Include="images\CanBoKhoa\3" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -2011,7 +2012,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\QuanLy\Data\" />
     <Folder Include="images\BaiViet\" />
-    <Folder Include="images\CanBoKhoa\" />
     <Folder Include="images\DoanHoiKhoa\" />
     <Folder Include="images\NCKH\" />
     <Folder Include="images\ThanhTich\" />
