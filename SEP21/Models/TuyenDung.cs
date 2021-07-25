@@ -18,6 +18,6 @@ namespace SEP21.Models
         public string ViTri { get; set; }
         public Nullable<int> SoLuong { get; set; }
         public string YeuCau { get; set; }
-        public string TieuDe { get; set; }
+        public string ChiTiet { get; set; }
     }
 }

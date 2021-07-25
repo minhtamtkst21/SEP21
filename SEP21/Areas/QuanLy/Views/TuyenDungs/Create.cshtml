@@ -16,7 +16,7 @@
                 };
                 finder.popup();
             });
-            CKEDITOR.replace('TieuDe');
+            CKEDITOR.replace('ChiTiet');
         });
     </script>
     @Scripts.Render("~/bundles/jqueryval")
@@ -72,9 +72,9 @@
         <div class="form-group">
             @Html.Label("Chi tiết", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.TieuDe, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
-                <script>CKEDITOR.replace("TieuDe")</script>
+                @Html.TextAreaFor(model => model.ChiTiet, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ChiTiet, "", new { @class = "text-danger" })
+                <script>CKEDITOR.replace("ChiTiet")</script>
             </div>
         </div>
 

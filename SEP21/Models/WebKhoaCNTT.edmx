@@ -143,10 +143,10 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ViTri" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ViTri" Type="nvarchar(max)" />
           <Property Name="SoLuong" Type="int" />
           <Property Name="YeuCau" Type="nvarchar(max)" />
-          <Property Name="TieuDe" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ChiTiet" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_BaiViet_LoaiBaiViet">
           <End Role="LoaiBaiViet" Type="Self.LoaiBaiViet" Multiplicity="1" />
@@ -401,12 +401,12 @@
             <End Role="NhanVienKhoa" EntitySet="NhanVienKhoas" />
             <End Role="NguoiThucHienNCKH" EntitySet="NguoiThucHienNCKHs" />
           </AssociationSet>
-          <EntitySet Name="TuyenDungs" EntityType="SEP24Team5Model.TuyenDung" />
           <EntitySet Name="LoaiBaiViets" EntityType="SEP24Team5Model.LoaiBaiViet" />
           <AssociationSet Name="FK_BaiViet_LoaiBaiViet" Association="SEP24Team5Model.FK_BaiViet_LoaiBaiViet">
             <End Role="LoaiBaiViet" EntitySet="LoaiBaiViets" />
             <End Role="BaiViet" EntitySet="BaiViets" />
           </AssociationSet>
+          <EntitySet Name="TuyenDungs" EntityType="SEP24Team5Model.TuyenDung" />
         </EntityContainer>
         <EntityType Name="BaiViet">
           <Key>
@@ -675,16 +675,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="TuyenDung">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ViTri" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="SoLuong" Type="Int32" />
-          <Property Name="YeuCau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TieuDe" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="LoaiBaiViet">
           <Key>
             <PropertyRef Name="ID" />
@@ -705,6 +695,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TuyenDung">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ViTri" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SoLuong" Type="Int32" />
+          <Property Name="YeuCau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ChiTiet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -851,21 +851,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TuyenDungs">
-            <EntityTypeMapping TypeName="SEP24Team5Model.TuyenDung">
-              <MappingFragment StoreEntitySet="TuyenDung">
-                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
-                <ScalarProperty Name="YeuCau" ColumnName="YeuCau" />
-                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
-                <ScalarProperty Name="ViTri" ColumnName="ViTri" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="LoaiBaiViets">
             <EntityTypeMapping TypeName="SEP24Team5Model.LoaiBaiViet">
               <MappingFragment StoreEntitySet="LoaiBaiViet">
                 <ScalarProperty Name="TenLoaiBaiViet" ColumnName="TenLoaiBaiViet" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TuyenDungs">
+            <EntityTypeMapping TypeName="SEP24Team5Model.TuyenDung">
+              <MappingFragment StoreEntitySet="TuyenDung">
+                <ScalarProperty Name="ChiTiet" ColumnName="ChiTiet" />
+                <ScalarProperty Name="YeuCau" ColumnName="YeuCau" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="ViTri" ColumnName="ViTri" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

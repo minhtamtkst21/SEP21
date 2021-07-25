@@ -29,9 +29,9 @@
         <AssociationConnector Association="SEP24Team5Model.FK_DatThanhTich_NhanVienKhoa" />
         <AssociationConnector Association="SEP24Team5Model.FK_NhanVienKhoa_Khoa" />
         <AssociationConnector Association="SEP24Team5Model.FK_NguoiThucHienNCKH_NhanVienKhoa" />
-        <EntityTypeShape EntityType="SEP24Team5Model.TuyenDung" Width="1.5" PointX="5.375" PointY="11.75" />
         <EntityTypeShape EntityType="SEP24Team5Model.LoaiBaiViet" Width="1.5" PointX="0.75" PointY="0.875" />
         <AssociationConnector Association="SEP24Team5Model.FK_BaiViet_LoaiBaiViet" />
+        <EntityTypeShape EntityType="SEP24Team5Model.TuyenDung" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

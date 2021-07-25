@@ -39,7 +39,7 @@ namespace SEP21.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<ThanhTich> ThanhTiches { get; set; }
         public virtual DbSet<NhanVienKhoa> NhanVienKhoas { get; set; }
-        public virtual DbSet<TuyenDung> TuyenDungs { get; set; }
         public virtual DbSet<LoaiBaiViet> LoaiBaiViets { get; set; }
+        public virtual DbSet<TuyenDung> TuyenDungs { get; set; }
     }
 }
