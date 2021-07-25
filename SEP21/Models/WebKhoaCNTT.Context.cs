@@ -31,7 +31,6 @@ namespace SEP21.Models
         public virtual DbSet<DatThanhTich> DatThanhTiches { get; set; }
         public virtual DbSet<GioiThieu> GioiThieux { get; set; }
         public virtual DbSet<Khoa> Khoas { get; set; }
-        public virtual DbSet<LoaiBaiViet> LoaiBaiViets { get; set; }
         public virtual DbSet<Login> Logins { get; set; }
         public virtual DbSet<LoginAdmin> LoginAdmins { get; set; }
         public virtual DbSet<NCKH> NCKHs { get; set; }
@@ -41,5 +40,6 @@ namespace SEP21.Models
         public virtual DbSet<ThanhTich> ThanhTiches { get; set; }
         public virtual DbSet<NhanVienKhoa> NhanVienKhoas { get; set; }
         public virtual DbSet<TuyenDung> TuyenDungs { get; set; }
+        public virtual DbSet<LoaiBaiViet> LoaiBaiViets { get; set; }
     }
 }

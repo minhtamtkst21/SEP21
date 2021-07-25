@@ -46,7 +46,7 @@ namespace SEP21.Areas.QuanLy.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,TenLoaiBaiViet")] LoaiBaiViet loaiBaiViet)
+        public ActionResult Create(LoaiBaiViet loaiBaiViet)
         {
             if (ModelState.IsValid)
             {

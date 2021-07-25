@@ -1998,16 +1998,14 @@
     <Content Include="Views\DangKyHoatDongs\Details.cshtml" />
     <Content Include="Views\DangKyHoatDongs\Edit.cshtml" />
     <Content Include="Views\DangKyHoatDongs\Index.cshtml" />
-    <Content Include="Views\DaoTao\Create.cshtml" />
-    <Content Include="Views\DaoTao\Delete.cshtml" />
-    <Content Include="Views\DaoTao\Details.cshtml" />
-    <Content Include="Views\DaoTao\Edit.cshtml" />
     <Content Include="Views\DaoTao\Index.cshtml" />
     <Content Include="Views\TuyenDung\Create.cshtml" />
     <Content Include="Views\TuyenDung\Delete.cshtml" />
     <Content Include="Views\TuyenDung\Details.cshtml" />
     <Content Include="Views\TuyenDung\Edit.cshtml" />
     <Content Include="Views\TuyenDung\Index.cshtml" />
+    <Content Include="Views\BaiViet\Login.cshtml" />
+    <Content Include="Views\BaiViet\ChangePass.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

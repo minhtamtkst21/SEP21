@@ -353,7 +353,6 @@
           <EntitySet Name="DatThanhTiches" EntityType="SEP24Team5Model.DatThanhTich" />
           <EntitySet Name="GioiThieux" EntityType="SEP24Team5Model.GioiThieu" />
           <EntitySet Name="Khoas" EntityType="SEP24Team5Model.Khoa" />
-          <EntitySet Name="LoaiBaiViets" EntityType="SEP24Team5Model.LoaiBaiViet" />
           <EntitySet Name="Logins" EntityType="SEP24Team5Model.Login" />
           <EntitySet Name="LoginAdmins" EntityType="SEP24Team5Model.LoginAdmin" />
           <EntitySet Name="NCKHs" EntityType="SEP24Team5Model.NCKH" />
@@ -361,10 +360,6 @@
           <EntitySet Name="SinhViens" EntityType="SEP24Team5Model.SinhVien" />
           <EntitySet Name="sysdiagrams" EntityType="SEP24Team5Model.sysdiagram" />
           <EntitySet Name="ThanhTiches" EntityType="SEP24Team5Model.ThanhTich" />
-          <AssociationSet Name="FK_BaiViet_LoaiBaiViet" Association="SEP24Team5Model.FK_BaiViet_LoaiBaiViet">
-            <End Role="LoaiBaiViet" EntitySet="LoaiBaiViets" />
-            <End Role="BaiViet" EntitySet="BaiViets" />
-          </AssociationSet>
           <AssociationSet Name="FK_DangKyHoatDong_BaiViet" Association="SEP24Team5Model.FK_DangKyHoatDong_BaiViet">
             <End Role="BaiViet" EntitySet="BaiViets" />
             <End Role="DangKyHoatDong" EntitySet="DangKyHoatDongs" />
@@ -407,6 +402,11 @@
             <End Role="NguoiThucHienNCKH" EntitySet="NguoiThucHienNCKHs" />
           </AssociationSet>
           <EntitySet Name="TuyenDungs" EntityType="SEP24Team5Model.TuyenDung" />
+          <EntitySet Name="LoaiBaiViets" EntityType="SEP24Team5Model.LoaiBaiViet" />
+          <AssociationSet Name="FK_BaiViet_LoaiBaiViet" Association="SEP24Team5Model.FK_BaiViet_LoaiBaiViet">
+            <End Role="LoaiBaiViet" EntitySet="LoaiBaiViets" />
+            <End Role="BaiViet" EntitySet="BaiViets" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="BaiViet">
           <Key>
@@ -419,9 +419,9 @@
           <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="LoaiBaiViet" Type="Int32" Nullable="false" />
           <Property Name="picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="LoaiBaiViet1" Relationship="SEP24Team5Model.FK_BaiViet_LoaiBaiViet" FromRole="BaiViet" ToRole="LoaiBaiViet" />
           <NavigationProperty Name="DangKyHoatDongs" Relationship="SEP24Team5Model.FK_DangKyHoatDong_BaiViet" FromRole="BaiViet" ToRole="DangKyHoatDong" />
           <NavigationProperty Name="NhanVienKhoa" Relationship="SEP24Team5Model.FK_BaiViet_NhanVienKhoa" FromRole="BaiViet" ToRole="NhanVienKhoa" />
+          <NavigationProperty Name="LoaiBaiViet1" Relationship="SEP24Team5Model.FK_BaiViet_LoaiBaiViet" FromRole="BaiViet" ToRole="LoaiBaiViet" />
         </EntityType>
         <EntityType Name="DangKyHoatDong">
           <Key>
@@ -470,14 +470,6 @@
           <Property Name="TenKhoa" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SinhViens" Relationship="SEP24Team5Model.FK_SinhVien_Khoa" FromRole="Khoa" ToRole="SinhVien" />
           <NavigationProperty Name="NhanVienKhoas" Relationship="SEP24Team5Model.FK_NhanVienKhoa_Khoa" FromRole="Khoa" ToRole="NhanVienKhoa" />
-        </EntityType>
-        <EntityType Name="LoaiBaiViet">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenLoaiBaiViet" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="BaiViets" Relationship="SEP24Team5Model.FK_BaiViet_LoaiBaiViet" FromRole="LoaiBaiViet" ToRole="BaiViet" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -549,18 +541,6 @@
           <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DatThanhTiches" Relationship="SEP24Team5Model.FK_DatThanhTich_ThanhTich" FromRole="ThanhTich" ToRole="DatThanhTich" />
         </EntityType>
-        <Association Name="FK_BaiViet_LoaiBaiViet">
-          <End Type="SEP24Team5Model.LoaiBaiViet" Role="LoaiBaiViet" Multiplicity="1" />
-          <End Type="SEP24Team5Model.BaiViet" Role="BaiViet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LoaiBaiViet">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="BaiViet">
-              <PropertyRef Name="LoaiBaiViet" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_DangKyHoatDong_BaiViet">
           <End Type="SEP24Team5Model.BaiViet" Role="BaiViet" Multiplicity="1" />
           <End Type="SEP24Team5Model.DangKyHoatDong" Role="DangKyHoatDong" Multiplicity="*" />
@@ -705,6 +685,26 @@
           <Property Name="YeuCau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TieuDe" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="LoaiBaiViet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenLoaiBaiViet" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BaiViets" Relationship="SEP24Team5Model.FK_BaiViet_LoaiBaiViet" FromRole="LoaiBaiViet" ToRole="BaiViet" />
+        </EntityType>
+        <Association Name="FK_BaiViet_LoaiBaiViet">
+          <End Type="SEP24Team5Model.LoaiBaiViet" Role="LoaiBaiViet" Multiplicity="1" />
+          <End Type="SEP24Team5Model.BaiViet" Role="BaiViet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiBaiViet">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BaiViet">
+              <PropertyRef Name="LoaiBaiViet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -766,14 +766,6 @@
               <MappingFragment StoreEntitySet="Khoa">
                 <ScalarProperty Name="TenKhoa" ColumnName="TenKhoa" />
                 <ScalarProperty Name="MaKhoa" ColumnName="MaKhoa" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LoaiBaiViets">
-            <EntityTypeMapping TypeName="SEP24Team5Model.LoaiBaiViet">
-              <MappingFragment StoreEntitySet="LoaiBaiViet">
-                <ScalarProperty Name="TenLoaiBaiViet" ColumnName="TenLoaiBaiViet" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -866,6 +858,14 @@
                 <ScalarProperty Name="YeuCau" ColumnName="YeuCau" />
                 <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
                 <ScalarProperty Name="ViTri" ColumnName="ViTri" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoaiBaiViets">
+            <EntityTypeMapping TypeName="SEP24Team5Model.LoaiBaiViet">
+              <MappingFragment StoreEntitySet="LoaiBaiViet">
+                <ScalarProperty Name="TenLoaiBaiViet" ColumnName="TenLoaiBaiViet" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

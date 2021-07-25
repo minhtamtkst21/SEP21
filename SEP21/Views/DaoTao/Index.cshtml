@@ -3,12 +3,12 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~//Views/Shared/_Layout.cshtml";
-}
+}  
+<h1></h1> <br/>
 @foreach (var item in Model)
 {
     <section id="services" class="services section-bg">
         <div class="container aos-init aos-animate" data-aos="fade-up">
-
             <div class="section-title">
                 <h2 style="font-family:Arial">@item.TieuDe</h2>
                 <h3 style="font-family:Arial">@Html.Raw(item.NoiDung)</h3>

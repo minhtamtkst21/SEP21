@@ -46,6 +46,65 @@ namespace SEP21.Controllers
             }
             return RedirectToAction("Details", new { id });
         }
+        public ActionResult Login2(string username, string password)
+        {
+            var sinhvien = db.Logins.FirstOrDefault(x => x.username == username);
+            if (sinhvien != null)
+            {
+                if (sinhvien.password.Equals(password))
+                {
+                    Session["FullName"] = sinhvien.username;
+                    Session["UserID"] = sinhvien.ID;
+                    Session["Password"] = sinhvien.password;
+                    Session["MSSV"] = sinhvien.username.Substring(sinhvien.username.Length - 10, 10);
+                    SetAlert("Bạn đã đăng nhập thành công", "success");
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    SetAlert("Vui lòng nhập lại mật khẩu", "warning");
+                }
+            }
+            else
+            {
+                SetAlert("Bạn đã nhập sai tài khoản hoặc mật khẩu, vui lòng nhập lại!", "warning");
+            }
+            return RedirectToAction("Login");
+        }
+        public ActionResult ChangePass()
+        {
+            return View();
+        }
+        public ActionResult ChangePass2(string username, string oldpassword, string newpassword, string confirmpassword)
+        {
+            var sinhvien = db.Logins.FirstOrDefault(x => x.username == username);
+            if (sinhvien != null)
+            {
+                if (sinhvien.password.Equals(oldpassword))
+                { 
+                    if (newpassword == confirmpassword)
+                    {
+                        sinhvien.password = newpassword;
+                        SetAlert("Đổi mật khẩu thành công", "success");
+                        db.SaveChanges();
+                        return RedirectToAction("Index","Home");
+                    }
+                    else
+                    {
+                        SetAlert("Mật khẩu xác nhận không trùng khớp", "warning");
+                        return RedirectToAction("ChangePass");
+                    }
+                }
+                SetAlert("Vui lòng nhập lại mật khẩu", "warning");
+                return RedirectToAction("ChangePass");
+            }
+            return RedirectToAction("ChangePass");
+        }
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
         public ActionResult Search(string keyword)
         {
             var model = db.BaiViets.ToList();
@@ -91,6 +150,10 @@ namespace SEP21.Controllers
             {
                 TempData["AlertType"] = "alert-danger";
             }
+        }
+        public ActionResult Login()
+        {
+            return View();
         }
         public ActionResult Picture(int id)
         {

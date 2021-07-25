@@ -34,7 +34,8 @@ namespace SEP21.Areas.QuanLy.Controllers
             Sheet.Cells["C1"].Value = "Mã khoa";
             Sheet.Cells["D1"].Value = "Niên khóa";
             Sheet.Cells["E1"].Value = "Số điện thoại";
-
+            Sheet.Cells["C2"].Value = "1";
+            Sheet.Cells["G2"].Value = "Xem mã khoa ở Sheet_Khoa";
             ExcelWorksheet Sheet2 = ep.Workbook.Worksheets.Add("Khoa");
             Sheet2.Cells["A1"].Value = "Tên Khoa";
             Sheet2.Cells["B1"].Value = "Mã Khoa";
@@ -88,6 +89,10 @@ namespace SEP21.Areas.QuanLy.Controllers
             foreach (var item in usersList)
             {
                 db.SinhViens.Add(item);
+                var sv = new Login();
+                sv.username = item.mail.Substring(0, item.mail.Length - 14);
+                sv.password = "VLU" + sv.username.Substring(sv.username.Length - 10, 10);
+                db.Logins.Add(sv);
             }
             db.SaveChanges();
             return Redirect("Index");
