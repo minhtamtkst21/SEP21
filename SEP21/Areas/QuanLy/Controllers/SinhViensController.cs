@@ -44,7 +44,7 @@ namespace SEP21.Areas.QuanLy.Controllers
             foreach (var item in list)
             {
                 Sheet2.Cells[string.Format("A{0}", row)].Value = item.TenKhoa;
-                Sheet2.Cells[string.Format("B{0}", row)].Value = item.MaKhoa;
+                Sheet2.Cells[string.Format("B{0}", row)].Value = item.ID;
                 row++;
             }
 
