@@ -1973,7 +1973,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\BaiViet\Create.cshtml" />
     <Content Include="Views\BaiViet\Delete.cshtml" />
     <Content Include="Views\BaiViet\Details.cshtml" />
     <Content Include="Views\BaiViet\Edit.cshtml" />
