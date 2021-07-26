@@ -34,6 +34,22 @@ namespace SEP21.Areas.QuanLy.Controllers
             }
             return View(gioiThieu);
         }
+        public void SetAlert(string message, string type)
+        {
+            TempData["AlertMessage"] = message;
+            if (type == "success")
+            {
+                TempData["AlertType"] = "alert-success";
+            }
+            if (type == "warning")
+            {
+                TempData["AlertType"] = "alert-warning";
+            }
+            if (type == "error")
+            {
+                TempData["AlertType"] = "alert-danger";
+            }
+        }
 
         // GET: QuanLy/GioiThieux/Create
         public ActionResult Create()
@@ -85,8 +101,10 @@ namespace SEP21.Areas.QuanLy.Controllers
             {
                 db.Entry(gioiThieu).State = EntityState.Modified;
                 db.SaveChanges();
+                SetAlert("Bạn đã chỉnh sửa thành công", "success");
                 return RedirectToAction("Index");
             }
+            else SetAlert("Bạn chỉnh sửa không thành công", "danger");
             return View(gioiThieu);
         }
 

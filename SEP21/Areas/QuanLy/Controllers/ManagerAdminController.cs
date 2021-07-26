@@ -27,7 +27,7 @@ namespace SEP21.Areas.QuanLy.Controllers
                 {
                     Session["FullName"] = admin.username;
                     Session["UserID"] = admin.ID;
-                    return RedirectToAction("Index", "AdminHome");
+                    return RedirectToAction("Index2", "BaiViets");
                 }
             }
             else

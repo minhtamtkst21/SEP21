@@ -100,7 +100,24 @@ namespace SEP21.Areas.QuanLy.Controllers
                 db.Logins.Add(sv);
             }
             db.SaveChanges();
+            SetAlert("Bạn đã tạo thành công", "success");
             return Redirect("Index");
+        }
+        public void SetAlert(string message, string type)
+        {
+            TempData["AlertMessage"] = message;
+            if (type == "success")
+            {
+                TempData["AlertType"] = "alert-success";
+            }
+            if (type == "warning")
+            {
+                TempData["AlertType"] = "alert-warning";
+            }
+            if (type == "error")
+            {
+                TempData["AlertType"] = "alert-danger";
+            }
         }
         // GET: QuanLy/SinhViens1/Details/5
         public ActionResult Details(int? id)
