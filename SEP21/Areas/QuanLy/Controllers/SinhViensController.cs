@@ -34,7 +34,9 @@ namespace SEP21.Areas.QuanLy.Controllers
             Sheet.Cells["C1"].Value = "Mã khoa";
             Sheet.Cells["D1"].Value = "Niên khóa";
             Sheet.Cells["E1"].Value = "Số điện thoại";
+            Sheet.Cells["F1"].Value = "Mail";
             Sheet.Cells["C2"].Value = "1";
+            Sheet.Cells["D2"].Value = "K24";
             Sheet.Cells["G2"].Value = "Xem mã khoa ở Sheet_Khoa";
             ExcelWorksheet Sheet2 = ep.Workbook.Worksheets.Add("Khoa");
             Sheet2.Cells["A1"].Value = "Tên Khoa";
@@ -79,8 +81,11 @@ namespace SEP21.Areas.QuanLy.Controllers
                         {
                             var user = new SinhVien();
                             user.MSSV = (workSheet.Cells[rowIterator, 1].Value).ToString();
-                            user.HoTen = workSheet.Cells[rowIterator, 2].Value.ToString();
-                            user.mail = (workSheet.Cells[rowIterator, 3].Value).ToString();
+                            user.HoTen = (workSheet.Cells[rowIterator, 2].Value).ToString();
+                            user.TenKhoa = int.Parse(workSheet.Cells[rowIterator, 3].Value.ToString());
+                            user.NienKhoa = workSheet.Cells[rowIterator, 4].Value.ToString();
+                            user.SoDienThoai = int.Parse(workSheet.Cells[rowIterator, 5].Value.ToString());
+                            user.mail = (workSheet.Cells[rowIterator, 6].Value).ToString();
                             usersList.Add(user);
                         }
                     }
