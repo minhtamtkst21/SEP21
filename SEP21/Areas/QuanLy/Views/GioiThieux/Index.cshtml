@@ -12,5 +12,5 @@
         @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = item.ID })
     </p>
     <h3>Nội dung</h3>
-    <h4>@item.NoiDung</h4>
+    <h4>@Html.Raw(item.NoiDung)</h4>
 }

@@ -84,6 +84,7 @@ namespace SEP21.Areas.QuanLy.Controllers
                 {
                     using (var scope = new TransactionScope())
                     {
+                        BaiViet.NgayDangBai = DateTime.Now;
                         db.BaiViets.Add(BaiViet);
                         db.SaveChanges();
 

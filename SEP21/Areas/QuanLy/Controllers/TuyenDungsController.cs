@@ -48,7 +48,7 @@ namespace SEP21.Areas.QuanLy.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ViTri,SoLuong,YeuCau,TieuDe,LoaiTuyenDung")] TuyenDung tuyenDung)
+        public ActionResult Create(TuyenDung tuyenDung)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace SEP21.Areas.QuanLy.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ViTri,SoLuong,YeuCau,TieuDe,LoaiTuyenDung")] TuyenDung tuyenDung)
+        public ActionResult Edit(TuyenDung tuyenDung)
         {
             if (ModelState.IsValid)
             {
