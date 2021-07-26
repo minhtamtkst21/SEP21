@@ -1977,7 +1977,6 @@
     <Content Include="Views\BaiViet\Details.cshtml" />
     <Content Include="Views\BaiViet\Edit.cshtml" />
     <Content Include="Views\BaiViet\Index.cshtml" />
-    <Content Include="Views\SinhViens\Create.cshtml" />
     <Content Include="Views\SinhViens\Delete.cshtml" />
     <Content Include="Views\SinhViens\Details.cshtml" />
     <Content Include="Views\SinhViens\Edit.cshtml" />
@@ -1999,10 +1998,6 @@
     <Content Include="Views\DangKyHoatDongs\Edit.cshtml" />
     <Content Include="Views\DangKyHoatDongs\Index.cshtml" />
     <Content Include="Views\DaoTao\Index.cshtml" />
-    <Content Include="Views\TuyenDung\Create.cshtml" />
-    <Content Include="Views\TuyenDung\Delete.cshtml" />
-    <Content Include="Views\TuyenDung\Details.cshtml" />
-    <Content Include="Views\TuyenDung\Edit.cshtml" />
     <Content Include="Views\TuyenDung\Index.cshtml" />
     <Content Include="Views\BaiViet\Login.cshtml" />
     <Content Include="Views\BaiViet\ChangePass.cshtml" />
