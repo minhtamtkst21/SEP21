@@ -4,10 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Chi tiết thông tin tuyển dụng</h2>
 
 <div>
-    <h4>TuyenDung</h4>
+    <h4>Tuyển dụng</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -39,11 +39,11 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TieuDe)
+            @Html.DisplayFor(model => model.ChiTiet)
         </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Trở lại", "Index")
 </p>
