@@ -5,9 +5,7 @@
     Layout = "~/Areas/QuanLy/Views/Shared/_AdminLayout.cshtml";
 }
 <h1 class="page-header">Thông tin sinh viên</h1>
-<p>
-    @Html.ActionLink("Tạo Mới", "Create")
-</p>
+
 @using (Html.BeginForm("Upload", "Sinhviens", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <table>

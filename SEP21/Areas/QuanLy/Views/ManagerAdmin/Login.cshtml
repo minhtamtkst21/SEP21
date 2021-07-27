@@ -46,6 +46,12 @@
                         <form role="form" action="@Url.Action("Login")" method="post">
                             <fieldset>
                                 <div class="form-group">
+                                    @if (TempData["AlertMessage"] != null)
+                                    {
+                                        <div id="alertBox" class="alert @TempData["AlertType"] hide">
+                                            @TempData["AlertMessage"]
+                                        </div>
+                                    }
                                     <input class="form-control" placeholder="Tài Khoản" name="username" type="text" value="">
                                 </div>
                                 <div class="form-group">
@@ -71,6 +77,9 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="@Url.Content("~/js/startmin.js")"></script>
-
+    <script>
+        $('#alertBox').removeClass('hide');
+        $('#alertBox').delay(1000).slideUp(500);
+    </script>
 </body>
 </html>

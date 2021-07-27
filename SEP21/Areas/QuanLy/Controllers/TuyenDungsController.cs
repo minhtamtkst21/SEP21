@@ -35,13 +35,28 @@ namespace SEP21.Areas.QuanLy.Controllers
             }
             return View(tuyenDung);
         }
+        public void SetAlert(string message, string type)
+        {
+            TempData["AlertMessage"] = message;
+            if (type == "success")
+            {
+                TempData["AlertType"] = "alert-success";
+            }
+            if (type == "warning")
+            {
+                TempData["AlertType"] = "alert-warning";
+            }
+            if (type == "error")
+            {
+                TempData["AlertType"] = "alert-danger";
+            }
+        }
 
         // GET: QuanLy/TuyenDungs/Create
         public ActionResult Create()
         {
             return View();
         }
-
         // POST: QuanLy/TuyenDungs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -54,11 +69,15 @@ namespace SEP21.Areas.QuanLy.Controllers
             {
                 db.TuyenDungs.Add(tuyenDung);
                 db.SaveChanges();
+                SetAlert("Bạn đã tạo thành công", "success");
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                SetAlert("Bạn đã tạo không thành công", "success");
             }
             return View(tuyenDung);
         }
-
         // GET: QuanLy/TuyenDungs/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -86,7 +105,12 @@ namespace SEP21.Areas.QuanLy.Controllers
             {
                 db.Entry(tuyenDung).State = EntityState.Modified;
                 db.SaveChanges();
+                SetAlert("Bạn đã chỉnh sửa thành công", "success");
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                SetAlert("Bạn đã chỉnh sửa không thành công", "success");
             }
             return View(tuyenDung);
         }
@@ -114,6 +138,7 @@ namespace SEP21.Areas.QuanLy.Controllers
             TuyenDung tuyenDung = db.TuyenDungs.Find(id);
             db.TuyenDungs.Remove(tuyenDung);
             db.SaveChanges();
+            SetAlert("Bạn đã xóa thành công", "success");
             return RedirectToAction("Index");
         }
 

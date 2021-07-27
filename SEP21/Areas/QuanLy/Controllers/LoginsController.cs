@@ -34,6 +34,22 @@ namespace SEP21.Areas.QuanLy.Controllers
             }
             return View(login);
         }
+        public void SetAlert(string message, string type)
+        {
+            TempData["AlertMessage"] = message;
+            if (type == "success")
+            {
+                TempData["AlertType"] = "alert-success";
+            }
+            if (type == "warning")
+            {
+                TempData["AlertType"] = "alert-warning";
+            }
+            if (type == "error")
+            {
+                TempData["AlertType"] = "alert-danger";
+            }
+        }
 
         // GET: QuanLy/Logins/Create
         public ActionResult Create()
@@ -112,6 +128,7 @@ namespace SEP21.Areas.QuanLy.Controllers
             Login login = db.Logins.Find(id);
             db.Logins.Remove(login);
             db.SaveChanges();
+            SetAlert("Bạn đã xóa thành công", "success");
             return RedirectToAction("Index");
         }
 

@@ -16,6 +16,22 @@ namespace SEP21.Areas.QuanLy.Controllers
             ViewBag.Message = "Login";
             return View();
         }
+        public void SetAlert(string message, string type)
+        {
+            TempData["AlertMessage"] = message;
+            if (type == "success")
+            {
+                TempData["AlertType"] = "alert-success";
+            }
+            if (type == "warning")
+            {
+                TempData["AlertType"] = "alert-warning";
+            }
+            if (type == "error")
+            {
+                TempData["AlertType"] = "alert-danger";
+            }
+        }
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
@@ -27,12 +43,17 @@ namespace SEP21.Areas.QuanLy.Controllers
                 {
                     Session["FullName"] = admin.username;
                     Session["UserID"] = admin.ID;
+                    SetAlert("Bạn đã đăng nhập thành công", "success");
                     return RedirectToAction("Index2", "BaiViets");
+                }
+                else
+                {
+                   SetAlert("Bạn đã nhập sai tài khoản hoặc mật khẩu", "danger");
                 }
             }
             else
             {
-                ViewBag.Message = "tài khoản không tồn tại";
+                SetAlert("Bạn đã nhập sai tài khoản hoặc mật khẩu", "danger");
             }
             return View();
         }

@@ -40,19 +40,41 @@ namespace SEP21.Areas.QuanLy.Controllers
         {
             return View();
         }
+        public void SetAlert(string message, string type)
+        {
+            TempData["AlertMessage"] = message;
+            if (type == "success")
+            {
+                TempData["AlertType"] = "alert-success";
+            }
+            if (type == "warning")
+            {
+                TempData["AlertType"] = "alert-warning";
+            }
+            if (type == "error")
+            {
+                TempData["AlertType"] = "alert-danger";
+            }
+        }
 
         // POST: QuanLy/LoginAdmins/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,username,password")] LoginAdmin loginAdmin)
+        public ActionResult Create(LoginAdmin loginAdmin)
         {
-            if (ModelState.IsValid)
+            if (loginAdmin.username !=null && loginAdmin.password !=null)
             {
+                
                 db.LoginAdmins.Add(loginAdmin);
                 db.SaveChanges();
+                SetAlert("Bạn đã tạo thành công", "success");
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                SetAlert("Bạn đã tạo không thành công", "success");
             }
 
             return View(loginAdmin);
@@ -78,13 +100,18 @@ namespace SEP21.Areas.QuanLy.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,username,password")] LoginAdmin loginAdmin)
+        public ActionResult Edit(LoginAdmin loginAdmin)
         {
-            if (ModelState.IsValid)
+            if (loginAdmin.username != null && loginAdmin.password != null)
             {
                 db.Entry(loginAdmin).State = EntityState.Modified;
+                SetAlert("Bạn đã chỉnh sửa thành công", "success");
                 db.SaveChanges();
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                SetAlert("Bạn đã chỉnh sửa không thành công", "success");
             }
             return View(loginAdmin);
         }
@@ -112,6 +139,7 @@ namespace SEP21.Areas.QuanLy.Controllers
             LoginAdmin loginAdmin = db.LoginAdmins.Find(id);
             db.LoginAdmins.Remove(loginAdmin);
             db.SaveChanges();
+            SetAlert("Bạn đã xóa thành công", "success");
             return RedirectToAction("Index");
         }
 

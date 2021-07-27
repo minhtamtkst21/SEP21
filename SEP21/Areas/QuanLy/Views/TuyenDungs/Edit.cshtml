@@ -19,6 +19,19 @@
             CKEDITOR.replace('ChiTiet');
         });
     </script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $('#btn-img-select').click(function (e) {
+                e.preventDefault();
+                var finder = new CKFinder();
+                finder.selectActionFunction = function (url) {
+                    $("#imgvalue").val(url);
+                };
+                finder.popup();
+            });
+            CKEDITOR.replace('YeuCau');
+        });
+    </script>
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         function readPicture(input) {
@@ -65,8 +78,9 @@
         <div class="form-group">
             @Html.Label("Yêu cầu", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.YeuCau, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.YeuCau, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.YeuCau, "", new { @class = "text-danger" })
+                <script>CKEDITOR.replace("YeuCau")</script>
             </div>
         </div>
 

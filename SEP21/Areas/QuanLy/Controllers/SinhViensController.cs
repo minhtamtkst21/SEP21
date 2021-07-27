@@ -180,13 +180,18 @@ namespace SEP21.Areas.QuanLy.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,MSSV,HoTen,TenKhoa,NienKhoa,SoDienThoai,mail")] SinhVien sinhVien)
+        public ActionResult Edit(SinhVien sinhVien)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(sinhVien).State = EntityState.Modified;
                 db.SaveChanges();
+                SetAlert("Bạn đã chỉnh sửa thành công", "success");
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                 SetAlert("Chỉnh sửa không thành công", "danger");
             }
             ViewBag.TenKhoa = new SelectList(db.Khoas, "ID", "MaKhoa", sinhVien.TenKhoa);
             return View(sinhVien);
@@ -215,6 +220,7 @@ namespace SEP21.Areas.QuanLy.Controllers
             SinhVien sinhVien = db.SinhViens.Find(id);
             db.SinhViens.Remove(sinhVien);
             db.SaveChanges();
+            SetAlert("Bạn đã xóa thành công", "success");
             return RedirectToAction("Index");
         }
 

@@ -40,21 +40,41 @@ namespace SEP21.Areas.QuanLy.Controllers
         {
             return View();
         }
+        public void SetAlert(string message, string type)
+        {
+            TempData["AlertMessage"] = message;
+            if (type == "success")
+            {
+                TempData["AlertType"] = "alert-success";
+            }
+            if (type == "warning")
+            {
+                TempData["AlertType"] = "alert-warning";
+            }
+            if (type == "error")
+            {
+                TempData["AlertType"] = "alert-danger";
+            }
+        }
 
         // POST: QuanLy/DaoTaos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,NoiDung,TieuDe")] DaoTao daoTao)
+        public ActionResult Create(DaoTao daoTao)
         {
             if (ModelState.IsValid)
             {
                 db.DaoTaos.Add(daoTao);
                 db.SaveChanges();
+                SetAlert("Bạn đã tạo thành công", "success");
                 return RedirectToAction("Index");
             }
-
+            else
+            {
+                SetAlert("Bạn đã tạo không thành công", "success");
+            }
             return View(daoTao);
         }
 
@@ -78,17 +98,21 @@ namespace SEP21.Areas.QuanLy.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,NoiDung,TieuDe")] DaoTao daoTao)
+        public ActionResult Edit(DaoTao daoTao)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(daoTao).State = EntityState.Modified;
                 db.SaveChanges();
+                SetAlert("Bạn đã chỉnh sửa thành công", "success");
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                SetAlert("Bạn đã chỉnh sửa không thành công", "success");
             }
             return View(daoTao);
         }
-
         // GET: QuanLy/DaoTaos/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -112,6 +136,7 @@ namespace SEP21.Areas.QuanLy.Controllers
             DaoTao daoTao = db.DaoTaos.Find(id);
             db.DaoTaos.Remove(daoTao);
             db.SaveChanges();
+            SetAlert("Bạn đã xóa thành công", "success");
             return RedirectToAction("Index");
         }
 
