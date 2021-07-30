@@ -5,13 +5,13 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
-    config.filebrowserBrowseUrl = '/Plugin/ckfinder/ckfinder.html';
-    config.filebrowserImageBrowseUrl = '/Plugin/lib/ckfinder/ckfinder.html?type=Images';
-    config.filebrowserFlashBrowseUrl = '/Plugin/lib/ckfinder/ckfinder.html?type=Flash';
-    config.filebrowserUploadUrl = '/Plugin/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files';
+    config.filebrowserBrowseUrl = '/SEP24Team5/Plugin/ckfinder/ckfinder.html';
+    config.filebrowserImageBrowseUrl = '/SEP24Team5/Plugin/lib/ckfinder/ckfinder.html?type=Images';
+    config.filebrowserFlashBrowseUrl = '/SEP24Team5/Plugin/lib/ckfinder/ckfinder.html?type=Flash';
+    config.filebrowserUploadUrl = '/SEP24Team5/Plugin/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files';
     config.filebrowserImageUploadUrl = '/Data/';
-    config.filebrowserFlashUploadUrl = '/Plugin/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash';
-    CKFinder.setupCKEditor(null, '/Plugin/ckfinder/');
+    config.filebrowserFlashUploadUrl = '/SEP24Team5/Plugin/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash';
+    CKFinder.setupCKEditor(null, '/SEP24Team5/Plugin/ckfinder/');
 	// The toolbar groups arrangement, optimized for two toolbar rows.
     config.toolbarGroups = [
         { name: 'document', groups: ['mode', 'document', 'doctools'] },

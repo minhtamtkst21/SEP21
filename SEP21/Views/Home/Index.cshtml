@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<SEP21.Models.BaiViet>
 @{
     ViewBag.Title = "Home Page";
+    
 }
 <main id="main">
     <!-- ======= Hero Section ======= -->
@@ -43,9 +44,10 @@
                 <div class="row content">
                     @foreach (var item in Model)
                     {
+                        var url = "/SEP24Team5/Tin-tuc/" + item.Title + "-" + item.ID;
                         <div class="col-lg-6">
                             <div class="card">
-                                <a href="@Url.Action("Details","BaiViet", new { item.ID })">
+                                <a href="@url">
                                     <img class="img-fluid" width="600px" height="400px" src="@Url.Action("Picture", new { item.ID })" alt="hinhanh">
                                     <div class="card-body">
                                         <h3 class="card-title">*@item.LoaiBaiViet1.TenLoaiBaiViet* @item.TieuDe</h3>

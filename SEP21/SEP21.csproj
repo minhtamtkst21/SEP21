@@ -105,6 +105,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.RegularExpressions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -226,6 +227,7 @@
     <Compile Include="Controllers\BaiVietController.cs" />
     <Compile Include="Controllers\DangKyHoatDongsController.cs" />
     <Compile Include="Controllers\DaoTaoController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\GioiThieusController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhoasController.cs" />
@@ -245,9 +247,6 @@
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DaoTao.cs">
-      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DatThanhTich.cs">
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GioiThieu.cs">
@@ -280,9 +279,6 @@
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ThanhTich.cs">
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TuyenDung.cs">
@@ -744,6 +740,15 @@
     <Content Include="assets1\vendor\timeline\img\cd-icon-picture.svg" />
     <Content Include="assets1\vendor\timeline\js\main.js" />
     <Content Include="assets1\vendor\vector-map\jqvmap.css" />
+    <Content Include="assets2\css\style.css" />
+    <Content Include="assets2\fonts\opensans_light_macroman\stylesheet.css" />
+    <Content Include="assets2\fonts\opensans_regular_macroman\stylesheet.css" />
+    <Content Include="assets2\images\bg.jpg" />
+    <Content Include="assets2\images\bg2.png" />
+    <Content Include="assets2\images\logo.png" />
+    <Content Include="assets2\images\page img.png" />
+    <Content Include="assets2\images\search.png" />
+    <Content Include="assets2\images\signal.png" />
     <Content Include="assets\css\style.css" />
     <Content Include="assets\img\apple-touch-icon.png" />
     <Content Include="assets\img\clients\client-1.png" />
@@ -833,8 +838,8 @@
     <Content Include="css\morris.css" />
     <Content Include="css\startmin.css" />
     <Content Include="css\timeline.css" />
-    <Content Include="Data\images\up.jpg" />
-    <Content Include="Data\_thumbs\Images\up.jpg" />
+    <Content Include="images\Data\images\up.jpg" />
+    <Content Include="images\Data\_thumbs\Images\up.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -1921,6 +1926,58 @@
     <Content Include="Areas\QuanLy\Views\TuyenDungs\Edit.cshtml" />
     <Content Include="Areas\QuanLy\Views\TuyenDungs\Index.cshtml" />
     <Content Include="images\CanBoKhoa\3" />
+    <Content Include="images\BaiViet\37" />
+    <Content Include="images\BaiViet\48" />
+    <Content Include="images\BaiViet\49" />
+    <Content Include="images\BaiViet\52" />
+    <Content Include="images\BaiViet\53" />
+    <Content Include="images\BaiViet\54" />
+    <Content Include="images\BaiViet\55" />
+    <Content Include="images\BaiViet\56" />
+    <Content Include="images\BaiViet\57" />
+    <Content Include="images\BaiViet\58" />
+    <Content Include="images\BaiViet\59" />
+    <Content Include="images\BaiViet\60" />
+    <Content Include="images\BaiViet\61" />
+    <Content Include="images\BaiViet\62" />
+    <Content Include="images\BaiViet\63" />
+    <Content Include="images\BaiViet\64" />
+    <Content Include="images\BaiViet\65" />
+    <Content Include="images\BaiViet\66" />
+    <Content Include="images\BaiViet\67" />
+    <Content Include="images\BaiViet\68" />
+    <Content Include="images\BaiViet\70" />
+    <Content Include="images\BaiViet\72" />
+    <Content Include="images\BaiViet\75" />
+    <Content Include="images\BaiViet\81" />
+    <Content Include="images\BaiViet\83" />
+    <Content Include="images\BaiViet\84" />
+    <Content Include="images\BaiViet\85" />
+    <Content Include="images\BaiViet\86" />
+    <Content Include="images\BaiViet\87" />
+    <Content Include="images\BaiViet\88" />
+    <Content Include="images\BaiViet\89" />
+    <Content Include="images\BaiViet\90" />
+    <Content Include="images\BaiViet\91" />
+    <Content Include="images\BaiViet\92" />
+    <Content Include="images\BaiViet\93" />
+    <Content Include="images\BaiViet\94" />
+    <Content Include="images\BaiViet\95" />
+    <Content Include="images\BaiViet\96" />
+    <Content Include="images\CanBoKhoa\1" />
+    <Content Include="images\CanBoKhoa\10" />
+    <Content Include="images\CanBoKhoa\5" />
+    <Content Include="images\CanBoKhoa\6" />
+    <Content Include="images\CanBoKhoa\7" />
+    <Content Include="images\CanBoKhoa\8" />
+    <Content Include="images\CanBoKhoa\9" />
+    <Content Include="assets2\fonts\opensans_light_macroman\OpenSans-Light-webfont.eot" />
+    <Content Include="assets2\fonts\opensans_light_macroman\OpenSans-Light-webfont.ttf" />
+    <Content Include="assets2\fonts\opensans_light_macroman\OpenSans-Light-webfont.woff" />
+    <Content Include="assets2\fonts\opensans_regular_macroman\OpenSans-Regular-webfont.eot" />
+    <Content Include="assets2\fonts\opensans_regular_macroman\OpenSans-Regular-webfont.ttf" />
+    <Content Include="assets2\fonts\opensans_regular_macroman\OpenSans-Regular-webfont.woff" />
+    <Content Include="assets2\images\Thumbs.db" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -1933,6 +1990,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <None Include="Views\Error\index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1947,50 +2005,12 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\BaiViet\Delete.cshtml" />
     <Content Include="Views\BaiViet\Details.cshtml" />
-    <Content Include="Views\BaiViet\Edit.cshtml" />
-    <Content Include="Views\BaiViet\Index.cshtml" />
-    <Content Include="Views\SinhViens\Delete.cshtml" />
-    <Content Include="Views\SinhViens\Details.cshtml" />
-    <Content Include="Views\SinhViens\Edit.cshtml" />
-    <Content Include="Views\SinhViens\Index.cshtml" />
-    <Content Include="Views\CanBoKhoa\Create.cshtml" />
-    <Content Include="Views\CanBoKhoa\Delete.cshtml" />
-    <Content Include="Views\CanBoKhoa\Details.cshtml" />
-    <Content Include="Views\CanBoKhoa\Edit.cshtml" />
     <Content Include="Views\CanBoKhoa\Index.cshtml" />
-    <Content Include="Views\Khoas\Create.cshtml" />
-    <Content Include="Views\Khoas\Delete.cshtml" />
-    <Content Include="Views\Khoas\Details.cshtml" />
-    <Content Include="Views\Khoas\Edit.cshtml" />
     <Content Include="Views\Khoas\Index.cshtml" />
     <Content Include="Views\GioiThieus\Index.cshtml" />
-    <Content Include="Views\DangKyHoatDongs\Create.cshtml" />
-    <Content Include="Views\DangKyHoatDongs\Delete.cshtml" />
-    <Content Include="Views\DangKyHoatDongs\Details.cshtml" />
-    <Content Include="Views\DangKyHoatDongs\Edit.cshtml" />
-    <Content Include="Views\DangKyHoatDongs\Index.cshtml" />
     <Content Include="Views\DaoTao\Index.cshtml" />
     <Content Include="Views\TuyenDung\Index.cshtml" />
     <Content Include="Views\BaiViet\Login.cshtml" />
@@ -1999,7 +2019,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\QuanLy\Data\" />
-    <Folder Include="images\BaiViet\" />
     <Folder Include="images\DoanHoiKhoa\" />
     <Folder Include="images\NCKH\" />
     <Folder Include="images\ThanhTich\" />

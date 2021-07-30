@@ -27,10 +27,11 @@ namespace SEP21.Models
         public string NoiDung { get; set; }
         public int LoaiBaiViet { get; set; }
         public string picture { get; set; }
+        public string Title { get; set; }
     
+        public virtual LoaiBaiViet LoaiBaiViet1 { get; set; }
+        public virtual NhanVienKhoa NhanVienKhoa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DangKyHoatDong> DangKyHoatDongs { get; set; }
-        public virtual NhanVienKhoa NhanVienKhoa { get; set; }
-        public virtual LoaiBaiViet LoaiBaiViet1 { get; set; }
     }
 }

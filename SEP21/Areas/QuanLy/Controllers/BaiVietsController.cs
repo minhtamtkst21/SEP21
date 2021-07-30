@@ -5,6 +5,8 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
@@ -25,6 +27,33 @@ namespace SEP21.Areas.QuanLy.Controllers
         {
             var baiViets = db.BaiViets.Include(b => b.LoaiBaiViet1).Include(b => b.NhanVienKhoa);
             return View(baiViets.ToList());
+        }
+
+        public string ToUnsignString(string input)
+        {
+            input = input.Trim();
+            for (int i = 0x20; i < 0x30; i++)
+            {
+                input = input.Replace(((char)i).ToString(), " ");
+            }
+            input = input.Replace(".", "-");
+            input = input.Replace(" ", "-");
+            input = input.Replace(",", "-");
+            input = input.Replace(";", "-");
+            input = input.Replace(":", "-");
+            input = input.Replace("  ", "-");
+            Regex regex = new Regex(@"\p{IsCombiningDiacriticalMarks}+");
+            string str = input.Normalize(NormalizationForm.FormD);
+            string str2 = regex.Replace(str, string.Empty).Replace('đ', 'd').Replace('Đ', 'D');
+            while (str2.IndexOf("?") >= 0)
+            {
+                str2 = str2.Remove(str2.IndexOf("?"), 1);
+            }
+            while (str2.Contains("--"))
+            {
+                str2 = str2.Replace("--", "-").ToLower();
+            }
+            return str2;
         }
 
         // GET: QuanLy/BaiViets/Details/5
@@ -84,6 +113,7 @@ namespace SEP21.Areas.QuanLy.Controllers
                 {
                     using (var scope = new TransactionScope())
                     {
+                        BaiViet.Title = ToUnsignString(BaiViet.TieuDe);
                         BaiViet.NgayDangBai = DateTime.Now;
                         db.BaiViets.Add(BaiViet);
                         db.SaveChanges();
@@ -133,6 +163,8 @@ namespace SEP21.Areas.QuanLy.Controllers
             {
                 using (var scope = new TransactionScope())
                 {
+                    baiViet.Title = ToUnsignString(baiViet.TieuDe);
+                    baiViet.NgayDangBai = DateTime.Now;
                     db.Entry(baiViet).State = EntityState.Modified;
                     db.SaveChanges();
 
