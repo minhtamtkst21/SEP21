@@ -17,28 +17,40 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/LoginAdmins
         public ActionResult Index()
         {
-            return View(db.LoginAdmins.ToList());
+            if (Session["ID"] != null)
+            {
+                return View(db.LoginAdmins.ToList());
+            }
+            return RedirectToAction("Login", "ManagerAdmin");
         }
 
         // GET: QuanLy/LoginAdmins/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Session["ID"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                LoginAdmin loginAdmin = db.LoginAdmins.Find(id);
+                if (loginAdmin == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(loginAdmin);
             }
-            LoginAdmin loginAdmin = db.LoginAdmins.Find(id);
-            if (loginAdmin == null)
-            {
-                return HttpNotFound();
-            }
-            return View(loginAdmin);
+            return RedirectToAction("Login", "ManagerAdmin");
         }
 
         // GET: QuanLy/LoginAdmins/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["ID"] != null)
+            {
+                return View();
+            }
+            return RedirectToAction("Login", "ManagerAdmin");
         }
         public void SetAlert(string message, string type)
         {
@@ -64,9 +76,9 @@ namespace SEP21.Areas.QuanLy.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(LoginAdmin loginAdmin)
         {
-            if (loginAdmin.username !=null && loginAdmin.password !=null)
+            if (loginAdmin.username != null && loginAdmin.password != null)
             {
-                
+
                 db.LoginAdmins.Add(loginAdmin);
                 db.SaveChanges();
                 SetAlert("Bạn đã tạo thành công", "success");
@@ -83,16 +95,20 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/LoginAdmins/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["ID"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                LoginAdmin loginAdmin = db.LoginAdmins.Find(id);
+                if (loginAdmin == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(loginAdmin);
             }
-            LoginAdmin loginAdmin = db.LoginAdmins.Find(id);
-            if (loginAdmin == null)
-            {
-                return HttpNotFound();
-            }
-            return View(loginAdmin);
+            return RedirectToAction("Login", "ManagerAdmin");
         }
 
         // POST: QuanLy/LoginAdmins/Edit/5
@@ -119,16 +135,20 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/LoginAdmins/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Session["ID"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                LoginAdmin loginAdmin = db.LoginAdmins.Find(id);
+                if (loginAdmin == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(loginAdmin);
             }
-            LoginAdmin loginAdmin = db.LoginAdmins.Find(id);
-            if (loginAdmin == null)
-            {
-                return HttpNotFound();
-            }
-            return View(loginAdmin);
+            return RedirectToAction("Login", "ManagerAdmin");
         }
 
         // POST: QuanLy/LoginAdmins/Delete/5

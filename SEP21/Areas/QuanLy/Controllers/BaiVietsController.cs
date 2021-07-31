@@ -17,16 +17,14 @@ namespace SEP21.Areas.QuanLy.Controllers
     public class BaiVietsController : Controller
     {
         private SEP24Team5Entities db = new SEP24Team5Entities();
-        // GET: QuanLy/BaiViets
-        public ActionResult Index()
-        {
-            var baiViets = db.BaiViets.Include(b => b.LoaiBaiViet1).Include(b => b.NhanVienKhoa);
-            return View(baiViets.ToList());
-        }
         public ActionResult Index2()
         {
-            var baiViets = db.BaiViets.Include(b => b.LoaiBaiViet1).Include(b => b.NhanVienKhoa);
-            return View(baiViets.ToList());
+            if (Session["ID"] != null)
+            {
+                var baiViets = db.BaiViets.Include(b => b.LoaiBaiViet1).Include(b => b.NhanVienKhoa);
+                return View(baiViets.ToList());
+            }
+            return RedirectToAction("Login", "ManagerAdmin");
         }
 
         public string ToUnsignString(string input)
@@ -59,16 +57,20 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/BaiViets/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Session["ID"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                BaiViet baiViet = db.BaiViets.Find(id);
+                if (baiViet == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(baiViet);
             }
-            BaiViet baiViet = db.BaiViets.Find(id);
-            if (baiViet == null)
-            {
-                return HttpNotFound();
-            }
-            return View(baiViet);
+            return RedirectToAction("Login", "ManagerAdmin");
         }
         public ActionResult Picture(int id)
         {
@@ -95,9 +97,13 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/BaiViets/Create
         public ActionResult Create()
         {
-            ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet");
-            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "HoTen");
-            return View();
+            if (Session["ID"] != null)
+            {
+                ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet");
+                ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "HoTen");
+                return View();
+            }
+            return RedirectToAction("Login", "ManagerAdmin");
         }
 
         // POST: QuanLy/BaiViets/Create
@@ -137,18 +143,22 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/BaiViets/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["ID"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                BaiViet baiViet = db.BaiViets.Find(id);
+                if (baiViet == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", baiViet.LoaiBaiViet);
+                ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "HoTen", baiViet.NguoiDang);
+                return View(baiViet);
             }
-            BaiViet baiViet = db.BaiViets.Find(id);
-            if (baiViet == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", baiViet.LoaiBaiViet);
-            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "HoTen", baiViet.NguoiDang);
-            return View(baiViet);
+            return RedirectToAction("Login", "ManagerAdmin");
         }
 
         // POST: QuanLy/BaiViets/Edit/5
@@ -176,7 +186,7 @@ namespace SEP21.Areas.QuanLy.Controllers
                     }
                     else SetAlert("Lỗi hình ảnh, vui lòng sửa lại", "danger");
                     scope.Complete();
-                    return RedirectToAction("Index2");              
+                    return RedirectToAction("Index2");
                 }
             }
             else SetAlert("Bạn chỉnh sửa không thành công", "danger");
@@ -188,16 +198,20 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/BaiViets/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Session["ID"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                BaiViet baiViet = db.BaiViets.Find(id);
+                if (baiViet == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(baiViet);
             }
-            BaiViet baiViet = db.BaiViets.Find(id);
-            if (baiViet == null)
-            {
-                return HttpNotFound();
-            }
-            return View(baiViet);
+            return RedirectToAction("Login", "ManagerAdmin");
         }
 
         // POST: QuanLy/BaiViets/Delete/5
@@ -210,10 +224,10 @@ namespace SEP21.Areas.QuanLy.Controllers
                 var model = db.BaiViets.Find(id);
                 db.BaiViets.Remove(model);
                 db.SaveChanges();
-               
+
                 var path = Server.MapPath(PICTURE_PATH);
                 System.IO.File.Delete(path + model.ID);
-               
+
                 scope.Complete();
                 SetAlert("Bạn đã xóa thành công", "success");
                 return RedirectToAction("Index2");

@@ -17,23 +17,31 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/TuyenDungs
         public ActionResult Index()
         {
-            var tuyenDungs = db.TuyenDungs;
-            return View(tuyenDungs.ToList());
+            if (Session["ID"] != null)
+            {
+                var tuyenDungs = db.TuyenDungs;
+                return View(tuyenDungs.ToList());
+            }
+            return RedirectToAction("Login", "ManagerAdmin");
         }
 
         // GET: QuanLy/TuyenDungs/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Session["ID"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                TuyenDung tuyenDung = db.TuyenDungs.Find(id);
+                if (tuyenDung == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(tuyenDung);
             }
-            TuyenDung tuyenDung = db.TuyenDungs.Find(id);
-            if (tuyenDung == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tuyenDung);
+            return RedirectToAction("Login", "ManagerAdmin");
         }
         public void SetAlert(string message, string type)
         {
@@ -55,7 +63,11 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/TuyenDungs/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["ID"] != null)
+            {
+                return View();
+            }
+            return RedirectToAction("Login", "ManagerAdmin");
         }
         // POST: QuanLy/TuyenDungs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -81,16 +93,20 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/TuyenDungs/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["ID"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                TuyenDung tuyenDung = db.TuyenDungs.Find(id);
+                if (tuyenDung == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(tuyenDung);
             }
-            TuyenDung tuyenDung = db.TuyenDungs.Find(id);
-            if (tuyenDung == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tuyenDung);
+            return RedirectToAction("Login", "ManagerAdmin");
         }
 
         // POST: QuanLy/TuyenDungs/Edit/5
@@ -118,16 +134,20 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/TuyenDungs/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Session["ID"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                TuyenDung tuyenDung = db.TuyenDungs.Find(id);
+                if (tuyenDung == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(tuyenDung);
             }
-            TuyenDung tuyenDung = db.TuyenDungs.Find(id);
-            if (tuyenDung == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tuyenDung);
+            return RedirectToAction("Login", "ManagerAdmin");
         }
 
         // POST: QuanLy/TuyenDungs/Delete/5

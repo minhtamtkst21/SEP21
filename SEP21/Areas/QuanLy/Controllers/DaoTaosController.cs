@@ -17,28 +17,40 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/DaoTaos
         public ActionResult Index()
         {
-            return View(db.DaoTaos.ToList());
+            if (Session["ID"] != null)
+            {
+                return View(db.DaoTaos.ToList());
+            }
+            return RedirectToAction("Login", "ManagerAdmin");
         }
 
         // GET: QuanLy/DaoTaos/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Session["ID"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                DaoTao daoTao = db.DaoTaos.Find(id);
+                if (daoTao == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(daoTao);
             }
-            DaoTao daoTao = db.DaoTaos.Find(id);
-            if (daoTao == null)
-            {
-                return HttpNotFound();
-            }
-            return View(daoTao);
+            return RedirectToAction("Login", "ManagerAdmin");
         }
 
         // GET: QuanLy/DaoTaos/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["ID"] != null)
+            {
+                return View();
+            }
+            return RedirectToAction("Login", "ManagerAdmin");
         }
         public void SetAlert(string message, string type)
         {
@@ -81,16 +93,20 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/DaoTaos/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["ID"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                DaoTao daoTao = db.DaoTaos.Find(id);
+                if (daoTao == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(daoTao);
             }
-            DaoTao daoTao = db.DaoTaos.Find(id);
-            if (daoTao == null)
-            {
-                return HttpNotFound();
-            }
-            return View(daoTao);
+            return RedirectToAction("Login", "ManagerAdmin");
         }
 
         // POST: QuanLy/DaoTaos/Edit/5
@@ -116,16 +132,20 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/DaoTaos/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Session["ID"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                DaoTao daoTao = db.DaoTaos.Find(id);
+                if (daoTao == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(daoTao);
             }
-            DaoTao daoTao = db.DaoTaos.Find(id);
-            if (daoTao == null)
-            {
-                return HttpNotFound();
-            }
-            return View(daoTao);
+            return RedirectToAction("Login", "ManagerAdmin");
         }
 
         // POST: QuanLy/DaoTaos/Delete/5

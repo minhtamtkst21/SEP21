@@ -18,8 +18,12 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/NhanVienKhoas
         public ActionResult Index()
         {
-            var nhanVienKhoas = db.NhanVienKhoas.Include(n => n.Khoa1);
-            return View(nhanVienKhoas.ToList());
+            if (Session["ID"] != null)
+            {
+                var nhanVienKhoas = db.NhanVienKhoas.Include(n => n.Khoa1);
+                return View(nhanVienKhoas.ToList());
+            }
+            return RedirectToAction("Login", "ManagerAdmin");
         }
         public ActionResult Picture(int id)
         {
@@ -30,23 +34,31 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/NhanVienKhoas/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Session["ID"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                NhanVienKhoa nhanVienKhoa = db.NhanVienKhoas.Find(id);
+                if (nhanVienKhoa == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(nhanVienKhoa);
             }
-            NhanVienKhoa nhanVienKhoa = db.NhanVienKhoas.Find(id);
-            if (nhanVienKhoa == null)
-            {
-                return HttpNotFound();
-            }
-            return View(nhanVienKhoa);
+            return RedirectToAction("Login", "ManagerAdmin");
         }
 
         // GET: QuanLy/NhanVienKhoas/Create
         public ActionResult Create()
         {
-            ViewBag.Khoa = new SelectList(db.Khoas, "ID", "MaKhoa");
-            return View();
+            if (Session["ID"] != null)
+            {
+                ViewBag.Khoa = new SelectList(db.Khoas, "ID", "MaKhoa");
+                return View();
+            }
+            return RedirectToAction("Login", "ManagerAdmin");
         }
 
         // POST: QuanLy/NhanVienKhoas/Create
@@ -98,17 +110,21 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/NhanVienKhoas/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["ID"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                NhanVienKhoa nhanVienKhoa = db.NhanVienKhoas.Find(id);
+                if (nhanVienKhoa == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.Khoa = new SelectList(db.Khoas, "ID", "TenKhoa", nhanVienKhoa.Khoa);
+                return View(nhanVienKhoa);
             }
-            NhanVienKhoa nhanVienKhoa = db.NhanVienKhoas.Find(id);
-            if (nhanVienKhoa == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Khoa = new SelectList(db.Khoas, "ID", "TenKhoa", nhanVienKhoa.Khoa);
-            return View(nhanVienKhoa);
+            return RedirectToAction("Login", "ManagerAdmin");
         }
 
         // POST: QuanLy/NhanVienKhoas/Edit/5
@@ -143,16 +159,20 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/NhanVienKhoas/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Session["ID"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                NhanVienKhoa nhanVienKhoa = db.NhanVienKhoas.Find(id);
+                if (nhanVienKhoa == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(nhanVienKhoa);
             }
-            NhanVienKhoa nhanVienKhoa = db.NhanVienKhoas.Find(id);
-            if (nhanVienKhoa == null)
-            {
-                return HttpNotFound();
-            }
-            return View(nhanVienKhoa);
+            return RedirectToAction("Login", "ManagerAdmin");
         }
 
         // POST: QuanLy/NhanVienKhoas/Delete/5

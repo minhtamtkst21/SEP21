@@ -17,23 +17,14 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/GioiThieux
         public ActionResult Index()
         {
-            return View(db.GioiThieux.ToList());
+            if (Session["ID"] != null)
+            {
+                return View(db.GioiThieux.ToList());
+            }
+            return RedirectToAction("Login", "ManagerAdmin");
         }
 
         // GET: QuanLy/GioiThieux/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            GioiThieu gioiThieu = db.GioiThieux.Find(id);
-            if (gioiThieu == null)
-            {
-                return HttpNotFound();
-            }
-            return View(gioiThieu);
-        }
         public void SetAlert(string message, string type)
         {
             TempData["AlertMessage"] = message;
@@ -50,43 +41,23 @@ namespace SEP21.Areas.QuanLy.Controllers
                 TempData["AlertType"] = "alert-danger";
             }
         }
-
-        // GET: QuanLy/GioiThieux/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: QuanLy/GioiThieux/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(GioiThieu gioiThieu)
-        {
-            if (ModelState.IsValid)
-            {
-                db.GioiThieux.Add(gioiThieu);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(gioiThieu);
-        }
-
         // GET: QuanLy/GioiThieux/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["ID"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                GioiThieu gioiThieu = db.GioiThieux.Find(id);
+                if (gioiThieu == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(gioiThieu);
             }
-            GioiThieu gioiThieu = db.GioiThieux.Find(id);
-            if (gioiThieu == null)
-            {
-                return HttpNotFound();
-            }
-            return View(gioiThieu);
+            return RedirectToAction("Login", "ManagerAdmin");
         }
 
         // POST: QuanLy/GioiThieux/Edit/5
@@ -107,33 +78,6 @@ namespace SEP21.Areas.QuanLy.Controllers
             else SetAlert("Bạn chỉnh sửa không thành công", "danger");
             return View(gioiThieu);
         }
-
-        // GET: QuanLy/GioiThieux/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            GioiThieu gioiThieu = db.GioiThieux.Find(id);
-            if (gioiThieu == null)
-            {
-                return HttpNotFound();
-            }
-            return View(gioiThieu);
-        }
-
-        // POST: QuanLy/GioiThieux/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            GioiThieu gioiThieu = db.GioiThieux.Find(id);
-            db.GioiThieux.Remove(gioiThieu);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -35,25 +35,31 @@ namespace SEP21.Areas.QuanLy.Controllers
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
-
-            var admin = db.LoginAdmins.FirstOrDefault(x => x.username == username);
-            if (admin != null)
+            if (username != null && password != null)
             {
-                if (admin.password.Equals(password))
+                var admin = db.LoginAdmins.FirstOrDefault(x => x.username == username);
+                if (admin != null)
                 {
-                    Session["FullName"] = admin.username;
-                    Session["UserID"] = admin.ID;
-                    SetAlert("Bạn đã đăng nhập thành công", "success");
-                    return RedirectToAction("Index2", "BaiViets");
+                    if (admin.password.Equals(password))
+                    {
+                        Session["Name"] = admin.username;
+                        Session["ID"] = admin.ID;
+                        SetAlert("Bạn đã đăng nhập thành công", "success");
+                        return RedirectToAction("Index2", "BaiViets");
+                    }
+                    else
+                    {
+                        SetAlert("Bạn đã nhập sai tài khoản hoặc mật khẩu", "danger");
+                    }
                 }
                 else
                 {
-                   SetAlert("Bạn đã nhập sai tài khoản hoặc mật khẩu", "danger");
+                    SetAlert("Bạn đã nhập sai tài khoản hoặc mật khẩu", "danger");
                 }
             }
             else
             {
-                SetAlert("Bạn đã nhập sai tài khoản hoặc mật khẩu", "danger");
+                SetAlert("Bạn chưa nhập tài khoản hoặc mật khẩu, vui lòng nhập lại", "danger");
             }
             return View();
         }
