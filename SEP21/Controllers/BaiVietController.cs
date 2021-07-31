@@ -53,28 +53,35 @@ namespace SEP21.Controllers
         [HttpPost]
         public ActionResult Login(string username, string password, int id)
         {
-            var sinhvien = db.Logins.FirstOrDefault(x => x.username == username);
-            if (sinhvien != null)
+            if (username != null && password != null)
             {
-                if (sinhvien.password.Equals(password))
+                var sinhvien = db.Logins.FirstOrDefault(x => x.username == username);
+                if (sinhvien != null)
                 {
-                    Session["FullName"] = sinhvien.username;
-                    Session["UserID"] = sinhvien.ID;
-                    Session["Password"] = sinhvien.password;
-                    Session["MSSV"] = sinhvien.username.Substring(sinhvien.username.Length - 10, 10);
-                    SetAlert("Bạn đã đăng nhập thành công", "success");
-                    return RedirectToAction("Details", new { id });
+                    if (sinhvien.password.Equals(password))
+                    {
+                        Session["FullName"] = sinhvien.username;
+                        Session["UserID"] = sinhvien.ID;
+                        Session["Password"] = sinhvien.password;
+                        Session["MSSV"] = sinhvien.username.Substring(sinhvien.username.Length - 10, 10);
+                        SetAlert("Bạn đã đăng nhập thành công", "success");
+                        return RedirectToAction("Details", new { id });
+                    }
+                    else
+                    {
+                        SetAlert("Vui lòng nhập lại mật khẩu", "warning");
+                    }
                 }
                 else
                 {
-                    SetAlert("Vui lòng nhập lại mật khẩu", "warning");
+                    SetAlert("Bạn đã nhập sai tài khoản hoặc mật khẩu, vui lòng nhập lại!", "warning");
                 }
             }
             else
             {
-                SetAlert("Bạn đã nhập sai tài khoản hoặc mật khẩu, vui lòng nhập lại!", "warning");
+                SetAlert("Bạn chưa nhập tài khoản hoặc mật khẩu, vui lòng nhập lại", "danger");
             }
-            return RedirectToAction("Details", new { id });
+            return Redirect("Login");
         }
         public ActionResult Login2(string username, string password)
         {
@@ -111,13 +118,13 @@ namespace SEP21.Controllers
             if (sinhvien != null)
             {
                 if (sinhvien.password.Equals(oldpassword))
-                { 
+                {
                     if (newpassword == confirmpassword)
                     {
                         sinhvien.password = newpassword;
                         SetAlert("Đổi mật khẩu thành công", "success");
                         db.SaveChanges();
-                        return RedirectToAction("Index","Home");
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
