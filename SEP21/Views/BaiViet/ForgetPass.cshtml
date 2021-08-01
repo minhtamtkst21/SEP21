@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -11,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Đổi mật khẩu</title>
+    <title>Quên mật khẩu</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="@Url.Content("~/css/bootstrap.min.css")" rel="stylesheet">
@@ -39,32 +38,11 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Đổi mật khẩu</h3>
+                        <h3 class="panel-title">Quên mật khẩu</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="@Url.Action("ChangePass2")" method="post">
-                            <fieldset>
-                                <div class="form-group">
-                                    @if (TempData["AlertMessage"] != null)
-                                    {
-                                        <div id="alertBox" class="alert @TempData["AlertType"] hide">
-                                            @TempData["AlertMessage"]
-                                        </div>
-                                    }
-                                    <input class="form-control" placeholder="Tài khoản" name="username" type="text" value="">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Mật Khẩu cũ" name="oldpassword" type="password" value="">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Mật Khẩu mới" name="newpassword" type="password" value="">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Xác nhận mật khẩu" name="confirmpassword" type="password" value="">
-                                </div>
-                                <button type="submit" class="btn btn-default">Đổi mật khẩu</button>
-                            </fieldset>
-                        </form>
+                        <p>Vui lòng gửi email đến <a href="mailto:k.cntt@vlu.edu.vn">Khoa CNTT</a> để được đổi mật khẩu</p>
+                        <a href="@Url.Action("Login")">Trở lại</a>
                     </div>
                 </div>
             </div>
@@ -88,5 +66,4 @@
     </script>
 </body>
 </html>
-
 

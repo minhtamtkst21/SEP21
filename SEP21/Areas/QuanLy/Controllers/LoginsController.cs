@@ -62,7 +62,7 @@ namespace SEP21.Areas.QuanLy.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,username,password")] Login login)
+        public ActionResult Create(Login login)
         {
             if (ModelState.IsValid)
             {
@@ -73,7 +73,22 @@ namespace SEP21.Areas.QuanLy.Controllers
 
             return View(login);
         }
-
+        public ActionResult Reset(int id)
+        {
+            Login login = db.Logins.Find(id);
+            login.password = "VLU" + login.username.Substring(login.username.Length - 10, 10);
+            db.Entry(login).State = EntityState.Modified;
+            db.SaveChanges();
+            SetAlert("Khôi phục tài khoản " + login.username + " thành công", "success");
+            return RedirectToAction("Index");
+        }
+        public ActionResult Search(string keyword)
+        {
+            var model = db.Logins.ToList();
+            model = model.Where(p => p.username.ToLower().Contains(keyword.ToLower())).ToList();
+            ViewBag.Keyword = keyword;
+            return View("Index", model);
+        }
         // GET: QuanLy/Logins/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -94,7 +109,7 @@ namespace SEP21.Areas.QuanLy.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,username,password")] Login login)
+        public ActionResult Edit(Login login)
         {
             if (ModelState.IsValid)
             {

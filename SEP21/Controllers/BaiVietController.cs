@@ -65,7 +65,7 @@ namespace SEP21.Controllers
                         Session["Password"] = sinhvien.password;
                         Session["MSSV"] = sinhvien.username.Substring(sinhvien.username.Length - 10, 10);
                         SetAlert("Bạn đã đăng nhập thành công", "success");
-                        return RedirectToAction("Details", new { id });
+                        return Redirect(Request.UrlReferrer.ToString());
                     }
                     else
                     {
@@ -109,6 +109,10 @@ namespace SEP21.Controllers
             return RedirectToAction("Login");
         }
         public ActionResult ChangePass()
+        {
+            return View();
+        }
+        public ActionResult ForgetPass()
         {
             return View();
         }
@@ -159,7 +163,7 @@ namespace SEP21.Controllers
             db.DangKyHoatDongs.Add(sv);
             db.SaveChanges();
             SetAlert("Bạn đã đăng kí thành công", "success");
-            return RedirectToAction("Details", new { id });
+            return Redirect(Request.UrlReferrer.ToString());
         }
         public ActionResult XoaDK(string username, int id)
         {
@@ -170,7 +174,7 @@ namespace SEP21.Controllers
             db.DangKyHoatDongs.Remove(sv);
             db.SaveChanges();
             SetAlert("Bạn đã hủy đăng kí thành công", "success");
-            return RedirectToAction("Details", new { id });
+            return Redirect(Request.UrlReferrer.ToString());
         }
         public void SetAlert(string message, string type)
         {
