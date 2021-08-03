@@ -21,7 +21,7 @@ namespace SEP21.Areas.QuanLy.Controllers
         {
             if (Session["ID"] != null)
             {
-                var baiViets = db.BaiViets.Include(b => b.LoaiBaiViet1).Include(b => b.NhanVienKhoa);
+                var baiViets = db.BaiViets.Include(b => b.LoaiBaiViet1);
                 return View(baiViets.ToList());
             }
             return RedirectToAction("Login", "ManagerAdmin");
@@ -136,7 +136,6 @@ namespace SEP21.Areas.QuanLy.Controllers
             }
             else SetAlert("Bạn đã tạo không thành công", "danger");
             ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", BaiViet.LoaiBaiViet);
-            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", BaiViet.NguoiDang);
             return View(BaiViet);
         }
 
@@ -155,7 +154,6 @@ namespace SEP21.Areas.QuanLy.Controllers
                     return HttpNotFound();
                 }
                 ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", baiViet.LoaiBaiViet);
-                ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "HoTen", baiViet.NguoiDang);
                 return View(baiViet);
             }
             return RedirectToAction("Login", "ManagerAdmin");
@@ -191,7 +189,6 @@ namespace SEP21.Areas.QuanLy.Controllers
             }
             else SetAlert("Bạn chỉnh sửa không thành công", "danger");
             ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", baiViet.LoaiBaiViet);
-            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "HoTen", baiViet.NguoiDang);
             return View(baiViet);
         }
 

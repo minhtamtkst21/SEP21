@@ -12,7 +12,6 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NgayDangBai" Type="date" Nullable="false" />
           <Property Name="TieuDe" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="NguoiDang" Type="int" Nullable="false" />
           <Property Name="NoiDung" Type="nvarchar(max)" />
           <Property Name="LoaiBaiViet" Type="int" Nullable="false" />
           <Property Name="picture" Type="nvarchar(max)" />
@@ -33,8 +32,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TieuDe" Type="nvarchar(max)" />
-          <Property Name="NoiDung" Type="nvarchar(max)" />
+          <Property Name="TieuDe" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NoiDung" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="GioiThieu">
           <Key>
@@ -42,14 +41,6 @@
           </Key>
           <Property Name="NoiDung" Type="nvarchar(max)" />
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Khoa">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MaKhoa" Type="varchar" MaxLength="3" Nullable="false" />
-          <Property Name="TenKhoa" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="LoaiBaiViet">
           <Key>
@@ -74,22 +65,6 @@
           <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="password" Type="varchar(max)" Nullable="false" />
         </EntityType>
-        <EntityType Name="NCKH">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Ten" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="NoiDung" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="NguoiThucHienNCKH">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MaNCKH" Type="int" Nullable="false" />
-          <Property Name="NguoiThucHien" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="NhanVienKhoa">
           <Key>
             <PropertyRef Name="ID" />
@@ -97,7 +72,6 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
           <Property Name="ChucVu" Type="nvarchar" MaxLength="50" />
-          <Property Name="Khoa" Type="int" />
           <Property Name="Mail" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="SinhVien">
@@ -107,7 +81,6 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MSSV" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
-          <Property Name="TenKhoa" Type="int" />
           <Property Name="NienKhoa" Type="varchar" MaxLength="3" />
           <Property Name="SoDienThoai" Type="int" />
           <Property Name="mail" Type="varchar(max)" />
@@ -127,10 +100,10 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ViTri" Type="nvarchar(max)" />
-          <Property Name="SoLuong" Type="int" />
-          <Property Name="YeuCau" Type="nvarchar(max)" />
-          <Property Name="ChiTiet" Type="nvarchar(max)" />
+          <Property Name="ViTri" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SoLuong" Type="int" Nullable="false" />
+          <Property Name="YeuCau" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ChiTiet" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <Association Name="FK_BaiViet_LoaiBaiViet">
           <End Role="LoaiBaiViet" Type="Self.LoaiBaiViet" Multiplicity="1" />
@@ -141,18 +114,6 @@
             </Principal>
             <Dependent Role="BaiViet">
               <PropertyRef Name="LoaiBaiViet" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BaiViet_NhanVienKhoa">
-          <End Role="NhanVienKhoa" Type="Self.NhanVienKhoa" Multiplicity="1" />
-          <End Role="BaiViet" Type="Self.BaiViet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NhanVienKhoa">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="BaiViet">
-              <PropertyRef Name="NguoiDang" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -180,75 +141,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_NguoiThucHienNCKH_NCKH">
-          <End Role="NCKH" Type="Self.NCKH" Multiplicity="1" />
-          <End Role="NguoiThucHienNCKH" Type="Self.NguoiThucHienNCKH" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NCKH">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="NguoiThucHienNCKH">
-              <PropertyRef Name="MaNCKH" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_NguoiThucHienNCKH_NhanVienKhoa">
-          <End Role="NhanVienKhoa" Type="Self.NhanVienKhoa" Multiplicity="1" />
-          <End Role="NguoiThucHienNCKH" Type="Self.NguoiThucHienNCKH" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NhanVienKhoa">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="NguoiThucHienNCKH">
-              <PropertyRef Name="NguoiThucHien" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_NhanVienKhoa_Khoa">
-          <End Role="Khoa" Type="Self.Khoa" Multiplicity="0..1" />
-          <End Role="NhanVienKhoa" Type="Self.NhanVienKhoa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Khoa">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="NhanVienKhoa">
-              <PropertyRef Name="Khoa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SinhVien_Khoa">
-          <End Role="Khoa" Type="Self.Khoa" Multiplicity="0..1" />
-          <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Khoa">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="SinhVien">
-              <PropertyRef Name="TenKhoa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="SEP24Team5ModelStoreContainer">
           <EntitySet Name="BaiViet" EntityType="Self.BaiViet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DangKyHoatDong" EntityType="Self.DangKyHoatDong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DaoTao" EntityType="Self.DaoTao" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GioiThieu" EntityType="Self.GioiThieu" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Khoa" EntityType="Self.Khoa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoaiBaiViet" EntityType="Self.LoaiBaiViet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoginAdmin" EntityType="Self.LoginAdmin" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="NCKH" EntityType="Self.NCKH" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="NguoiThucHienNCKH" EntityType="Self.NguoiThucHienNCKH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NhanVienKhoa" EntityType="Self.NhanVienKhoa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SinhVien" EntityType="Self.SinhVien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TuyenDung" EntityType="Self.TuyenDung" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_BaiViet_LoaiBaiViet" Association="Self.FK_BaiViet_LoaiBaiViet">
             <End Role="LoaiBaiViet" EntitySet="LoaiBaiViet" />
-            <End Role="BaiViet" EntitySet="BaiViet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BaiViet_NhanVienKhoa" Association="Self.FK_BaiViet_NhanVienKhoa">
-            <End Role="NhanVienKhoa" EntitySet="NhanVienKhoa" />
             <End Role="BaiViet" EntitySet="BaiViet" />
           </AssociationSet>
           <AssociationSet Name="FK_DangKyHoatDong_BaiViet" Association="Self.FK_DangKyHoatDong_BaiViet">
@@ -259,23 +165,7 @@
             <End Role="SinhVien" EntitySet="SinhVien" />
             <End Role="DangKyHoatDong" EntitySet="DangKyHoatDong" />
           </AssociationSet>
-          <AssociationSet Name="FK_NguoiThucHienNCKH_NCKH" Association="Self.FK_NguoiThucHienNCKH_NCKH">
-            <End Role="NCKH" EntitySet="NCKH" />
-            <End Role="NguoiThucHienNCKH" EntitySet="NguoiThucHienNCKH" />
-          </AssociationSet>
-          <AssociationSet Name="FK_NguoiThucHienNCKH_NhanVienKhoa" Association="Self.FK_NguoiThucHienNCKH_NhanVienKhoa">
-            <End Role="NhanVienKhoa" EntitySet="NhanVienKhoa" />
-            <End Role="NguoiThucHienNCKH" EntitySet="NguoiThucHienNCKH" />
-          </AssociationSet>
-          <AssociationSet Name="FK_NhanVienKhoa_Khoa" Association="Self.FK_NhanVienKhoa_Khoa">
-            <End Role="Khoa" EntitySet="Khoa" />
-            <End Role="NhanVienKhoa" EntitySet="NhanVienKhoa" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SinhVien_Khoa" Association="Self.FK_SinhVien_Khoa">
-            <End Role="Khoa" EntitySet="Khoa" />
-            <End Role="SinhVien" EntitySet="SinhVien" />
-          </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -285,22 +175,15 @@
           <EntitySet Name="DangKyHoatDongs" EntityType="SEP24Team5Model.DangKyHoatDong" />
           <EntitySet Name="DaoTaos" EntityType="SEP24Team5Model.DaoTao" />
           <EntitySet Name="GioiThieux" EntityType="SEP24Team5Model.GioiThieu" />
-          <EntitySet Name="Khoas" EntityType="SEP24Team5Model.Khoa" />
           <EntitySet Name="LoaiBaiViets" EntityType="SEP24Team5Model.LoaiBaiViet" />
           <EntitySet Name="Logins" EntityType="SEP24Team5Model.Login" />
           <EntitySet Name="LoginAdmins" EntityType="SEP24Team5Model.LoginAdmin" />
-          <EntitySet Name="NCKHs" EntityType="SEP24Team5Model.NCKH" />
-          <EntitySet Name="NguoiThucHienNCKHs" EntityType="SEP24Team5Model.NguoiThucHienNCKH" />
           <EntitySet Name="NhanVienKhoas" EntityType="SEP24Team5Model.NhanVienKhoa" />
           <EntitySet Name="SinhViens" EntityType="SEP24Team5Model.SinhVien" />
           <EntitySet Name="sysdiagrams" EntityType="SEP24Team5Model.sysdiagram" />
           <EntitySet Name="TuyenDungs" EntityType="SEP24Team5Model.TuyenDung" />
           <AssociationSet Name="FK_BaiViet_LoaiBaiViet" Association="SEP24Team5Model.FK_BaiViet_LoaiBaiViet">
             <End Role="LoaiBaiViet" EntitySet="LoaiBaiViets" />
-            <End Role="BaiViet" EntitySet="BaiViets" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BaiViet_NhanVienKhoa" Association="SEP24Team5Model.FK_BaiViet_NhanVienKhoa">
-            <End Role="NhanVienKhoa" EntitySet="NhanVienKhoas" />
             <End Role="BaiViet" EntitySet="BaiViets" />
           </AssociationSet>
           <AssociationSet Name="FK_DangKyHoatDong_BaiViet" Association="SEP24Team5Model.FK_DangKyHoatDong_BaiViet">
@@ -311,22 +194,6 @@
             <End Role="SinhVien" EntitySet="SinhViens" />
             <End Role="DangKyHoatDong" EntitySet="DangKyHoatDongs" />
           </AssociationSet>
-          <AssociationSet Name="FK_NhanVienKhoa_Khoa" Association="SEP24Team5Model.FK_NhanVienKhoa_Khoa">
-            <End Role="Khoa" EntitySet="Khoas" />
-            <End Role="NhanVienKhoa" EntitySet="NhanVienKhoas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SinhVien_Khoa" Association="SEP24Team5Model.FK_SinhVien_Khoa">
-            <End Role="Khoa" EntitySet="Khoas" />
-            <End Role="SinhVien" EntitySet="SinhViens" />
-          </AssociationSet>
-          <AssociationSet Name="FK_NguoiThucHienNCKH_NCKH" Association="SEP24Team5Model.FK_NguoiThucHienNCKH_NCKH">
-            <End Role="NCKH" EntitySet="NCKHs" />
-            <End Role="NguoiThucHienNCKH" EntitySet="NguoiThucHienNCKHs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_NguoiThucHienNCKH_NhanVienKhoa" Association="SEP24Team5Model.FK_NguoiThucHienNCKH_NhanVienKhoa">
-            <End Role="NhanVienKhoa" EntitySet="NhanVienKhoas" />
-            <End Role="NguoiThucHienNCKH" EntitySet="NguoiThucHienNCKHs" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="BaiViet">
           <Key>
@@ -335,13 +202,11 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NgayDangBai" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="TieuDe" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NguoiDang" Type="Int32" Nullable="false" />
           <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="LoaiBaiViet" Type="Int32" Nullable="false" />
           <Property Name="picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="LoaiBaiViet1" Relationship="SEP24Team5Model.FK_BaiViet_LoaiBaiViet" FromRole="BaiViet" ToRole="LoaiBaiViet" />
-          <NavigationProperty Name="NhanVienKhoa" Relationship="SEP24Team5Model.FK_BaiViet_NhanVienKhoa" FromRole="BaiViet" ToRole="NhanVienKhoa" />
           <NavigationProperty Name="DangKyHoatDongs" Relationship="SEP24Team5Model.FK_DangKyHoatDong_BaiViet" FromRole="BaiViet" ToRole="DangKyHoatDong" />
         </EntityType>
         <EntityType Name="DangKyHoatDong">
@@ -361,8 +226,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TieuDe" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDung" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="GioiThieu">
           <Key>
@@ -370,16 +235,6 @@
           </Key>
           <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-        </EntityType>
-        <EntityType Name="Khoa">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MaKhoa" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="TenKhoa" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="NhanVienKhoas" Relationship="SEP24Team5Model.FK_NhanVienKhoa_Khoa" FromRole="Khoa" ToRole="NhanVienKhoa" />
-          <NavigationProperty Name="SinhViens" Relationship="SEP24Team5Model.FK_SinhVien_Khoa" FromRole="Khoa" ToRole="SinhVien" />
         </EntityType>
         <EntityType Name="LoaiBaiViet">
           <Key>
@@ -405,25 +260,6 @@
           <Property Name="username" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="NCKH">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Ten" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NoiDung" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="NguoiThucHienNCKHs" Relationship="SEP24Team5Model.FK_NguoiThucHienNCKH_NCKH" FromRole="NCKH" ToRole="NguoiThucHienNCKH" />
-        </EntityType>
-        <EntityType Name="NguoiThucHienNCKH">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MaNCKH" Type="Int32" Nullable="false" />
-          <Property Name="NguoiThucHien" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="NCKH" Relationship="SEP24Team5Model.FK_NguoiThucHienNCKH_NCKH" FromRole="NguoiThucHienNCKH" ToRole="NCKH" />
-          <NavigationProperty Name="NhanVienKhoa" Relationship="SEP24Team5Model.FK_NguoiThucHienNCKH_NhanVienKhoa" FromRole="NguoiThucHienNCKH" ToRole="NhanVienKhoa" />
-        </EntityType>
         <EntityType Name="NhanVienKhoa">
           <Key>
             <PropertyRef Name="ID" />
@@ -431,11 +267,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ChucVu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Khoa" Type="Int32" />
           <Property Name="Mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="BaiViets" Relationship="SEP24Team5Model.FK_BaiViet_NhanVienKhoa" FromRole="NhanVienKhoa" ToRole="BaiViet" />
-          <NavigationProperty Name="Khoa1" Relationship="SEP24Team5Model.FK_NhanVienKhoa_Khoa" FromRole="NhanVienKhoa" ToRole="Khoa" />
-          <NavigationProperty Name="NguoiThucHienNCKHs" Relationship="SEP24Team5Model.FK_NguoiThucHienNCKH_NhanVienKhoa" FromRole="NhanVienKhoa" ToRole="NguoiThucHienNCKH" />
         </EntityType>
         <EntityType Name="SinhVien">
           <Key>
@@ -444,12 +276,10 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MSSV" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TenKhoa" Type="Int32" />
           <Property Name="NienKhoa" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="SoDienThoai" Type="Int32" />
           <Property Name="mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="DangKyHoatDongs" Relationship="SEP24Team5Model.FK_DangKyHoatDong_SinhVien" FromRole="SinhVien" ToRole="DangKyHoatDong" />
-          <NavigationProperty Name="Khoa" Relationship="SEP24Team5Model.FK_SinhVien_Khoa" FromRole="SinhVien" ToRole="Khoa" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -466,10 +296,10 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ViTri" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SoLuong" Type="Int32" />
-          <Property Name="YeuCau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ChiTiet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ViTri" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SoLuong" Type="Int32" Nullable="false" />
+          <Property Name="YeuCau" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ChiTiet" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_BaiViet_LoaiBaiViet">
           <End Type="SEP24Team5Model.LoaiBaiViet" Role="LoaiBaiViet" Multiplicity="1" />
@@ -480,18 +310,6 @@
             </Principal>
             <Dependent Role="BaiViet">
               <PropertyRef Name="LoaiBaiViet" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BaiViet_NhanVienKhoa">
-          <End Type="SEP24Team5Model.NhanVienKhoa" Role="NhanVienKhoa" Multiplicity="1" />
-          <End Type="SEP24Team5Model.BaiViet" Role="BaiViet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NhanVienKhoa">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="BaiViet">
-              <PropertyRef Name="NguoiDang" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -519,54 +337,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_NhanVienKhoa_Khoa">
-          <End Type="SEP24Team5Model.Khoa" Role="Khoa" Multiplicity="0..1" />
-          <End Type="SEP24Team5Model.NhanVienKhoa" Role="NhanVienKhoa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Khoa">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="NhanVienKhoa">
-              <PropertyRef Name="Khoa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SinhVien_Khoa">
-          <End Type="SEP24Team5Model.Khoa" Role="Khoa" Multiplicity="0..1" />
-          <End Type="SEP24Team5Model.SinhVien" Role="SinhVien" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Khoa">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="SinhVien">
-              <PropertyRef Name="TenKhoa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_NguoiThucHienNCKH_NCKH">
-          <End Type="SEP24Team5Model.NCKH" Role="NCKH" Multiplicity="1" />
-          <End Type="SEP24Team5Model.NguoiThucHienNCKH" Role="NguoiThucHienNCKH" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NCKH">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="NguoiThucHienNCKH">
-              <PropertyRef Name="MaNCKH" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_NguoiThucHienNCKH_NhanVienKhoa">
-          <End Type="SEP24Team5Model.NhanVienKhoa" Role="NhanVienKhoa" Multiplicity="1" />
-          <End Type="SEP24Team5Model.NguoiThucHienNCKH" Role="NguoiThucHienNCKH" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NhanVienKhoa">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="NguoiThucHienNCKH">
-              <PropertyRef Name="NguoiThucHien" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -580,7 +350,6 @@
                 <ScalarProperty Name="picture" ColumnName="picture" />
                 <ScalarProperty Name="LoaiBaiViet" ColumnName="LoaiBaiViet" />
                 <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-                <ScalarProperty Name="NguoiDang" ColumnName="NguoiDang" />
                 <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
                 <ScalarProperty Name="NgayDangBai" ColumnName="NgayDangBai" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -615,15 +384,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Khoas">
-            <EntityTypeMapping TypeName="SEP24Team5Model.Khoa">
-              <MappingFragment StoreEntitySet="Khoa">
-                <ScalarProperty Name="TenKhoa" ColumnName="TenKhoa" />
-                <ScalarProperty Name="MaKhoa" ColumnName="MaKhoa" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="LoaiBaiViets">
             <EntityTypeMapping TypeName="SEP24Team5Model.LoaiBaiViet">
               <MappingFragment StoreEntitySet="LoaiBaiViet">
@@ -650,29 +410,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="NCKHs">
-            <EntityTypeMapping TypeName="SEP24Team5Model.NCKH">
-              <MappingFragment StoreEntitySet="NCKH">
-                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-                <ScalarProperty Name="Ten" ColumnName="Ten" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NguoiThucHienNCKHs">
-            <EntityTypeMapping TypeName="SEP24Team5Model.NguoiThucHienNCKH">
-              <MappingFragment StoreEntitySet="NguoiThucHienNCKH">
-                <ScalarProperty Name="NguoiThucHien" ColumnName="NguoiThucHien" />
-                <ScalarProperty Name="MaNCKH" ColumnName="MaNCKH" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="NhanVienKhoas">
             <EntityTypeMapping TypeName="SEP24Team5Model.NhanVienKhoa">
               <MappingFragment StoreEntitySet="NhanVienKhoa">
                 <ScalarProperty Name="Mail" ColumnName="Mail" />
-                <ScalarProperty Name="Khoa" ColumnName="Khoa" />
                 <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
                 <ScalarProperty Name="HoTen" ColumnName="HoTen" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -685,7 +426,6 @@
                 <ScalarProperty Name="mail" ColumnName="mail" />
                 <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
                 <ScalarProperty Name="NienKhoa" ColumnName="NienKhoa" />
-                <ScalarProperty Name="TenKhoa" ColumnName="TenKhoa" />
                 <ScalarProperty Name="HoTen" ColumnName="HoTen" />
                 <ScalarProperty Name="MSSV" ColumnName="MSSV" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

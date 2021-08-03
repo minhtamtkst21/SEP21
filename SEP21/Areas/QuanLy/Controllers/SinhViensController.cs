@@ -23,34 +23,66 @@ namespace SEP21.Areas.QuanLy.Controllers
         {
             if (Session["ID"] != null)
             {
-                var sinhViens = db.SinhViens.Include(s => s.Khoa);
+                var sinhViens = db.SinhViens;
                 return View(sinhViens.ToList());
             }
             return RedirectToAction("Login", "ManagerAdmin");
         }
+        public ActionResult ClearAll()
+        {
+            ExportExcelSV();
+            var list = db.SinhViens.ToList();
+            foreach(var item in list)
+            {
+                db.SinhViens.Remove(item);
+            }
+            var login = db.Logins.ToList();
+            foreach(var item in login)
+            {
+                db.Logins.Remove(item);
+            }
+            db.SaveChanges();
+            SetAlert("Bạn đã xóa tất cả sinh viên thành công", "success");
+            return Redirect("Index");
+        }
         public ActionResult ExportExcel()
         {
-            var list = db.Khoas;
+            ExcelPackage ep = new ExcelPackage();
+            ExcelWorksheet Sheet = ep.Workbook.Worksheets.Add("Import");
+            Sheet.Cells["A1"].Value = "MSSV";
+            Sheet.Cells["B1"].Value = "Họ tên";
+            Sheet.Cells["C1"].Value = "Niên khóa";
+            Sheet.Cells["D1"].Value = "Số điện thoại";
+            Sheet.Cells["E1"].Value = "Mail";
+            Sheet.Cells["C2"].Value = "K24";
+
+            Sheet.Cells["A:AZ"].AutoFitColumns();
+            Response.Clear();
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.AddHeader("content-disposition", "attachment; filename=" + "Import.xlsx");
+            Response.BinaryWrite(ep.GetAsByteArray());
+            Response.End();
+            return View("Index2");
+        }
+        public ActionResult ExportExcelSV()
+        {
+            var list = db.SinhViens;
             ExcelPackage ep = new ExcelPackage();
             ExcelWorksheet Sheet = ep.Workbook.Worksheets.Add("Import");
             Sheet.Cells["A1"].Value = "MSSV";
             Sheet.Cells["B1"].Value = "họ tên";
-            Sheet.Cells["C1"].Value = "Mã khoa";
-            Sheet.Cells["D1"].Value = "Niên khóa";
-            Sheet.Cells["E1"].Value = "Số điện thoại";
-            Sheet.Cells["F1"].Value = "Mail";
-            Sheet.Cells["C2"].Value = "1";
-            Sheet.Cells["D2"].Value = "K24";
-            Sheet.Cells["G2"].Value = "Xem mã khoa ở Sheet_Khoa";
-            ExcelWorksheet Sheet2 = ep.Workbook.Worksheets.Add("Khoa");
-            Sheet2.Cells["A1"].Value = "Tên Khoa";
-            Sheet2.Cells["B1"].Value = "Mã Khoa";
+            Sheet.Cells["C1"].Value = "Niên khóa";
+            Sheet.Cells["D1"].Value = "Số điện thoại";
+            Sheet.Cells["E1"].Value = "Mail";
 
-            int row = 2;// dòng bắt đầu ghi dữ liệu
+            int row = 2;
             foreach (var item in list)
             {
-                Sheet2.Cells[string.Format("A{0}", row)].Value = item.TenKhoa;
-                Sheet2.Cells[string.Format("B{0}", row)].Value = item.ID;
+                Sheet.Cells[string.Format("A{0}", row)].Value = item.MSSV;
+                Sheet.Cells[string.Format("B{0}", row)].Value = item.HoTen;
+                Sheet.Cells[string.Format("C{0}", row)].Value = item.NienKhoa;
+                Sheet.Cells[string.Format("D{0}", row)].Value = item.SoDienThoai;
+                Sheet.Cells[string.Format("E{0}", row)].Value = item.mail;
                 row++;
             }
 
@@ -86,10 +118,12 @@ namespace SEP21.Areas.QuanLy.Controllers
                             var user = new SinhVien();
                             user.MSSV = (workSheet.Cells[rowIterator, 1].Value).ToString();
                             user.HoTen = (workSheet.Cells[rowIterator, 2].Value).ToString();
-                            user.TenKhoa = int.Parse(workSheet.Cells[rowIterator, 3].Value.ToString());
-                            user.NienKhoa = workSheet.Cells[rowIterator, 4].Value.ToString();
-                            user.SoDienThoai = int.Parse(workSheet.Cells[rowIterator, 5].Value.ToString());
-                            user.mail = (workSheet.Cells[rowIterator, 6].Value).ToString();
+                            user.NienKhoa = workSheet.Cells[rowIterator, 3].Value.ToString();
+                            if (workSheet.Cells[rowIterator, 4].Value != null)
+                            {
+                                user.SoDienThoai = int.Parse(workSheet.Cells[rowIterator, 4].Value.ToString());
+                            }
+                            user.mail = (workSheet.Cells[rowIterator, 5].Value).ToString();
                             usersList.Add(user);
                         }
                     }
@@ -154,7 +188,6 @@ namespace SEP21.Areas.QuanLy.Controllers
                 {
                     return HttpNotFound();
                 }
-                ViewBag.TenKhoa = new SelectList(db.Khoas, "ID", "MaKhoa", sinhVien.TenKhoa);
                 return View(sinhVien);
             }
             return RedirectToAction("Login", "ManagerAdmin");
@@ -177,7 +210,6 @@ namespace SEP21.Areas.QuanLy.Controllers
             {
                 SetAlert("Chỉnh sửa không thành công", "danger");
             }
-            ViewBag.TenKhoa = new SelectList(db.Khoas, "ID", "MaKhoa", sinhVien.TenKhoa);
             return View(sinhVien);
         }
 

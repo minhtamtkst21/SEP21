@@ -29,12 +29,9 @@ namespace SEP21.Models
         public virtual DbSet<DangKyHoatDong> DangKyHoatDongs { get; set; }
         public virtual DbSet<DaoTao> DaoTaos { get; set; }
         public virtual DbSet<GioiThieu> GioiThieux { get; set; }
-        public virtual DbSet<Khoa> Khoas { get; set; }
         public virtual DbSet<LoaiBaiViet> LoaiBaiViets { get; set; }
         public virtual DbSet<Login> Logins { get; set; }
         public virtual DbSet<LoginAdmin> LoginAdmins { get; set; }
-        public virtual DbSet<NCKH> NCKHs { get; set; }
-        public virtual DbSet<NguoiThucHienNCKH> NguoiThucHienNCKHs { get; set; }
         public virtual DbSet<NhanVienKhoa> NhanVienKhoas { get; set; }
         public virtual DbSet<SinhVien> SinhViens { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }

@@ -19,7 +19,7 @@ namespace SEP21.Controllers
         // GET: BaiViets
         public ActionResult Index()
         {
-            var baiViets = db.BaiViets.Include(b => b.LoaiBaiViet1).Include(b => b.NhanVienKhoa);
+            var baiViets = db.BaiViets.Include(b => b.LoaiBaiViet1);
             return View(baiViets.ToList());
         }
 
@@ -244,7 +244,6 @@ namespace SEP21.Controllers
             }
 
             ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", baiViet.LoaiBaiViet);
-            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", baiViet.NguoiDang);
             return View(baiViet);
         }
 
@@ -261,7 +260,6 @@ namespace SEP21.Controllers
                 return HttpNotFound();
             }
             ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", baiViet.LoaiBaiViet);
-            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", baiViet.NguoiDang);
             return View(baiViet);
         }
 
@@ -279,7 +277,6 @@ namespace SEP21.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.LoaiBaiViet = new SelectList(db.LoaiBaiViets, "ID", "TenLoaiBaiViet", baiViet.LoaiBaiViet);
-            ViewBag.NguoiDang = new SelectList(db.NhanVienKhoas, "ID", "MaNhanVien", baiViet.NguoiDang);
             return View(baiViet);
         }
 

@@ -17,7 +17,7 @@ namespace SEP21.Controllers
         // GET: SinhViens
         public ActionResult Index()
         {
-            var sinhViens = db.SinhViens.Include(s => s.Khoa);
+            var sinhViens = db.SinhViens;
             return View(sinhViens.ToList());
         }
 
@@ -39,7 +39,6 @@ namespace SEP21.Controllers
         // GET: SinhViens/Create
         public ActionResult Create()
         {
-            ViewBag.TenKhoa = new SelectList(db.Khoas, "ID", "MaKhoa");
             return View();
         }
 
@@ -48,7 +47,7 @@ namespace SEP21.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,MSSV,HoTen,TenKhoa,NienKhoa,SoDienThoai,mail")] SinhVien sinhVien)
+        public ActionResult Create(SinhVien sinhVien)
         {
             if (ModelState.IsValid)
             {
@@ -56,8 +55,6 @@ namespace SEP21.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.TenKhoa = new SelectList(db.Khoas, "ID", "MaKhoa", sinhVien.TenKhoa);
             return View(sinhVien);
         }
 
@@ -73,7 +70,6 @@ namespace SEP21.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.TenKhoa = new SelectList(db.Khoas, "ID", "MaKhoa", sinhVien.TenKhoa);
             return View(sinhVien);
         }
 
@@ -82,7 +78,7 @@ namespace SEP21.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,MSSV,HoTen,TenKhoa,NienKhoa,SoDienThoai,mail")] SinhVien sinhVien)
+        public ActionResult Edit(SinhVien sinhVien)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +86,6 @@ namespace SEP21.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.TenKhoa = new SelectList(db.Khoas, "ID", "MaKhoa", sinhVien.TenKhoa);
             return View(sinhVien);
         }
 

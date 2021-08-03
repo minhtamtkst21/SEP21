@@ -20,7 +20,7 @@ namespace SEP21.Areas.QuanLy.Controllers
         {
             if (Session["ID"] != null)
             {
-                var nhanVienKhoas = db.NhanVienKhoas.Include(n => n.Khoa1);
+                var nhanVienKhoas = db.NhanVienKhoas;
                 return View(nhanVienKhoas.ToList());
             }
             return RedirectToAction("Login", "ManagerAdmin");
@@ -55,7 +55,6 @@ namespace SEP21.Areas.QuanLy.Controllers
         {
             if (Session["ID"] != null)
             {
-                ViewBag.Khoa = new SelectList(db.Khoas, "ID", "MaKhoa");
                 return View();
             }
             return RedirectToAction("Login", "ManagerAdmin");
@@ -88,7 +87,6 @@ namespace SEP21.Areas.QuanLy.Controllers
                 else SetAlert("Lỗi hình ảnh, vui lòng sửa lại", "danger");
             }
             else SetAlert("Bạn đã tạo không thành công", "danger");
-            ViewBag.Khoa = new SelectList(db.Khoas, "ID", "TenKhoa", nhanVienKhoa.Khoa);
             return View(nhanVienKhoa);
         }
         public void SetAlert(string message, string type)
@@ -121,7 +119,6 @@ namespace SEP21.Areas.QuanLy.Controllers
                 {
                     return HttpNotFound();
                 }
-                ViewBag.Khoa = new SelectList(db.Khoas, "ID", "TenKhoa", nhanVienKhoa.Khoa);
                 return View(nhanVienKhoa);
             }
             return RedirectToAction("Login", "ManagerAdmin");
@@ -152,7 +149,6 @@ namespace SEP21.Areas.QuanLy.Controllers
                 }
             }
             else SetAlert("Bạn chỉnh sửa không thành công", "danger");
-            ViewBag.Khoa = new SelectList(db.Khoas, "ID", "TenKhoa", nhanVienKhoa.Khoa);
             return View(nhanVienKhoa);
         }
 

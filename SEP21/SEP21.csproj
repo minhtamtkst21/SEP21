@@ -214,7 +214,6 @@
     <Compile Include="Areas\QuanLy\Controllers\DangKyHoatDongsController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\DaoTaosController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\GioiThieuxController.cs" />
-    <Compile Include="Areas\QuanLy\Controllers\KhoasController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\LoginAdminsController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\LoginsController.cs" />
     <Compile Include="Areas\QuanLy\Controllers\ManagerAdminController.cs" />
@@ -229,7 +228,6 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\GioiThieusController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\KhoasController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\CanBoKhoaController.cs" />
     <Compile Include="Controllers\SinhViensController.cs" />
@@ -252,9 +250,6 @@
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Khoa.cs">
-      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\LoaiBaiViet.cs">
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
@@ -265,12 +260,6 @@
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\NCKH.cs">
-      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\NguoiThucHienNCKH.cs">
-      <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\NhanVienKhoa.cs">
       <DependentUpon>WebKhoaCNTT.tt</DependentUpon>
     </Compile>
@@ -315,11 +304,6 @@
     <Content Include="Areas\QuanLy\Views\NhanVienKhoas\Details.cshtml" />
     <Content Include="Areas\QuanLy\Views\NhanVienKhoas\Edit.cshtml" />
     <Content Include="Areas\QuanLy\Views\NhanVienKhoas\Index.cshtml" />
-    <Content Include="Areas\QuanLy\Views\Khoas\Create.cshtml" />
-    <Content Include="Areas\QuanLy\Views\Khoas\Delete.cshtml" />
-    <Content Include="Areas\QuanLy\Views\Khoas\Details.cshtml" />
-    <Content Include="Areas\QuanLy\Views\Khoas\Edit.cshtml" />
-    <Content Include="Areas\QuanLy\Views\Khoas\Index.cshtml" />
     <Content Include="Areas\QuanLy\Views\BaiViets\Index2.cshtml" />
     <Content Include="Areas\QuanLy\Views\Logins\Delete.cshtml" />
     <Content Include="Areas\QuanLy\Views\Logins\Details.cshtml" />
@@ -2003,6 +1987,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\QuanLy\Data\" />
+    <Folder Include="data\" />
     <Folder Include="images\DoanHoiKhoa\" />
     <Folder Include="images\NCKH\" />
     <Folder Include="images\ThanhTich\" />

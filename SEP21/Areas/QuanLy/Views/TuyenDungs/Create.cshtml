@@ -61,7 +61,7 @@
         <div class="form-group">
             @Html.Label("Vị trí", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ViTri, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ViTri, new { htmlAttributes = new { @class = "form-control", @required = "true" } })
                 @Html.ValidationMessageFor(model => model.ViTri, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -69,7 +69,7 @@
         <div class="form-group">
             @Html.Label("Số lượng", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control", @required = "true" } })
                 @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -77,7 +77,7 @@
         <div class="form-group">
             @Html.Label("Yêu cầu", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.YeuCau, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.YeuCau, new { htmlAttributes = new { @class = "form-control", @required = "true" } })
                 @Html.ValidationMessageFor(model => model.YeuCau, "", new { @class = "text-danger" })
                 <script>CKEDITOR.replace("YeuCau")</script>
             </div>
@@ -86,7 +86,7 @@
         <div class="form-group">
             @Html.Label("Chi tiết", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.ChiTiet, new { @class = "form-control" })
+                @Html.TextAreaFor(model => model.ChiTiet, new { @class = "form-control", @required = "true" })
                 @Html.ValidationMessageFor(model => model.ChiTiet, "", new { @class = "text-danger" })
                 <script>CKEDITOR.replace("ChiTiet")</script>
             </div>
