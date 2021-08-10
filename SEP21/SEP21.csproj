@@ -804,6 +804,7 @@
     <Content Include="css\metisMenu.min.css" />
     <Content Include="css\morris.css" />
     <Content Include="css\startmin.css" />
+    <Content Include="css\styles.css" />
     <Content Include="css\timeline.css" />
     <Content Include="images\Data\images\up.jpg" />
     <Content Include="images\Data\_thumbs\Images\up.jpg" />
@@ -839,6 +840,7 @@
     <Content Include="js\morris-data.js" />
     <Content Include="js\morris.min.js" />
     <Content Include="js\raphael.min.js" />
+    <Content Include="js\scripts.js" />
     <Content Include="js\startmin.js" />
     <Content Include="Models\.sql" />
     <Content Include="Models\WebKhoaCNTT.Context.tt">
@@ -1945,6 +1947,19 @@
     <Content Include="assets2\fonts\opensans_regular_macroman\OpenSans-Regular-webfont.ttf" />
     <Content Include="assets2\fonts\opensans_regular_macroman\OpenSans-Regular-webfont.woff" />
     <Content Include="assets2\images\Thumbs.db" />
+    <Content Include="images\BaiViet\100" />
+    <Content Include="images\BaiViet\101" />
+    <Content Include="images\BaiViet\102" />
+    <Content Include="images\BaiViet\103" />
+    <Content Include="images\BaiViet\104" />
+    <Content Include="images\BaiViet\105" />
+    <Content Include="images\BaiViet\106" />
+    <Content Include="images\BaiViet\107" />
+    <Content Include="images\BaiViet\108" />
+    <Content Include="images\BaiViet\109" />
+    <Content Include="images\BaiViet\110" />
+    <Content Include="images\BaiViet\111" />
+    <Content Include="images\BaiViet\112" />
     <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -1970,8 +1985,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
@@ -1988,9 +2001,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\QuanLy\Data\" />
     <Folder Include="data\" />
-    <Folder Include="images\DoanHoiKhoa\" />
-    <Folder Include="images\NCKH\" />
-    <Folder Include="images\ThanhTich\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

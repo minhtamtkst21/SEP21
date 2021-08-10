@@ -81,7 +81,7 @@ namespace SEP21.Controllers
             {
                 SetAlert("Bạn chưa nhập tài khoản hoặc mật khẩu, vui lòng nhập lại", "danger");
             }
-            return Redirect("Login");
+            return Redirect(Request.UrlReferrer.ToString());
         }
         public ActionResult Login2(string username, string password)
         {

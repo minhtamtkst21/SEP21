@@ -43,6 +43,7 @@
                         @Html.Raw(Model.NoiDung)
                         @if (Model.LoaiBaiViet1.TenLoaiBaiViet == "Hoạt động")
                         {
+                            <hr/>
                             if (Session["UserID"] == null)
                             {
                                 <h3 style="font-family: Arial">Để đăng ký hoạt động, vui lòng điền thông tin của bạn</h3>

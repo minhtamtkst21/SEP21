@@ -17,7 +17,6 @@ namespace SEP21.Areas.QuanLy.Controllers
     public class SinhViensController : Controller
     {
         private SEP24Team5Entities db = new SEP24Team5Entities();
-
         // GET: QuanLy/SinhViens1
         public ActionResult Index()
         {
@@ -32,14 +31,17 @@ namespace SEP21.Areas.QuanLy.Controllers
         {
             ExportExcelSV();
             var list = db.SinhViens.ToList();
-            foreach(var item in list)
+            foreach (var item in list)
             {
                 db.SinhViens.Remove(item);
+                db.SaveChanges();
             }
             var login = db.Logins.ToList();
-            foreach(var item in login)
+            foreach (var item in login)
             {
-                db.Logins.Remove(item);
+                var pass = "VLU" + item.username.Substring(item.username.Length - 10, 10);
+                if (item.password == pass)
+                    db.Logins.Remove(item);
             }
             db.SaveChanges();
             SetAlert("Bạn đã xóa tất cả sinh viên thành công", "success");
@@ -86,7 +88,26 @@ namespace SEP21.Areas.QuanLy.Controllers
                 row++;
             }
 
+            var listdk = db.DangKyHoatDongs.Include(d => d.BaiViet).Include(d => d.SinhVien);
+            int stt = 1;
+            ExcelWorksheet Sheet2 = ep.Workbook.Worksheets.Add("DangKyHoatDong");
+            Sheet2.Cells["A1"].Value = "STT";
+            Sheet2.Cells["B1"].Value = "Thời gian đăng ký";
+            Sheet2.Cells["C1"].Value = "Hoạt động";
+            Sheet2.Cells["D1"].Value = "Tên sinh viên";
+
+            int Row = 2;// dòng bắt đầu ghi dữ liệu
+            foreach (var item in listdk)
+            {
+                Sheet.Cells[string.Format("A{0}", row)].Value = stt;
+                stt++;
+                Sheet.Cells[string.Format("B{0}", row)].Value = item.ThoiGianDangKy.ToShortDateString();
+                Sheet.Cells[string.Format("C{0}", row)].Value = item.BaiViet.TieuDe;
+                Sheet.Cells[string.Format("D{0}", row)].Value = item.SinhVien.HoTen;
+                Row++;
+            }
             Sheet.Cells["A:AZ"].AutoFitColumns();
+            Sheet2.Cells["A:AZ"].AutoFitColumns();
             Response.Clear();
             Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             Response.AddHeader("content-disposition", "attachment; filename=" + "Import.xlsx");
@@ -127,6 +148,9 @@ namespace SEP21.Areas.QuanLy.Controllers
                             usersList.Add(user);
                         }
                     }
+                } else
+                {
+                    SetAlert("Bạn không thêm sinh viên thành công", "warning");
                 }
             }
             foreach (var item in usersList)
