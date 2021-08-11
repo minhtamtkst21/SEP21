@@ -43,31 +43,36 @@
                         @Html.Raw(Model.NoiDung)
                         @if (Model.LoaiBaiViet1.TenLoaiBaiViet == "Hoạt động")
                         {
-                            <hr/>
+                            <hr />
                             if (Session["UserID"] == null)
                             {
                                 <h3 style="font-family: Arial">Để đăng ký hoạt động, vui lòng điền thông tin của bạn</h3>
                                 <p>@ViewBag.Messege</p>
-                                <form role="form" action="@Url.Action("Login")" method="post">
-                                    <input hidden class="form-control" value="@Model.ID" name="id" />
-                                    <div class="form-group">
-                                        <label>Tên tài khoản</label>
-                                        <input class="form-control" name="username">
-                                        <p class="help-block">Bao gồm tên.mssv</p>
+                                <div class="col-md-4 col-md-offset-4">
+                                    <div class="login-panel panel panel-default">
+                                        <form role="form" action="@Url.Action("Login")" method="post">
+                                            <input hidden class="form-control" value="@Model.ID" name="id" />
+                                            <div class="form-group">
+                                                <label>Tên tài khoản</label>
+                                                <input class="form-control" name="username">
+                                                <p class="help-block">Bao gồm tên.mssv</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Mật khẩu</label>
+                                                <input class="form-control" name="password" type="password">
+                                                <p class="help-block">Mặc định: VLUmssv</p>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                                        </form>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Mật khẩu</label>
-                                        <input class="form-control" name="password" type="password">
-                                        <p class="help-block">Mặc định: VLUmssv</p>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
-                                </form>
+                                </div>
                             }
                             else
                             {
-                                foreach (var item in ViewData["list"] as List<SEP21.Models.DangKyHoatDong>)
+                                foreach (var item in ViewData["list"] as List<SEP21.Models.DangKyHoatDong>
+                                    )
                                 {
-                                    if (item.BaiViet.ID == Model.ID && item.SinhVien.MSSV == Session["MSSV"].ToString())
+                                    if (item.BaiViet.ID == Model.ID && item.hd_mssv == Session["MSSV"].ToString())
                                     {
                                         dk = true;
                                         break;
@@ -111,9 +116,7 @@
                         }
                     </div>
                 </div>
-
             </div>
-
         </div>
     </section><!-- End Portfolio Details Section -->
 

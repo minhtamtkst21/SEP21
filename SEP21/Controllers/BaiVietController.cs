@@ -157,7 +157,7 @@ namespace SEP21.Controllers
         {
             sv.HoatDong = id;
             var Sinhvien = db.SinhViens.FirstOrDefault(x => x.MSSV == username.Substring(username.Length - 10, 10));
-            sv.MSSV = Sinhvien.ID;
+            sv.MSSV = Sinhvien.HoTen;
             sv.ThoiGianDangKy = DateTime.Today;
             sv.hd_mssv = username.ToString().Substring(username.Length - 10, 10) + "." + id.ToString();
             db.DangKyHoatDongs.Add(sv);

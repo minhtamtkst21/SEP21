@@ -14,20 +14,11 @@ namespace SEP21.Models
     
     public partial class SinhVien
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SinhVien()
-        {
-            this.DangKyHoatDongs = new HashSet<DangKyHoatDong>();
-        }
-    
         public int ID { get; set; }
         public string MSSV { get; set; }
         public string HoTen { get; set; }
         public string NienKhoa { get; set; }
         public Nullable<int> SoDienThoai { get; set; }
         public string mail { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DangKyHoatDong> DangKyHoatDongs { get; set; }
     }
 }

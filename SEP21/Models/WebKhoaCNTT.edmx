@@ -23,7 +23,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HoatDong" Type="int" Nullable="false" />
-          <Property Name="MSSV" Type="int" Nullable="false" />
+          <Property Name="MSSV" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ThoiGianDangKy" Type="date" Nullable="false" />
           <Property Name="hd_mssv" Type="nvarchar(max)" />
         </EntityType>
@@ -129,18 +129,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DangKyHoatDong_SinhVien">
-          <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="1" />
-          <End Role="DangKyHoatDong" Type="Self.DangKyHoatDong" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SinhVien">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="DangKyHoatDong">
-              <PropertyRef Name="MSSV" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="SEP24Team5ModelStoreContainer">
           <EntitySet Name="BaiViet" EntityType="Self.BaiViet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DangKyHoatDong" EntityType="Self.DangKyHoatDong" Schema="dbo" store:Type="Tables" />
@@ -161,11 +149,7 @@
             <End Role="BaiViet" EntitySet="BaiViet" />
             <End Role="DangKyHoatDong" EntitySet="DangKyHoatDong" />
           </AssociationSet>
-          <AssociationSet Name="FK_DangKyHoatDong_SinhVien" Association="Self.FK_DangKyHoatDong_SinhVien">
-            <End Role="SinhVien" EntitySet="SinhVien" />
-            <End Role="DangKyHoatDong" EntitySet="DangKyHoatDong" />
-          </AssociationSet>
-          </EntityContainer>
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -190,10 +174,6 @@
             <End Role="BaiViet" EntitySet="BaiViets" />
             <End Role="DangKyHoatDong" EntitySet="DangKyHoatDongs" />
           </AssociationSet>
-          <AssociationSet Name="FK_DangKyHoatDong_SinhVien" Association="SEP24Team5Model.FK_DangKyHoatDong_SinhVien">
-            <End Role="SinhVien" EntitySet="SinhViens" />
-            <End Role="DangKyHoatDong" EntitySet="DangKyHoatDongs" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="BaiViet">
           <Key>
@@ -215,11 +195,10 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HoatDong" Type="Int32" Nullable="false" />
-          <Property Name="MSSV" Type="Int32" Nullable="false" />
+          <Property Name="MSSV" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ThoiGianDangKy" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="hd_mssv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BaiViet" Relationship="SEP24Team5Model.FK_DangKyHoatDong_BaiViet" FromRole="DangKyHoatDong" ToRole="BaiViet" />
-          <NavigationProperty Name="SinhVien" Relationship="SEP24Team5Model.FK_DangKyHoatDong_SinhVien" FromRole="DangKyHoatDong" ToRole="SinhVien" />
         </EntityType>
         <EntityType Name="DaoTao">
           <Key>
@@ -279,7 +258,6 @@
           <Property Name="NienKhoa" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="SoDienThoai" Type="Int32" />
           <Property Name="mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="DangKyHoatDongs" Relationship="SEP24Team5Model.FK_DangKyHoatDong_SinhVien" FromRole="SinhVien" ToRole="DangKyHoatDong" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -322,18 +300,6 @@
             </Principal>
             <Dependent Role="DangKyHoatDong">
               <PropertyRef Name="HoatDong" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DangKyHoatDong_SinhVien">
-          <End Type="SEP24Team5Model.SinhVien" Role="SinhVien" Multiplicity="1" />
-          <End Type="SEP24Team5Model.DangKyHoatDong" Role="DangKyHoatDong" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SinhVien">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="DangKyHoatDong">
-              <PropertyRef Name="MSSV" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

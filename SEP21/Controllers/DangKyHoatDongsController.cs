@@ -17,7 +17,7 @@ namespace SEP21.Controllers
         // GET: DangKyHoatDongs
         public ActionResult Index()
         {
-            var dangKyHoatDongs = db.DangKyHoatDongs.Include(d => d.BaiViet).Include(d => d.SinhVien);
+            var dangKyHoatDongs = db.DangKyHoatDongs.Include(d => d.BaiViet);
             return View(dangKyHoatDongs.ToList());
         }
 

@@ -18,17 +18,17 @@ namespace SEP21.Areas.QuanLy.Controllers
         // GET: QuanLy/DangKyHoatDongs
         public ActionResult Index()
         {
-            var list = db.DangKyHoatDongs.Include(d => d.BaiViet).Include(d => d.SinhVien);
+            var list = db.DangKyHoatDongs.Include(d => d.BaiViet);
             return View(list.ToList());
         }
         public ActionResult Index2()
         {
-            var list = db.DangKyHoatDongs.Include(d => d.BaiViet).Include(d => d.SinhVien);
+            var list = db.DangKyHoatDongs.Include(d => d.BaiViet);
             return View(list.ToList());
         }
         public ActionResult ExportExcel()
         {
-            var list = db.DangKyHoatDongs.Include(d => d.BaiViet).Include(d => d.SinhVien);
+            var list = db.DangKyHoatDongs.Include(d => d.BaiViet);
             int stt = 1;
             ExcelPackage ep = new ExcelPackage();
             ExcelWorksheet Sheet = ep.Workbook.Worksheets.Add("Report");
@@ -44,7 +44,7 @@ namespace SEP21.Areas.QuanLy.Controllers
                 stt++;
                 Sheet.Cells[string.Format("B{0}",row)].Value = item.ThoiGianDangKy.ToShortDateString();
                 Sheet.Cells[string.Format("C{0}",row)].Value = item.BaiViet.TieuDe;
-                Sheet.Cells[string.Format("D{0}",row)].Value = item.SinhVien.HoTen;
+                Sheet.Cells[string.Format("D{0}",row)].Value = item.MSSV;
                 row++;
             }
             Sheet.Cells["A:AZ"].AutoFitColumns();

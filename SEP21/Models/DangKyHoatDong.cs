@@ -16,11 +16,10 @@ namespace SEP21.Models
     {
         public int ID { get; set; }
         public int HoatDong { get; set; }
-        public int MSSV { get; set; }
+        public string MSSV { get; set; }
         public System.DateTime ThoiGianDangKy { get; set; }
         public string hd_mssv { get; set; }
     
         public virtual BaiViet BaiViet { get; set; }
-        public virtual SinhVien SinhVien { get; set; }
     }
 }

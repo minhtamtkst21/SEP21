@@ -46,7 +46,7 @@ namespace SEP21
             routes.MapRoute(
                 name: "tuyendung",
                 url: "Tuyen-dung",
-                defaults: new { controller = "CanBoKhoa", action = "Index" }
+                defaults: new { controller = "TuyenDung", action = "Index" }
             );
 
             routes.MapRoute(

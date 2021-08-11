@@ -88,7 +88,7 @@ namespace SEP21.Areas.QuanLy.Controllers
                 row++;
             }
 
-            var listdk = db.DangKyHoatDongs.Include(d => d.BaiViet).Include(d => d.SinhVien);
+            var listdk = db.DangKyHoatDongs.Include(d => d.BaiViet);
             int stt = 1;
             ExcelWorksheet Sheet2 = ep.Workbook.Worksheets.Add("DangKyHoatDong");
             Sheet2.Cells["A1"].Value = "STT";
@@ -103,7 +103,7 @@ namespace SEP21.Areas.QuanLy.Controllers
                 stt++;
                 Sheet.Cells[string.Format("B{0}", row)].Value = item.ThoiGianDangKy.ToShortDateString();
                 Sheet.Cells[string.Format("C{0}", row)].Value = item.BaiViet.TieuDe;
-                Sheet.Cells[string.Format("D{0}", row)].Value = item.SinhVien.HoTen;
+                Sheet.Cells[string.Format("D{0}", row)].Value = item.MSSV;
                 Row++;
             }
             Sheet.Cells["A:AZ"].AutoFitColumns();
