@@ -41,7 +41,7 @@
         <div class="col-md-10">
             <input class="form-control" type="file" name="Picture" id="IMG" onchange="readPicture(this)" accept="image/gif,image/jpeg,image/png" />
         </div>
-        <img id="Picture" src="@Url.Action("Picture", new { Model.ID })" />
+        <img id="Picture" src="@Url.Action("Picture", new { Model.ID })" width="200px" height="200px"/>
     </div>
 
     <div class="form-group">

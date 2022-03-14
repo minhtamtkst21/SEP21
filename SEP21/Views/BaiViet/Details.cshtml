@@ -72,7 +72,7 @@
                                 foreach (var item in ViewData["list"] as List<SEP21.Models.DangKyHoatDong>
                                     )
                                 {
-                                    if (item.BaiViet.ID == Model.ID && item.hd_mssv == Session["MSSV"].ToString())
+                                    if (item.BaiViet.ID == Model.ID && item.hd_mssv.Substring(0,10) == Session["MSSV"].ToString())
                                     {
                                         dk = true;
                                         break;
