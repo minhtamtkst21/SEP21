@@ -47,7 +47,7 @@
                             <div class="row">
                                 @foreach (var item in Model)
                                 {
-                                    var url = "/SEP24Team5/Tin-tuc/" + item.Title + "-" + item.ID;
+                                    var url = "/Tin-tuc/" + item.Title + "-" + item.ID;
                                     <div class="col-lg-4">
                                         <div class="card mb-4">
                                             <a href="@url"><img class="card-img-top" width="200px" height="220px" src="@Url.Action("Picture", "Home", new { item.ID })" alt="@item.Title" /></a>

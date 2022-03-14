@@ -99,11 +99,11 @@ namespace SEP21.Areas.QuanLy.Controllers
             int Row = 2;// dòng bắt đầu ghi dữ liệu
             foreach (var item in listdk)
             {
-                Sheet.Cells[string.Format("A{0}", row)].Value = stt;
+                Sheet2.Cells[string.Format("A{0}", row)].Value = stt;
                 stt++;
-                Sheet.Cells[string.Format("B{0}", row)].Value = item.ThoiGianDangKy.ToShortDateString();
-                Sheet.Cells[string.Format("C{0}", row)].Value = item.BaiViet.TieuDe;
-                Sheet.Cells[string.Format("D{0}", row)].Value = item.MSSV;
+                Sheet2.Cells[string.Format("B{0}", row)].Value = item.ThoiGianDangKy.ToShortDateString();
+                Sheet2.Cells[string.Format("C{0}", row)].Value = item.BaiViet.TieuDe;
+                Sheet2.Cells[string.Format("D{0}", row)].Value = item.MSSV;
                 Row++;
             }
             Sheet.Cells["A:AZ"].AutoFitColumns();
